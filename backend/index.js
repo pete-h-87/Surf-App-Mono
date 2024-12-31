@@ -1,5 +1,5 @@
 const express = require("express");
-// const cors = require("cors");
+const cors = require("cors");
 require("dotenv").config();
 
 // import routes
@@ -18,7 +18,7 @@ const port = process.env.PORT || 8000;
 //   allowedHeaders: ["Content-Type", "Authorization"],
 // };
 
-// app.use(cors(corsOptions)); // Enable CORS with options
+app.use(cors()); // Enable CORS with corsOptions as a param
 
 app.use(express.json());
 

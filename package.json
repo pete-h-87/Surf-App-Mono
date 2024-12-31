@@ -14,6 +14,8 @@
     "preinstall": "cd ./back-end && npm install",
     "install": "cd ./front-end && npm install",
     "start": "npx concurrently 'npm run start:backend' 'npm run start:frontend'",
+    "start:backend": "npm --prefix ./back-end start",
+    "start:frontend": "npm --prefix ./front-end start",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -34,5 +36,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
   }
 }
