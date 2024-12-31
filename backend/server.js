@@ -12,13 +12,13 @@ const app = express();
 const port = process.env.PORT || 8000;
 
 // Configure CORS to allow requests from http://localhost:3000
-// const corsOptions = {
-//   origin: "http://localhost:3000",
-//   methods: ["GET", "POST"],
-//   allowedHeaders: ["Content-Type", "Authorization"],
-// };
+const corsOptions = {
+  origin: "http://localhost:3000",
+  methods: ["GET", "POST"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+};
 
-app.use(cors()); // Enable CORS with corsOptions as a param
+app.use(cors(corsOptions)); // Enable CORS with corsOptions as a param
 
 app.use(express.json());
 
