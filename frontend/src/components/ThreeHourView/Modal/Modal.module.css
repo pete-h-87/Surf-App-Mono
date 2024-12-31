@@ -1,0 +1,85 @@
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align items to the top */
+    padding-top: 50px; /* Add padding to move the modal down from the top */
+  }
+  
+  .modal {
+    position: relative; /* Ensure the close button is positioned relative to the modal */
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    max-width: calc(100% - 20px); /* Ensure the modal has a 10px margin on the sides */
+    margin: 0 10px; /* Add 10px margin on the sides */
+  }
+  
+  .closeButton {
+    background: none;
+    border: none;
+    font-size: 24px;
+    position: absolute;
+    top: 0;
+    right: 10px;
+    cursor: pointer;
+  }
+  
+  .formGroup {
+    margin-bottom: 15px;
+  }
+  
+  .submitButton {
+    background-color: #4CAF50;
+    color: white;
+    padding: 7px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .submitButton:hover {
+    background-color: #45a049;
+  }
+
+  .screenshotContainer {
+    margin-top: 20px;
+    text-align: center; /* Center the content inside the container */
+  }
+  
+  .screenshot {
+    width: 50vw; /* Make the image half the size of the width of the viewing screen */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Remove any inline spacing */
+    margin: 0 auto; /* Center the image horizontally */
+  }
+
+  .screenshotContainer {
+    margin-top: 20px;
+    text-align: center; /* Center the content inside the container */
+  }
+  
+  .screenshot {
+    width: 50vw; /* Make the image half the size of the width of the viewing screen */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Remove any inline spacing */
+    margin: 0 auto; /* Center the image horizontally */
+  }
+
+  .horizontalList {
+    list-style-type: none; /* Remove bullets */
+    padding: 0; /* Remove default padding */
+    display: flex; /* Display list items horizontally */
+    justify-content: space-around; /* Distribute items evenly */
+  }
+  
+  .horizontalList li {
+    display: inline-block; /* Display list items inline */
+    margin: 0 10px; /* Add some spacing between items */
+  }

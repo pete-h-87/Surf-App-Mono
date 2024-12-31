@@ -1,0 +1,101 @@
+.page {
+  padding: 5px;
+  background-color: #f0f0f0;
+}
+
+.dayContainer {
+  margin-bottom: 15px;
+  font-size: 15px;
+}
+
+.dayContainer h5 {
+  margin-bottom: 5px; /* Reduce the bottom margin of the h4 element */
+}
+
+.page h2 {
+  margin: 4px;
+}
+
+.container {
+  display: flex; /* Use Flexbox to arrange items horizontally */
+  justify-content: space-between; /* Space items evenly */
+  align-items: center; /* Center items vertically */
+  margin: 0px 0;
+  height: 60px;
+  border-radius: 15px;
+  background-color: transparent;
+  border: 1px solid #ccc;
+  font-size: 11px;
+  text-align: center; /* Ensure text is centered */
+  padding: 0; /* Remove padding */
+  box-sizing: border-box;
+  text-decoration: none;
+  color: inherit; /* Include padding and border in the element's total width and height */
+}
+
+.container:active {
+  outline: 2px solid #4f69e7; /* Add an outline when the link is clicked */
+}
+
+.item {
+  flex: 1; /* Equally space items */
+  text-align: center; /* Center text */
+  background-color: rgb(102, 169, 228);
+  height: 100%; /* Fill the container height */
+  display: flex; /* Use Flexbox */
+  justify-content: center; /* Center text horizontally */
+  align-items: flex-start; /* Center text vertically */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  margin: 0; /* Remove margin */
+  padding-top: 15px;
+}
+
+.item:first-child {
+  border-radius: 15px 0 0 15px; /* Rounded corners on the left */
+}
+
+.item:last-child {
+  border-radius: 0 15px 15px 0; /* Rounded corners on the right */
+}
+
+.arrowDiv {
+  display: flex;
+  justify-content: space-between;
+}
+
+.separator {
+  border: none;
+  border-left: 3px solid #323e79;
+  height: 100%;
+}
+
+.navbar {
+  background-color: #717171;
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+.navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: right;
+}
+
+.navbar li {
+  float: left;
+}
+
+.navbar li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 4px 16px;
+  text-decoration: none;
+}
+
+.navbar li a:hover {
+  background-color: #111;
+}
+

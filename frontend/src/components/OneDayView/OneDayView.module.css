@@ -1,0 +1,64 @@
+.page {
+    padding: 5px;
+    background-color: #f0f0f0;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+  }
+
+  .container h5 {
+    margin-bottom: 2px; /* Reduce the bottom margin of the h4 element */
+    margin-top: 10px;
+  }
+
+  .page h2 {
+    margin: 4px;
+    margin-bottom: 12px;
+  }
+  
+  .session {
+    width: 100%; /* Span the width of the window */
+    height: 60px; /* Set height to 50px */
+    background-color: rgb(102, 169, 228);
+    border-radius: 15px; /* Rounded edges */
+    display: flex;
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    padding: 10px;
+    color: black; /* Text color */
+    font-size: 14px; /* Font size */
+  }
+
+  .navbar {
+    background-color: #717171;
+    overflow: hidden;
+    border-radius: 5px;
+  }
+  
+  .navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .navbar li {
+    float: left;
+  }
+  
+  .navbar li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 4px 16px;
+    text-decoration: none;
+  }
+  
+  .navbar li a:hover {
+    background-color: #111;
+  }

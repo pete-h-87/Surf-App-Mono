@@ -1,0 +1,52 @@
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Align items to the top */
+  padding-top: 130px; /* Add padding to move the modal down from the top */
+}
+
+.modal {
+  position: relative; /* Ensure the close button is positioned relative to the modal */
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  max-width: calc(
+    100% - 20px
+  ); /* Ensure the modal has a 10px margin on the sides */
+  margin: 0 10px; /* Add 10px margin on the sides */
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: column; /* Arrange child elements vertically */
+  gap: 10px; /* Add space between the buttons */
+  align-items: center; /* Center the buttons horizontally */
+}
+
+
+.journalButton {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 140px;
+}
+
+.closeButton {
+  background-color: #af5b4c;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 140px;
+}

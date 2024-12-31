@@ -1,0 +1,171 @@
+  .page {
+    padding: 5px;
+    background-color: #f0f0f0;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+  }
+
+  .container h5 {
+    margin-bottom: 2px; /* Reduce the bottom margin of the h4 element */
+    margin-top: 10px;
+  }
+
+  .page h2 {
+    margin: 4px;
+  }
+  
+  .session {
+    width: 100%; /* Span the width of the window */
+    height: 60px; /* Set height to 50px */
+    background-color: rgb(102, 169, 228);
+    border-radius: 15px; /* Rounded edges */
+    display: flex;
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    padding: 10px;
+    color: black; /* Text color */
+    font-size: 14px; /* Font size */
+  }
+
+  .navbar {
+    background-color: #717171;
+    overflow: hidden;
+    border-radius: 5px;
+  }
+  
+  .navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .navbar li {
+    float: left;
+  }
+
+  .singleEntry {
+    border: 1px solid #000; /* 2px border */
+    border-radius: 10px; /* 10px radius */
+    padding: 10px; /* Optional: Add padding inside the div */
+    margin-bottom: 10px; /* Optional: Add margin between entries */
+    position: relative; /* Ensure the close button is positioned relative to this div */
+  }
+
+  .reported {
+    background-color: lightgreen; /* Light green background for reported entries */
+  }
+  
+  .navbar li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 4px 16px;
+    text-decoration: none;
+  }
+  
+  .navbar li a:hover {
+    background-color: #111;
+  }
+
+  button {
+    margin-top: 10px;
+  }
+
+  .entry {
+    margin-bottom: 20px;
+  }
+  
+  .horizontalList {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .horizontalList li {
+    display: block;
+    margin-right: 10px;
+  }
+  
+  .toggleButton {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .inlineForm {
+    display: flex;
+    align-items: center;
+  }
+  
+  .formGroup {
+    display: flex;
+    align-items: center;
+  }
+  
+  .formGroup label {
+    margin-right: 10px;
+  }
+  
+  .formGroup input {
+    margin-right: 10px;
+  }
+  
+  .submitButton {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+
+  .toggleButton, .editButton {
+    background-color: transparent;
+    color: black;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8em; /* Adjust the size of the button */
+  }
+
+  .closeButton {
+    background-color: transparent;
+    color: black;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 5px;
+    font-size: 1.5em;
+  }
+
+  .centeredForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .addButton {
+    background-color: rgb(75, 159, 187);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 10px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
