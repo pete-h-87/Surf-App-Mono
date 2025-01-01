@@ -9,6 +9,15 @@ const pool = new Pool({
   port: process.env.DB_PORT,
 });
 
+pool.on('connect', () => {
+  console.log('Connected to the database');
+});
+
+pool.on('error', (err) => {
+  console.error('Unexpected error on idle client', err);
+  process.exit(-1);
+});
+
 module.exports = pool;
 
 // STEP TWO - recieve .env info from 'dotenv' from process.env now,
