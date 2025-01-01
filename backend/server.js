@@ -10,7 +10,6 @@ const screenshotRoutes = require("./routes/screenshotRoutes.js");
 // Running express server
 const app = express();
 const port = process.env.PORT || 8000;
-const renderServerUrl = "https://surf-app-mono-backend.onrender.com";
 
 // Configure CORS to allow requests from http://localhost:3000,
 const corsOptions = {
@@ -24,13 +23,13 @@ app.use(cors(corsOptions)); // Enable CORS with corsOptions as a param
 app.use(express.json());
 
 // route middlewares - Prefix all routes defined in todoRoutes (the second param) with '/api'
-app.use(`${renderServerUrl}/api`, forecastRoutes);
-app.use(`${renderServerUrl}/api`, proxyRoutes);
-app.use(`${renderServerUrl}/api`, screenshotRoutes);
+app.use("/api/forecast", forecastRoutes);
+app.use("/api/proxy", proxyRoutes);
+app.use("/api/screenshot", screenshotRoutes);
 
 app.listen(port, () => {
   // eslint-disable-next-line no-console
-  console.log(`App listening at ${renderServerUrl}`);
+  console.log(`App listening at http://localhost:${port}`);
 });
 
 // STEP SIX

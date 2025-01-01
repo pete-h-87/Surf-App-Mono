@@ -1,6 +1,8 @@
+import apiUrl from './config';
+
 export const getForecast = async () => {
   try {
-    const res = await fetch("/api/forecast");
+    const res = await fetch(`${apiUrl}/api/forecast`);
     const data = await res.json();
     // console.log("db data", data);
     return data;
@@ -11,7 +13,7 @@ export const getForecast = async () => {
 
 export const getPredictions = async () => {
   try {
-    const res = await fetch("/api/forecast/readPredictions");
+    const res = await fetch(`${apiUrl}/api/forecast/readPredictions`);
     const data = await res.json();
     // console.log("predictions data:", data);
     return data;
@@ -22,7 +24,7 @@ export const getPredictions = async () => {
 
 export const createEntry = async (data) => {
   try {
-    const res = await fetch("api/forecast/create", {
+    const res = await fetch(`${apiUrl}/api/forecast/create`, {
       //this api route naming is crucial - must be the same as step 5, with your routes page
       method: "POST",
       headers: {
@@ -39,7 +41,7 @@ export const createEntry = async (data) => {
 
 export const createJournalEntry = async (data) => {
   try {
-    const res = await fetch("/api/forecast/createJournalEntry", {
+    const res = await fetch(`${apiUrl}/api/forecast/createJournalEntry`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -59,7 +61,7 @@ export const createJournalEntry = async (data) => {
 
 export const addReport = async (data) => {
   try {
-    const res = await fetch("/api/forecast/addReport", {
+    const res = await fetch(`${apiUrl}/api/forecast/addReport`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -79,7 +81,7 @@ export const addReport = async (data) => {
 
 export const updatePrediction = async (data) => {
   try {
-    const res = await fetch("/api/forecast/updatePrediction", {
+    const res = await fetch(`${apiUrl}/api/forecast/updatePrediction`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -101,7 +103,7 @@ export const updatePrediction = async (data) => {
 
 export const deleteEntry = async (forecast_id) => {
   try {
-    const res = await fetch('/api/forecast/deleteEntry', {
+    const res = await fetch(`${apiUrl}/api/forecast/deleteEntry`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -120,7 +122,7 @@ export const deleteEntry = async (forecast_id) => {
 
 export const deleteReport = async (forecast_id) => {
   try {
-    const res = await fetch('/api/forecast/deleteReport', {
+    const res = await fetch(`${apiUrl}/api/forecast/deleteReport`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -141,7 +143,7 @@ export const deleteReport = async (forecast_id) => {
 
 export const getThreeHourWindForecast = async () => {
   try {
-    const res = await fetch("/api/threeHourWind");
+    const res = await fetch(`${apiUrl}/api/forecast/threeHourWind`);
     const data = await res.json();
     console.log("three hour wind data:", data);
     return data;
@@ -153,7 +155,7 @@ export const getThreeHourWindForecast = async () => {
 
 export const getThreeHourWaveForecast = async () => {
   try {
-    const res = await fetch("/api/threeHourWave");
+    const res = await fetch(`${apiUrl}/api/forecast/threeHourWave`);
     const data = await res.json();
     console.log("three hour wave data:", data);
     return data;
@@ -165,7 +167,7 @@ export const getThreeHourWaveForecast = async () => {
 
 export const getSixHourWindForecast = async () => {
   try {
-    const res = await fetch("/api/sixHourWind");
+    const res = await fetch(`${apiUrl}/api/forecast/sixHourWind`);
     const data = await res.json();
     console.log("six hour wind data:", data);
     return data;
@@ -177,7 +179,7 @@ export const getSixHourWindForecast = async () => {
 
 export const getSixHourWaveForecast = async () => {
   try {
-    const res = await fetch("/api/sixHourWave");
+    const res = await fetch(`${apiUrl}/api/forecast/sixHourWave`);
     const data = await res.json();
     console.log("six hour wave data:", data);
     return data;
