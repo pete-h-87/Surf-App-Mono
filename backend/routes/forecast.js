@@ -3,7 +3,7 @@ const axios =  require('axios');
 const router = express.Router();
 const { read, readPredictions, create, createJournalEntry, addReport, updatePrediction, deleteReport, deleteEntry } = require("../controller/index");
 
-router.get("/forecast", read);
+router.get("/forecast/home", read);
 router.get("/forecast/readPredictions", readPredictions);
 router.post("/forecast/create", create);
 router.post("/forecast/createJournalEntry", createJournalEntry);

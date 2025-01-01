@@ -1,6 +1,6 @@
 export const getForecast = async () => {
   try {
-    const res = await fetch("/api/forecast");
+    const res = await fetch("/api/forecast/home");
     const data = await res.json();
     // console.log("db data", data);
     return data;

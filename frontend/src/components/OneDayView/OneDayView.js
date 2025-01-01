@@ -92,6 +92,9 @@ function OneDayView() {
                     <Link to="/">Back</Link>
                   </li>
                   <li>
+                    <Link to="/">Home</Link>
+                  </li>
+                  <li>
                   <Link to="/journal">Journal</Link>
                   </li>
                 </ul>
