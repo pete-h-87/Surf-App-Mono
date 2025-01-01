@@ -9,7 +9,10 @@ router.get("/", async (req, res) => {
   }
 
   try {
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({
+      executablePath: process.env.CHROME_PATH || '/usr/bin/google-chrome', // Adjust the path as needed
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    });
     const page = await browser.newPage();
     await page.goto(url, { waitUntil: "networkidle2" });
 
