@@ -3,14 +3,14 @@ const axios =  require('axios');
 const router = express.Router();
 const { read, readPredictions, create, createJournalEntry, addReport, updatePrediction, deleteReport, deleteEntry } = require("../controller/index");
 
-router.get("/forecast", read);
-router.get("/forecast/readPredictions", readPredictions);
-router.post("/forecast/create", create);
-router.post("/forecast/createJournalEntry", createJournalEntry);
-router.post("/forecast/addReport", addReport);
-router.put("/forecast/updatePrediction", updatePrediction)
-router.delete("/forecast/deleteEntry", deleteEntry);
-router.delete("/forecast/deleteReport", deleteReport);
+router.get("/", read);
+router.get("/readPredictions", readPredictions);
+router.post("/create", create);
+router.post("/createJournalEntry", createJournalEntry);
+router.post("/addReport", addReport);
+router.put("/updatePrediction", updatePrediction);
+router.delete("/deleteEntry", deleteEntry);
+router.delete("/deleteReport", deleteReport);
 
 
 module.exports = router;
