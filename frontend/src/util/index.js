@@ -99,19 +99,17 @@ export const updatePrediction = async (data) => {
   }
 };
 
-
-
 export const deleteEntry = async (forecast_id) => {
   try {
     const res = await fetch(`${apiUrl}/api/forecast/deleteEntry`, {
-      method: 'DELETE',
+      method: "DELETE",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify({ forecast_id}),
+      body: JSON.stringify({ forecast_id }),
     });
     if (!res.ok) {
-      throw new Error('Network response was not ok');
+      throw new Error("Network response was not ok");
     }
     console.log(`Entry with forecast_id EE ${forecast_id} deleted`);
   } catch (err) {
@@ -123,14 +121,14 @@ export const deleteEntry = async (forecast_id) => {
 export const deleteReport = async (forecast_id) => {
   try {
     const res = await fetch(`${apiUrl}/api/forecast/deleteReport`, {
-      method: 'DELETE',
+      method: "DELETE",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify({ forecast_id}),
+      body: JSON.stringify({ forecast_id }),
     });
     if (!res.ok) {
-      throw new Error('Network response was not ok');
+      throw new Error("Network response was not ok");
     }
     console.log(`Entry with forecast_id RR ${forecast_id} deleted`);
   } catch (err) {
@@ -139,11 +137,9 @@ export const deleteReport = async (forecast_id) => {
   }
 };
 
-
-
 export const getThreeHourWindForecast = async () => {
   try {
-    const res = await fetch(`${apiUrl}/api/forecast/threeHourWind`);
+    const res = await fetch(`${apiUrl}/api/proxy/threeHourWind`);
     const data = await res.json();
     console.log("three hour wind data:", data);
     return data;
@@ -155,7 +151,7 @@ export const getThreeHourWindForecast = async () => {
 
 export const getThreeHourWaveForecast = async () => {
   try {
-    const res = await fetch(`${apiUrl}/api/forecast/threeHourWave`);
+    const res = await fetch(`${apiUrl}/api/proxy/threeHourWave`);
     const data = await res.json();
     console.log("three hour wave data:", data);
     return data;
@@ -167,7 +163,7 @@ export const getThreeHourWaveForecast = async () => {
 
 export const getSixHourWindForecast = async () => {
   try {
-    const res = await fetch(`${apiUrl}/api/forecast/sixHourWind`);
+    const res = await fetch(`${apiUrl}/api/proxy/sixHourWind`);
     const data = await res.json();
     console.log("six hour wind data:", data);
     return data;
@@ -179,7 +175,7 @@ export const getSixHourWindForecast = async () => {
 
 export const getSixHourWaveForecast = async () => {
   try {
-    const res = await fetch(`${apiUrl}/api/forecast/sixHourWave`);
+    const res = await fetch(`${apiUrl}/api/proxy/sixHourWave`);
     const data = await res.json();
     console.log("six hour wave data:", data);
     return data;
