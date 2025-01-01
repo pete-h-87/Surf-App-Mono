@@ -13,7 +13,7 @@ const port = process.env.PORT || 8000;
 
 // Configure CORS to allow requests from http://localhost:3000
 const corsOptions = {
-  origin: "http://localhost:3000",
+  origin: process.env.FRONTEND_URL,
   methods: ["GET", "POST"],
   allowedHeaders: ["Content-Type", "Authorization"],
 };
@@ -37,7 +37,7 @@ app.listen(port, () => {
 // assign to the app to USE, with '/api' for prefix
 // the entire app will now be listening on the specific port
 // so when we make requests using HTTP, the port is now listening and will direct traffic
-// NOTICE HERE! we required the 'dotenv' that imported our env file into our system
+// NOTICE HERE! we required the 'dotenv' that imported our env file into our system - our dotenv dependency automatically looks for these types of files
 // THIS is the top of the SERVER-SIDE app, the MAIN server file.
 
 // Key Responsibilities of the Main Server File:
