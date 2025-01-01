@@ -5,7 +5,7 @@ require("dotenv").config();
 // import routes
 const forecastRoutes = require("./routes/forecast");
 const proxyRoutes = require("./routes/proxyRoutes");
-const screenshotRoutes = require("./routes/screenshotRoutes.js");
+const screenshotRoutes = require("./routes/screenshotRoutes");
 
 // Running express server
 const app = express();

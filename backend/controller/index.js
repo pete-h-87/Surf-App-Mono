@@ -5,8 +5,8 @@ const {
   createJournalEntry,
   updatePrediction,
   addReport,
-  deleteReport,
   deleteEntry,
+  deleteReport,
 } = require("../model/dbApi");
 
 exports.read = async (req, res) => {

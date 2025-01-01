@@ -1,7 +1,7 @@
 const express = require("express");
 const axios =  require('axios');
 const router = express.Router();
-const { read, readPredictions, create, createJournalEntry, addReport, updatePrediction, deleteReport, deleteEntry } = require("../controller/index");
+const { read, readPredictions, create, createJournalEntry, addReport, updatePrediction, deleteEntry, deleteReport } = require("../controller/index");
 
 router.get("/", read);
 router.get("/readPredictions", readPredictions);
