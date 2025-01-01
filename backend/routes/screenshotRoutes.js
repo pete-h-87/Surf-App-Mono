@@ -10,7 +10,7 @@ router.get("/", async (req, res) => {
 
   try {
     const browser = await puppeteer.launch({
-      executablePath: puppeteer.executablePath(), // Use Puppeteer's default executable path
+      executablePath: process.env.CHROME_PATH || puppeteer.executablePath(), // Use Puppeteer's default executable path if CHROME_PATH is not set
       args: ['--no-sandbox', '--disable-setuid-sandbox'],
     });
     const page = await browser.newPage();
