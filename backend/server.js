@@ -9,7 +9,7 @@ const screenshotRoutes = require("./routes/screenshotRoutes.js");
 
 // Running express server
 const app = express();
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 10000;
 
 // Configure CORS to allow requests from http://localhost:3000,
 const corsOptions = {
