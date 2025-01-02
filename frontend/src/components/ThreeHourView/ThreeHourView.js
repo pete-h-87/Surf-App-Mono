@@ -18,24 +18,15 @@ function ThreeHourView() {
   const [showModal, setShowModal] = useState(false);
   const [showConfModal, setShowConfModal] = useState(false);
 
-  // Extract month and day from the original date
+  // format the date to insert into URL
   const originalDate = dayjs(date);
   const month = originalDate.format("MM");
   const day = originalDate.format("DD");
-
-  // Get the current year
   const currentYear = dayjs().year();
-
-  // Combine current year with extracted month and day
   const fullDate = `${currentYear}-${month}-${day}`;
-
-  // Format the date to YYYY-MM-DD
   const formattedDate = dayjs(fullDate).format("YYYY-MM-DD");
 
-  // console.log("three hour index:", threeHourPeriodIndex);
-  // console.log("the date in my three-hour page:", date);
-  // console.log("FORMATTED DATE:", formattedDate);
-
+  //fetch the snapshots with the formattedDate
   useEffect(() => {
     async function fetchTwelveHourPriorScreenshot() {
       try {
@@ -99,14 +90,11 @@ function ThreeHourView() {
     setShowModal(false);
   };
 
-  const handleConfModal = () => {
-    setShowConfModal(true);
-  };
-
   const handleCloseConfModal = async (e) => {
     setShowConfModal(false);
   };
 
+  //get the data from the state
   const currentData = {
     date_recorded: date,
     session_time: `${threeHourPeriodIndex * 3}:00 - ${
@@ -136,39 +124,15 @@ function ThreeHourView() {
       ],
   };
 
-  // below is the handleSubmit that handles the un-parsed response from index.js in utils:
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   setError(null);
-  //   const data = currentData;
-  //   try {
-  //     const response = await createEntry(data);
-  //     console.log("the response, is it ok1?:", response.ok)
-  //     if (!response.ok) {
-  //       console.log("the response, is it ok2?:", response.ok)
-  //       throw new Error("Network response was not ok");
-  //     }
-
-  //     const result = await response.json();
-  //     console.log("Forecast created:", result);
-  //     setShowModal(false);
-  //   } catch (err) {
-  //     console.error("Error creating forecast:", err);
-  //     setError(err.message);
-  //   }
-  // };
-
-  // below is the handleSubmit that handles the parsed JSON that is returned from index.js in utils:
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(null);
     const data = currentData;
     const formData = new FormData(e.target);
     const prediction = formData.get("prediction");
-
     console.log("the prediction:", prediction);
     try {
-      const result = await createEntry(data); // Handle the parsed JSON data
+      const result = await createEntry(data);
       const journalData = {
         forecast_id: result.forecast_id,
         prediction,
@@ -176,7 +140,6 @@ function ThreeHourView() {
       const journalResult = await createJournalEntry(journalData);
       console.log("Journal entry created:", journalResult);
       console.log("Forecast created:", result);
-      // console.log("journal prediction create:", journalResult);
       setShowModal(false);
       setShowConfModal(true);
     } catch (err) {
