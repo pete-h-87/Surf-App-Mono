@@ -32,7 +32,6 @@ function ThreeHourView() {
       try {
         let url;
         const newTime = threeHourPeriodIndex * 3 - 12;
-        console.log("newTime:", newTime);
         if (newTime < 0) {
           const originalDate = dayjs(date);
           const month = originalDate.format("MM");
@@ -61,7 +60,6 @@ function ThreeHourView() {
     async function fetchLivePriorScreenshot() {
       try {
         const newTime = threeHourPeriodIndex * 3;
-        console.log("newTime:", newTime);
         const url = `https://zoom.earth/maps/wind-speed/#view=58.35609,9.51122,8z/date=${formattedDate},${newTime}:00,+1/model=icon`;
         const response = await fetch(
           `${apiUrl}/api/screenshot?url=${encodeURIComponent(url)}`
@@ -130,7 +128,6 @@ function ThreeHourView() {
     const data = currentData;
     const formData = new FormData(e.target);
     const prediction = formData.get("prediction");
-    console.log("the prediction:", prediction);
     try {
       const result = await createEntry(data);
       const journalData = {
@@ -138,8 +135,6 @@ function ThreeHourView() {
         prediction,
       };
       const journalResult = await createJournalEntry(journalData);
-      console.log("Journal entry created:", journalResult);
-      console.log("Forecast created:", result);
       setShowModal(false);
       setShowConfModal(true);
     } catch (err) {
