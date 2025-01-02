@@ -15,9 +15,7 @@ const create = async (data) => {
     wave_direction,
     temperature,
   } = data;
-  console.log("teh data in create in dbAPI:", data);
   try {
-    // Insert into forecast table
     const forecastQuery = `
       INSERT INTO forecast (date_recorded, session_time, wind_speed, wind_direction, wave_height, wave_period, wave_direction, temperature)
       VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
@@ -94,16 +92,11 @@ const updatePrediction = async (data) => {
   }
 };
 
-const deleteEntry = async (forecast_id) => { //THIS ONE TO DELETE FIRST! foreign/primary key constraints!
+const deleteEntry = async (forecast_id) => { //foreign/primary key constraints - first to delete
   try {
     const deleteJournalQuery = `DELETE FROM journal WHERE forecast_id = $1`;
     const values = [forecast_id];
-
     await pool.query(deleteJournalQuery, values);
-
-    console.log(
-      `Entries with forecast_id ${forecast_id} deleted from journal table`
-    );
   } catch (error) {
     console.error(
       `Error deleting entries with forecast_id ${forecast_id}:`,
@@ -117,12 +110,7 @@ const deleteReport = async (forecast_id) => {
   try {
     const deleteForecastQuery = `DELETE FROM forecast WHERE forecast_id = $1`;
     const values = [forecast_id];
-
     await pool.query(deleteForecastQuery, values);
-
-    console.log(
-      `Entries with forecast_id ${forecast_id} deleted from forecast table`
-    );
   } catch (error) {
     console.error(
       `Error deleting entries with forecast_id ${forecast_id}:`,
@@ -131,8 +119,6 @@ const deleteReport = async (forecast_id) => {
     throw error;
   }
 };
-
-
 
 module.exports = {
   get,
@@ -144,6 +130,3 @@ module.exports = {
   deleteEntry,
   deleteReport,
 };
-
-// STEP THREE - recieve the pool from database.js in same folder,
-// create SQL injections, and pass to the CONTROLLER
