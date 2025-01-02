@@ -28,7 +28,6 @@ app.use("/api/proxy", proxyRoutes);
 app.use("/api/screenshot", screenshotRoutes);
 
 app.listen(port, () => {
-  // eslint-disable-next-line no-console
   console.log(`App listening at http://localhost:${port}`);
 });
 
