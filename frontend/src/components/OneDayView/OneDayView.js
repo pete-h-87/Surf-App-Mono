@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { GlobalContext } from "../../GlobalState"; // Import the global context
+import { GlobalContext } from "../../GlobalState";
 import styles from "./OneDayView.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
@@ -12,8 +12,6 @@ function OneDayView() {
   const { threeHourWind, threeHourWave } = useContext(GlobalContext);
 
   const navigate = useNavigate();
-
-  console.log("day_index:", dayIndex);
 
   if (dayIndex === undefined || !threeHourWind || !threeHourWave) {
     return <div>No data available</div>;
@@ -125,9 +123,9 @@ function OneDayView() {
                     icon={faArrowUp}
                     style={{
                       transform: `rotate(${forecast.waveDirection + 180}deg)`,
-                      fontSize: "1em", // Adjust the size of the icon
-                      verticalAlign: "middle", // Align the icon vertically
-                      marginLeft: "5px", // Add some space between the text and the icon
+                      fontSize: "1em",
+                      verticalAlign: "middle",
+                      marginLeft: "5px",
                     }}
                   /> |
                 </span>
@@ -137,9 +135,9 @@ function OneDayView() {
                     icon={faArrowUp}
                     style={{
                       transform: `rotate(${forecast.windDirection + 180}deg)`,
-                      fontSize: "1em", // Adjust the size of the icon
-                      verticalAlign: "middle", // Align the icon vertically
-                      marginLeft: "5px", // Add some space between the text and the icon
+                      fontSize: "1em",
+                      verticalAlign: "middle",
+                      marginLeft: "5px",
                     }}
                   />
                 </span>

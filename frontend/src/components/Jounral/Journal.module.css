@@ -10,7 +10,7 @@
   }
 
   .container h5 {
-    margin-bottom: 2px; /* Reduce the bottom margin of the h4 element */
+    margin-bottom: 2px;
     margin-top: 10px;
   }
 
@@ -19,17 +19,17 @@
   }
   
   .session {
-    width: 100%; /* Span the width of the window */
-    height: 60px; /* Set height to 50px */
+    width: 100%;
+    height: 60px;
     background-color: rgb(102, 169, 228);
-    border-radius: 15px; /* Rounded edges */
+    border-radius: 15px;
     display: flex;
-    justify-content: center; /* Center content horizontally */
-    align-items: center; /* Center content vertically */
-    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
     padding: 10px;
-    color: black; /* Text color */
-    font-size: 14px; /* Font size */
+    color: black;
+    font-size: 14px;
   }
 
   .navbar {
@@ -51,15 +51,15 @@
   }
 
   .singleEntry {
-    border: 1px solid #000; /* 2px border */
-    border-radius: 10px; /* 10px radius */
-    padding: 10px; /* Optional: Add padding inside the div */
-    margin-bottom: 10px; /* Optional: Add margin between entries */
-    position: relative; /* Ensure the close button is positioned relative to this div */
+    border: 1px solid #000;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    position: relative;
   }
 
   .reported {
-    background-color: lightgreen; /* Light green background for reported entries */
+    background-color: lightgreen;
   }
   
   .navbar li a {
@@ -135,7 +135,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.8em; /* Adjust the size of the button */
+    font-size: 0.8em;
   }
 
   .closeButton {

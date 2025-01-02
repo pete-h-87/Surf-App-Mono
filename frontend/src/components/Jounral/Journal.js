@@ -26,7 +26,6 @@ function Journal() {
       setError(res.error.name);
     }
     setEntries(res.data);
-    console.log("err in fetch in journal:", error);
   };
 
   const fetchPredictions = async () => {
@@ -35,7 +34,6 @@ function Journal() {
       setPredError(predRes.error.name);
     }
     setPredictions(predRes.data);
-    console.log("predErr in fetch in journal:", predError);
   };
 
   useEffect(() => {
@@ -56,13 +54,6 @@ function Journal() {
 
   mergedData.reverse();
 
-  const toggleFormVisibility = (forecast_id) => {
-    setVisibleForms((prevState) => ({
-      ...prevState,
-      [forecast_id]: !prevState[forecast_id],
-    }));
-  };
-
   const handleSubmit = async (e, forecast_id) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -72,18 +63,14 @@ function Journal() {
       forecast_id,
       report,
     };
-    console.log("the formData:", formData);
     try {
       const journalResult = await addReport(journalData);
-      console.log("Report updated:", journalResult);
 
       // Hide the form after submission
       setVisibleForms((prevState) => ({
         ...prevState,
         [forecast_id]: false,
       }));
-
-      // Optionally, update the predictions state to reflect the new entry
       setPredictions((prevState) =>
         prevState.map((pred) =>
           pred.forecast_id === forecast_id ? { ...pred, report } : pred
@@ -115,12 +102,9 @@ function Journal() {
     try {
       if (field === "prediction") {
         const predictionResult = await updatePrediction(updateData);
-        console.log("Prediction updated:", predictionResult);
       } else if (field === "report") {
         const reportResult = await addReport(updateData);
-        console.log("Report updated:", reportResult);
       }
-
       // Hide the edit form after submission
       setEditForms((prevState) => ({
         ...prevState,
@@ -129,8 +113,6 @@ function Journal() {
           [field]: false,
         },
       }));
-
-      // Optionally, update the predictions state to reflect the new entry
       setPredictions((prevState) =>
         prevState.map((pred) =>
           pred.forecast_id === forecast_id ? { ...pred, [field]: value } : pred
@@ -147,8 +129,6 @@ function Journal() {
         deleteEntry(forecast_id),
         deleteReport(forecast_id)
       ]);
-      console.log(`Entries with forecast_id ${forecast_id} deleted`);
-
       // update the entries state to reflect the deletion
       setEntries((prevState) =>
         prevState.filter((entry) => entry.forecast_id !== forecast_id)
