@@ -3,7 +3,6 @@ import styles from "./ConfModal.module.css";
 import { Link } from "react-router-dom";
 
 function ConfModal({ show, handleClose }) {
-  console.log("showConfModule?:", show);
   if (!show) {
     return null;
   }
