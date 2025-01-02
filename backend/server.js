@@ -7,10 +7,10 @@ const mateoWeatherRoutes = require("./routes/mateoWeatherRoutes")
 const screenshotRoutes = require("./routes/screenshotRoutes");
 
 const app = express();
-const port = process.env.PORT || 10000;
+const port = process.env.PORT || 8000;
 
 const corsOptions = {
-  origin: process.env.FRONTEND_URL,
+  origin: "http://localhost:3000",
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
 };

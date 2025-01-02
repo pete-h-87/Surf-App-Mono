@@ -1,6 +1,5 @@
 const express = require("express");
 const puppeteer = require("puppeteer");
-require("dotenv").config();
 const router = express.Router();
 
 router.get("/", async (req, res) => {
@@ -10,13 +9,11 @@ router.get("/", async (req, res) => {
   }
 
   try {
-    const browser = await puppeteer.launch({
-      executablePath: process.env.CHROME_PATH || puppeteer.executablePath(),
-      args: ['--no-sandbox', '--disable-setuid-sandbox'],
-    });
+    const browser = await puppeteer.launch();
     const page = await browser.newPage();
     await page.goto(url, { waitUntil: "networkidle2" });
 
+    // Wait for 3 seconds to ensure the page has loaded
     await page.evaluate(() => new Promise(resolve => setTimeout(resolve, 3000)));
 
     const screenshot = await page.screenshot({ encoding: "base64" });

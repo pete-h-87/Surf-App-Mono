@@ -1,8 +1,6 @@
-import apiUrl from "../config";
-
 export const getForecast = async () => {
   try {
-    const res = await fetch(`${apiUrl}/api/dbRoute`);
+    const res = await fetch("/api/dbRoute");
     const data = await res.json();
     return data;
   } catch (error) {
@@ -12,7 +10,7 @@ export const getForecast = async () => {
 
 export const getPredictions = async () => {
   try {
-    const res = await fetch(`${apiUrl}/api/dbRoute/readPredictions`);
+    const res = await fetch("/api/dbRoute/readPredictions");
     const data = await res.json();
     return data;
   } catch (error) {
@@ -22,7 +20,7 @@ export const getPredictions = async () => {
 
 export const createEntry = async (data) => {
   try {
-    const res = await fetch(`${apiUrl}/api/dbRoute/create`, {
+    const res = await fetch("/api/dbRoute/create", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -38,7 +36,7 @@ export const createEntry = async (data) => {
 
 export const createJournalEntry = async (data) => {
   try {
-    const res = await fetch(`${apiUrl}/api/dbRoute/createJournalEntry`, {
+    const res = await fetch("/api/dbRoute/createJournalEntry", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -57,7 +55,7 @@ export const createJournalEntry = async (data) => {
 
 export const addReport = async (data) => {
   try {
-    const res = await fetch(`${apiUrl}/api/dbRoute/addReport`, {
+    const res = await fetch("/api/dbRoute/addReport", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -76,7 +74,7 @@ export const addReport = async (data) => {
 
 export const updatePrediction = async (data) => {
   try {
-    const res = await fetch(`${apiUrl}/api/dbRoute/updatePrediction`, {
+    const res = await fetch(`/api/dbRoute/updatePrediction`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -95,7 +93,7 @@ export const updatePrediction = async (data) => {
 
 export const deleteEntry = async (forecast_id) => {
   try {
-    const res = await fetch(`${apiUrl}/api/dbRoute/deleteEntry`, {
+    const res = await fetch(`/api/dbRoute/deleteEntry`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -113,7 +111,7 @@ export const deleteEntry = async (forecast_id) => {
 
 export const deleteReport = async (forecast_id) => {
   try {
-    const res = await fetch(`${apiUrl}/api/dbRoute/deleteReport`, {
+    const res = await fetch(`/api/dbRoute/deleteReport`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -131,7 +129,7 @@ export const deleteReport = async (forecast_id) => {
 
 export const getThreeHourWindForecast = async () => {
   try {
-    const res = await fetch(`${apiUrl}/api/mateoWeatherRoutes/threeHourWind`);
+    const res = await fetch(`/api/mateoWeatherRoutes/threeHourWind`);
     const data = await res.json();
     return data;
   } catch (error) {
@@ -142,7 +140,7 @@ export const getThreeHourWindForecast = async () => {
 
 export const getThreeHourWaveForecast = async () => {
   try {
-    const res = await fetch(`${apiUrl}/api/mateoWeatherRoutes/threeHourWave`);
+    const res = await fetch(`/api/mateoWeatherRoutes/threeHourWave`);
     const data = await res.json();
     return data;
   } catch (error) {
@@ -153,7 +151,7 @@ export const getThreeHourWaveForecast = async () => {
 
 export const getSixHourWindForecast = async () => {
   try {
-    const res = await fetch(`${apiUrl}/api/mateoWeatherRoutes/sixHourWind`);
+    const res = await fetch(`/api/mateoWeatherRoutes/sixHourWind`);
     const data = await res.json();
     return data;
   } catch (error) {
@@ -164,7 +162,7 @@ export const getSixHourWindForecast = async () => {
 
 export const getSixHourWaveForecast = async () => {
   try {
-    const res = await fetch(`${apiUrl}/api/mateoWeatherRoutes/sixHourWave`);
+    const res = await fetch(`/api/mateoWeatherRoutes/sixHourWave`);
     const data = await res.json();
     return data;
   } catch (error) {
