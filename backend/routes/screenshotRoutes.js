@@ -35,7 +35,7 @@ const express = require("express");
 const puppeteer = require("puppeteer");
 const router = express.Router();
 
-router.get("/screenshot", async (req, res) => {
+router.get("/", async (req, res) => {
   const url = req.query.url;
   if (!url) {
     return res.status(400).send("URL is required");
