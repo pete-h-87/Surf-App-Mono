@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./Modal.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
@@ -11,8 +11,6 @@ function Modal({
   liveScreenShot,
   currentData,
 }) {
-  const [prediction, setPrediction] = useState("");
-  const [error, setError] = useState(null);
 
   if (!show) {
     return null;
@@ -38,9 +36,9 @@ function Modal({
                 icon={faArrowUp}
                 style={{
                   transform: `rotate(${currentData.wind_direction + 180}deg)`,
-                  fontSize: "1em", // Adjust the size of the icon
-                  verticalAlign: "middle", // Align the icon vertically
-                  marginLeft: "5px", // Add some space between the text and the icon
+                  fontSize: "1em",
+                  verticalAlign: "middle",
+                  marginLeft: "5px",
                 }}
               />
             </li>
@@ -50,9 +48,9 @@ function Modal({
                 icon={faArrowUp}
                 style={{
                   transform: `rotate(${currentData.wave_direction + 180}deg)`,
-                  fontSize: "1em", // Adjust the size of the icon
-                  verticalAlign: "middle", // Align the icon vertically
-                  marginLeft: "5px", // Add some space between the text and the icon
+                  fontSize: "1em",
+                  verticalAlign: "middle",
+                  marginLeft: "5px",
                 }}
               />
             </li>

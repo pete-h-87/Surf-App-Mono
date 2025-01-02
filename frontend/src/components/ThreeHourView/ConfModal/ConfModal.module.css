@@ -7,27 +7,27 @@
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
-  align-items: flex-start; /* Align items to the top */
-  padding-top: 130px; /* Add padding to move the modal down from the top */
+  align-items: flex-start;
+  padding-top: 130px;
 }
 
 .modal {
-  position: relative; /* Ensure the close button is positioned relative to the modal */
+  position: relative;
   background-color: white;
   padding: 20px;
   border-radius: 8px;
   width: 400px;
   max-width: calc(
     100% - 20px
-  ); /* Ensure the modal has a 10px margin on the sides */
-  margin: 0 10px; /* Add 10px margin on the sides */
+  );
+  margin: 0 10px;
 }
 
 .buttonContainer {
   display: flex;
-  flex-direction: column; /* Arrange child elements vertically */
-  gap: 10px; /* Add space between the buttons */
-  align-items: center; /* Center the buttons horizontally */
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
 }
 
 
