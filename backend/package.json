@@ -5,9 +5,12 @@
     "main": "index.js",
     "scripts": {
         "start": "nodemon server.js",
-        "build": "npm install",
+        "build": "./render-build.sh",
         "test": "echo \"Error: no test specified\" && exit 1",
-        "postinstall": "npx puppeteer install"
+        "postinstall": "npx puppeteer install",
+        "chrome": "npm run path && npm run find",
+        "path": "node -e \"console.log(require('puppeteer').executablePath())\" && echo \"File exists.\" || echo \"File does not exist.\"",
+        "find": "find / -name chrome | grep puppeteer | grep -v node_modules"
     },
     "keywords": [],
     "author": "",
