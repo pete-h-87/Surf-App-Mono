@@ -26,7 +26,7 @@ function ThreeHourView() {
   const fullDate = `${currentYear}-${month}-${day}`;
   const formattedDate = dayjs(fullDate).format("YYYY-MM-DD");
 
-  //fetch the snapshots with the formattedDate
+  //fetch the screenshots with the formattedDate
   useEffect(() => {
     async function fetchTwelveHourPriorScreenshot() {
       try {

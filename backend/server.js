@@ -3,8 +3,8 @@ const cors = require("cors");
 require("dotenv").config();
 
 // import routes
-const forecastRoutes = require("./routes/forecast");
-const proxyRoutes = require("./routes/proxyRoutes");
+const dbRoute = require("./routes/dbRoute");
+const mateoWeatherRoutes = require("./routes/mateoWeatherRoutes")
 const screenshotRoutes = require("./routes/screenshotRoutes");
 
 // Running express server
@@ -23,8 +23,8 @@ app.use(cors(corsOptions)); // Enable CORS with corsOptions as a param
 app.use(express.json());
 
 // route middlewares - Prefix all routes defined in todoRoutes (the second param) with '/api'
-app.use("/api/forecast", forecastRoutes);
-app.use("/api/proxy", proxyRoutes);
+app.use("/api/dbRoute", dbRoute);
+app.use("/api/mateoWeatherRoutes", mateoWeatherRoutes);
 app.use("/api/screenshot", screenshotRoutes);
 
 app.listen(port, () => {
