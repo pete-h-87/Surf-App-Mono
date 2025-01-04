@@ -62,8 +62,8 @@ function Home() {
         waveHeight: threeHourWave?.hourly.wave_height[index] ?? "...",
         wavePeriod: threeHourWave?.hourly.swell_wave_period[index] ?? "...",
         windDirection: threeHourWind?.hourly.wind_direction_10m[index] ?? "...",
-        date: dayjs().add(dayIndex, "day").format("dddd, D MMMM"), // Example date extraction
-        dayIndex, // Pass the day index
+        date: dayjs().add(dayIndex, "day").format("dddd, D MMMM"),
+        dayIndex,
       };
     });
   });
@@ -71,8 +71,6 @@ function Home() {
   const handleDayClick = (dayIndex, date) => {
     navigate("/one-day-view", { state: { dayIndex, date } });
   };
-
-  // console.log("new days array:", days);
 
   return (
     <div className={styles.page}>
