@@ -5,54 +5,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
 import dayjs from "dayjs";
 import { GlobalContext } from "../../GlobalState";
+import getBackgroundColor from "../../util/colorCoding";
 
 function Home() {
   const { threeHourWind, threeHourWave } = useContext(GlobalContext);
   const navigate = useNavigate();
-
-  const getBackgroundColor = (waveHeight, wavePeriod, windDirection) => {
-    if (
-      waveHeight > 0.8 &&
-      wavePeriod > 5 &&
-      windDirection > -1 &&
-      windDirection <= 120
-    ) {
-      return "rgb(123, 219, 123)"; // good report, high-engery & offhsore, green
-    }
-    if (
-      waveHeight > 0.8 &&
-      wavePeriod > 5 &&
-      windDirection >= 290 &&
-      windDirection <= 360
-    ) {
-      return "rgb(123, 219, 123)"; // good report, high-engery & offhsore, green
-    }
-    if (
-      waveHeight < 0.8 &&
-      wavePeriod > 5 &&
-      windDirection > -1 &&
-      windDirection <= 120
-    ) {
-      return "rgb(255, 184, 112)"; // questionable report, low energy & offhsore, orange
-    }
-    if (
-      waveHeight < 0.8 &&
-      wavePeriod > 5 &&
-      windDirection >= 290 &&
-      windDirection <= 361
-    ) {
-      return "rgb(255, 184, 112)"; // questionable report, low energy & offhsore, orange
-    }
-    if (
-      waveHeight > 0.8 &&
-      wavePeriod > 5 &&
-      windDirection > 120 &&
-      windDirection < 290
-    ) {
-      return "rgb(254, 149, 149)"; // onshore report, high-engery & onshore, red
-    }
-    return "rgb(92, 173, 255)"; // default report, blue - no energy in water
-  };
 
   // Filter to get every other index starting from the second one
   const days = Array.from({ length: 7 }, (_, dayIndex) => {
@@ -62,8 +19,8 @@ function Home() {
         waveHeight: threeHourWave?.hourly.wave_height[index] ?? "...",
         wavePeriod: threeHourWave?.hourly.swell_wave_period[index] ?? "...",
         windDirection: threeHourWind?.hourly.wind_direction_10m[index] ?? "...",
-        date: dayjs().add(dayIndex, "day").format("dddd, D MMMM"), // Example date extraction
-        dayIndex, // Pass the day index
+        date: dayjs().add(dayIndex, "day").format("dddd, D MMMM"),
+        dayIndex,
       };
     });
   });
@@ -71,8 +28,6 @@ function Home() {
   const handleDayClick = (dayIndex, date) => {
     navigate("/one-day-view", { state: { dayIndex, date } });
   };
-
-  // console.log("new days array:", days);
 
   return (
     <div className={styles.page}>
