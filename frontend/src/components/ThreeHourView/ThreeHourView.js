@@ -6,7 +6,7 @@ import { GlobalContext } from "../../GlobalState";
 import Modal from "./Modal/Modal";
 import ConfModal from "./ConfModal/ConfModal";
 import { createEntry, createJournalEntry } from "../../util";
-import apiUrl from "../../config";
+// import apiUrl from "../../config";
 
 function ThreeHourView() {
   const location = useLocation();
@@ -44,7 +44,7 @@ function ThreeHourView() {
           url = `https://zoom.earth/maps/wind-speed/#view=56.13,2.822,6z/date=${formattedDate},${newTime}:00,+1/model=icon`;
         }
         const response = await fetch(
-          `${apiUrl}/api/screenshot?url=${encodeURIComponent(url)}`
+          `http://localhost:8000/api/screenshot?url=${encodeURIComponent(url)}`
         );
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -62,7 +62,7 @@ function ThreeHourView() {
         const newTime = threeHourPeriodIndex * 3;
         const url = `https://zoom.earth/maps/wind-speed/#view=58.35609,9.51122,8z/date=${formattedDate},${newTime}:00,+1/model=icon`;
         const response = await fetch(
-          `${apiUrl}/api/screenshot?url=${encodeURIComponent(url)}`
+          `http://localhost:8000/api/screenshot?url=${encodeURIComponent(url)}`
         );
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -99,27 +99,27 @@ function ThreeHourView() {
       threeHourPeriodIndex * 3 + 3
     }:00`,
     wind_speed:
-      threeHourWind?.hourly?.wind_speed_10m[
+      threeHourWind?.hourly?.windSpeed10m[
         dayIndex * 8 + threeHourPeriodIndex
-      ],
+      ].toFixed(2),
     wind_direction:
-      threeHourWind?.hourly?.wind_direction_10m[
+      threeHourWind?.hourly?.windDirection10m[
         dayIndex * 8 + threeHourPeriodIndex
       ],
     wave_height:
-      threeHourWave?.hourly?.wave_height[dayIndex * 8 + threeHourPeriodIndex],
+      threeHourWave?.hourly?.waveHeight[dayIndex * 8 + threeHourPeriodIndex].toFixed(2),
     wave_period:
-      threeHourWave?.hourly?.swell_wave_period[
+      threeHourWave?.hourly?.swellWavePeriod[
         dayIndex * 8 + threeHourPeriodIndex
-      ],
+      ].toFixed(2),
     wave_direction:
-      threeHourWave?.hourly?.wave_direction[
+      threeHourWave?.hourly?.waveDirection[
         dayIndex * 8 + threeHourPeriodIndex
       ],
     temperature:
-      threeHourWind?.hourly?.temperature_2m[
+      threeHourWind?.hourly?.temperature2m[
         dayIndex * 8 + threeHourPeriodIndex
-      ],
+      ].toFixed(2),
   };
 
   const handleSubmit = async (e) => {
