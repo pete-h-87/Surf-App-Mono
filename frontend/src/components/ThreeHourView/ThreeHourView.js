@@ -99,27 +99,27 @@ function ThreeHourView() {
       threeHourPeriodIndex * 3 + 3
     }:00`,
     wind_speed:
-      threeHourWind?.hourly?.wind_speed_10m[
+      threeHourWind?.hourly?.windSpeed10m[
         dayIndex * 8 + threeHourPeriodIndex
-      ],
+      ].toFixed(2),
     wind_direction:
-      threeHourWind?.hourly?.wind_direction_10m[
+      threeHourWind?.hourly?.windDirection10m[
         dayIndex * 8 + threeHourPeriodIndex
       ],
     wave_height:
-      threeHourWave?.hourly?.wave_height[dayIndex * 8 + threeHourPeriodIndex],
+      threeHourWave?.hourly?.waveHeight[dayIndex * 8 + threeHourPeriodIndex].toFixed(2),
     wave_period:
-      threeHourWave?.hourly?.swell_wave_period[
+      threeHourWave?.hourly?.swellWavePeriod[
         dayIndex * 8 + threeHourPeriodIndex
-      ],
+      ].toFixed(2),
     wave_direction:
-      threeHourWave?.hourly?.wave_direction[
+      threeHourWave?.hourly?.waveDirection[
         dayIndex * 8 + threeHourPeriodIndex
       ],
     temperature:
-      threeHourWind?.hourly?.temperature_2m[
+      threeHourWind?.hourly?.temperature2m[
         dayIndex * 8 + threeHourPeriodIndex
-      ],
+      ].toFixed(2),
   };
 
   const handleSubmit = async (e) => {

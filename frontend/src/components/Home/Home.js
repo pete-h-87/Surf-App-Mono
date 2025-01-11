@@ -11,14 +11,24 @@ function Home() {
   const { threeHourWind, threeHourWave } = useContext(GlobalContext);
   const navigate = useNavigate();
 
+  console.log(threeHourWave)
+  
+  console.log(threeHourWind)
+
   // Filter to get every other index starting from the second one
   const days = Array.from({ length: 7 }, (_, dayIndex) => {
     return Array.from({ length: 4 }, (_, threeHourPeriodIndex) => {
       const index = dayIndex * 8 + threeHourPeriodIndex * 2 + 1; // getting every-other index in a 56-itemed array
       return {
-        waveHeight: threeHourWave?.hourly.wave_height[index] ?? "...",
-        wavePeriod: threeHourWave?.hourly.swell_wave_period[index] ?? "...",
-        windDirection: threeHourWind?.hourly.wind_direction_10m[index] ?? "...",
+        waveHeight: threeHourWave?.hourly.waveHeight[index]
+          ? parseFloat(threeHourWave.hourly.waveHeight[index].toFixed(2))
+          : "...",
+        wavePeriod: threeHourWave?.hourly.swellWavePeriod[index]
+          ? parseFloat(threeHourWave.hourly.swellWavePeriod[index].toFixed(2))
+          : "...",
+        windDirection: threeHourWind?.hourly.windDirection10m[index]
+          ? threeHourWind.hourly.windDirection10m[index]
+          : "...",
         date: dayjs().add(dayIndex, "day").format("dddd, D MMMM"),
         dayIndex,
       };

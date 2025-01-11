@@ -20,40 +20,42 @@ function OneDayView() {
 
   const dayForecast = Array.from({ length: 8 }, (_, threeHourPeriodIndex) => ({
     waveHeight:
-      threeHourWave.hourly.wave_height[dayIndex * 8 + threeHourPeriodIndex],
+      threeHourWave.hourly.waveHeight[dayIndex * 8 + threeHourPeriodIndex].toFixed(2),
     wavePeriod:
-      threeHourWave.hourly.swell_wave_period[
+      threeHourWave.hourly.swellWavePeriod[dayIndex * 8 + threeHourPeriodIndex].toFixed(2),
+    waveDirection:
+      threeHourWave.hourly.swellWaveDirection[
         dayIndex * 8 + threeHourPeriodIndex
       ],
-    waveDirection:
-      threeHourWave.hourly.swell_wave_direction[dayIndex * 8 + threeHourPeriodIndex],
     windSpeed:
-      threeHourWind.hourly.wind_speed_10m[dayIndex * 8 + threeHourPeriodIndex],
+      threeHourWind.hourly.windSpeed10m[dayIndex * 8 + threeHourPeriodIndex].toFixed(2),
     windDirection:
-      threeHourWind.hourly.wind_direction_10m[
+      threeHourWind.hourly.windDirection10m[
         dayIndex * 8 + threeHourPeriodIndex
       ],
   }));
 
   const handleThreeHourClick = (threeHourPeriodIndex) => {
-    navigate("/three-hour-view", { state: { threeHourPeriodIndex, date, dayIndex } });
+    navigate("/three-hour-view", {
+      state: { threeHourPeriodIndex, date, dayIndex },
+    });
   };
 
   return (
     <div className={styles.page}>
-              <nav className={styles.navbar}>
-                <ul>
-                  <li>
-                    <Link to="/">Back</Link>
-                  </li>
-                  <li>
-                    <Link to="/">Home</Link>
-                  </li>
-                  <li>
-                  <Link to="/journal">Journal</Link>
-                  </li>
-                </ul>
-              </nav>
+      <nav className={styles.navbar}>
+        <ul>
+          <li>
+            <Link to="/">Back</Link>
+          </li>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/journal">Journal</Link>
+          </li>
+        </ul>
+      </nav>
       <h2>{date}</h2>
       <div className={styles.container}>
         {dayForecast.map((forecast, index) => (
@@ -84,7 +86,8 @@ function OneDayView() {
                       verticalAlign: "middle",
                       marginLeft: "5px",
                     }}
-                  /> |
+                  />{" "}
+                  |
                 </span>
                 <span>
                   | Wind: {forecast.windSpeed} m/s
