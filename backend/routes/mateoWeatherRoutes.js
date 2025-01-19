@@ -47,7 +47,6 @@ router.get("/threeHourWind", async (req, res) => {
     };
 
     res.json(weatherData);
-     console.log(weatherData)
   } catch (error) {
     console.log("error HERE");
     res.status(500).json({ error: error.message });
