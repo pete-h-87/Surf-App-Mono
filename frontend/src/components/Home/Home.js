@@ -16,7 +16,7 @@ function Home() {
   console.log(threeHourWind)
 
   // Filter to get every other index starting from the second one
-  const days = Array.from({ length: 7 }, (_, dayIndex) => {
+  const days = Array.from({ length: 7 }, (_, dayIndex) => { // the first arg in this callback is _, because we are creating the skelelton of an array first, to be mapped over later and populated.  but as of now, there is no element to process, so it's blank
     return Array.from({ length: 4 }, (_, threeHourPeriodIndex) => {
       const index = dayIndex * 8 + threeHourPeriodIndex * 2 + 1; // getting every-other index in a 56-itemed array
       return {
@@ -34,6 +34,8 @@ function Home() {
       };
     });
   });
+
+  // it is waiting for the .map to give it the index information it needs to calculate the exact index number of the item we need in the forecast array we recieve back from the API call.  it's 56 items (7 days, 8 periods in a day).
 
   const handleDayClick = (dayIndex, date) => {
     navigate("/one-day-view", { state: { dayIndex, date } });
