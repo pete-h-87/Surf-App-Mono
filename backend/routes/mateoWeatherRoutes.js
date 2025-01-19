@@ -14,6 +14,7 @@ router.get("/threeHourWind", async (req, res) => {
         "wind_direction_10m",
       ],
       wind_speed_unit: "ms",
+      temporal_resolution: "hourly_3",
     };
     const url = "https://api.open-meteo.com/v1/forecast";
     const responses = await fetchWeatherApi(url, params);
