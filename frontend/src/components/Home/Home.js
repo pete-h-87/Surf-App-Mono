@@ -17,8 +17,8 @@ function Home() {
 
   // Filter to get every other index starting from the second one
   const days = Array.from({ length: 7 }, (_, dayIndex) => {
-    return Array.from({ length: 4 }, (_, threeHourPeriodIndex) => {
-      const index = dayIndex * 8 + threeHourPeriodIndex * 2 + 1; // getting every-other index in a 56-itemed array
+    return Array.from({ length: 4 }, (_, sixHourPeriodIndex) => {
+      const index = dayIndex * 8 + sixHourPeriodIndex * 2 + 1; // getting every-other index in a 56-itemed array
       return {
         waveHeight: threeHourWave?.hourly.waveHeight[index]
           ? parseFloat(threeHourWave.hourly.waveHeight[index].toFixed(2))
@@ -57,8 +57,8 @@ function Home() {
             className={styles.container}
             onClick={() => handleDayClick(dayIndex, day[0].date)}
           >
-            {day.map((sixHourPeriod, periodIndex) => (
-              <React.Fragment key={periodIndex}>
+            {day.map((sixHourPeriod, quarterDayIndex) => (
+              <React.Fragment key={quarterDayIndex}>
                 <div
                   className={styles.item}
                   style={{
@@ -88,7 +88,7 @@ function Home() {
                     />
                   </span>
                 </div>
-                {periodIndex < day.length - 1 && (
+                {quarterDayIndex < day.length - 1 && (
                   <hr className={styles.separator} />
                 )}
               </React.Fragment>
