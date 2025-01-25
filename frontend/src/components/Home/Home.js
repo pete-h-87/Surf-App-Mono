@@ -11,10 +11,6 @@ function Home() {
   const { threeHourWind, threeHourWave } = useContext(GlobalContext);
   const navigate = useNavigate();
 
-  console.log(threeHourWave)
-  
-  console.log(threeHourWind)
-
   // Filter to get every other index starting from the second one
   const days = Array.from({ length: 7 }, (_, dayIndex) => {
     return Array.from({ length: 4 }, (_, sixHourPeriodIndex) => {
