@@ -170,3 +170,9 @@ export const getSixHourWaveForecast = async () => {
     return { error };
   }
 };
+
+
+// STEP SEVEN - since we now have a port that's listening, we can create some utilities that throw
+// some http towards that port, with requests to go down certain paths with certain payloads.
+// We now create these utilities above, that takes advantage of the API's weve made,
+// we will now pass these on to the VIEW, the interaction part of our app

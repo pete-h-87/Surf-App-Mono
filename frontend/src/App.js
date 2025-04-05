@@ -24,3 +24,9 @@ function App() {
 }
 
 export default App;
+
+
+// STEP EIGHT - we can now set our functions into our handlers,
+// for the specific actions the user may take
+// - NOTE - for this app, we didn't pass the functions here - we passed them to the GlobalState, and had App.js be a child wrapped by the global state, which provides access to the information recieved by our functions throughout the entire app
+// you can see this at the top of our front end in index.js

@@ -130,3 +130,6 @@ module.exports = {
   deleteEntry,
   deleteReport,
 };
+
+// STEP THREE - recieve the pool from database.js in same folder,
+// create SQL injections, and pass to the CONTROLLER

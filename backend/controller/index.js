@@ -114,3 +114,6 @@ exports.deleteReport = async (req, res) => {
     });
   }
 };
+
+// STEP FOUR - recieve the SQL injections from the model, and make middelware in your controller folder -
+// pass to your routes
