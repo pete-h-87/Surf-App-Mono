@@ -175,4 +175,5 @@ export const getSixHourWaveForecast = async () => {
 // STEP SEVEN - since we now have a port that's listening, we can create some utilities that throw
 // some http towards that port, with requests to go down certain paths with certain payloads.
 // We now create these utilities above, that takes advantage of the API's weve made,
-// we will now pass these on to the VIEW, the interaction part of our app
+// we will now pass these on to our COMPONENTS and SRC, the interaction part of our app -
+// many of these are passed to the GlobalState file to make this data accessable throughout the entire app

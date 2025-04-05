@@ -27,57 +27,57 @@ function ThreeHourView() {
   const formattedDate = dayjs(fullDate).format("YYYY-MM-DD");
 
   //fetch the screenshots with the formattedDate
-  useEffect(() => {
-    async function fetchTwelveHourPriorScreenshot() {
-      try {
-        let url;
-        const newTime = threeHourPeriodIndex * 3 - 12;
-        if (newTime < 0) {
-          const originalDate = dayjs(date);
-          const month = originalDate.format("MM");
-          const day = originalDate.format("DD") - 1;
-          const fullDate = `${currentYear}-${month}-${day}`;
-          const negativeFormattedDate = dayjs(fullDate).format("YYYY-MM-DD");
-          const newNegativeTime = threeHourPeriodIndex * 3 - 12 + 24;
-          url = `https://zoom.earth/maps/wind-speed/#view=56.13,2.822,6z/date=${negativeFormattedDate},${newNegativeTime}:00,+1/model=icon`;
-        } else {
-          url = `https://zoom.earth/maps/wind-speed/#view=56.13,2.822,6z/date=${formattedDate},${newTime}:00,+1/model=icon`;
-        }
-        const response = await fetch(
-          `http://localhost:8000/api/screenshot?url=${encodeURIComponent(url)}`
-        );
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const data = await response.json();
-        setTwelveScreenshot(data.screenshot);
-      } catch (error) {
-        console.error("Error fetching screenshot:", error);
-        setError("Failed to fetch screenshot");
-      }
-    }
+  // useEffect(() => {
+  //   async function fetchTwelveHourPriorScreenshot() {
+  //     try {
+  //       let url;
+  //       const newTime = threeHourPeriodIndex * 3 - 12;
+  //       if (newTime < 0) {
+  //         const originalDate = dayjs(date);
+  //         const month = originalDate.format("MM");
+  //         const day = originalDate.format("DD") - 1;
+  //         const fullDate = `${currentYear}-${month}-${day}`;
+  //         const negativeFormattedDate = dayjs(fullDate).format("YYYY-MM-DD");
+  //         const newNegativeTime = threeHourPeriodIndex * 3 - 12 + 24;
+  //         url = `https://zoom.earth/maps/wind-speed/#view=56.13,2.822,6z/date=${negativeFormattedDate},${newNegativeTime}:00,+1/model=icon`;
+  //       } else {
+  //         url = `https://zoom.earth/maps/wind-speed/#view=56.13,2.822,6z/date=${formattedDate},${newTime}:00,+1/model=icon`;
+  //       }
+  //       const response = await fetch(
+  //         `http://localhost:8000/api/screenshot?url=${encodeURIComponent(url)}`
+  //       );
+  //       if (!response.ok) {
+  //         throw new Error("Network response was not ok");
+  //       }
+  //       const data = await response.json();
+  //       setTwelveScreenshot(data.screenshot);
+  //     } catch (error) {
+  //       console.error("Error fetching screenshot:", error);
+  //       setError("Failed to fetch screenshot");
+  //     }
+  //   }
 
-    async function fetchLivePriorScreenshot() {
-      try {
-        const newTime = threeHourPeriodIndex * 3;
-        const url = `https://zoom.earth/maps/wind-speed/#view=58.35609,9.51122,8z/date=${formattedDate},${newTime}:00,+1/model=icon`;
-        const response = await fetch(
-          `http://localhost:8000/api/screenshot?url=${encodeURIComponent(url)}`
-        );
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const data = await response.json();
-        setLiveScreenShot(data.screenshot);
-      } catch (error) {
-        console.error("Error fetching screenshot:", error);
-        setError("Failed to fetch screenshot");
-      }
-    }
+  //   async function fetchLivePriorScreenshot() {
+  //     try {
+  //       const newTime = threeHourPeriodIndex * 3;
+  //       const url = `https://zoom.earth/maps/wind-speed/#view=58.35609,9.51122,8z/date=${formattedDate},${newTime}:00,+1/model=icon`;
+  //       const response = await fetch(
+  //         `http://localhost:8000/api/screenshot?url=${encodeURIComponent(url)}`
+  //       );
+  //       if (!response.ok) {
+  //         throw new Error("Network response was not ok");
+  //       }
+  //       const data = await response.json();
+  //       setLiveScreenShot(data.screenshot);
+  //     } catch (error) {
+  //       console.error("Error fetching screenshot:", error);
+  //       setError("Failed to fetch screenshot");
+  //     }
+  //   }
 
-    fetchLivePriorScreenshot();
-    fetchTwelveHourPriorScreenshot();
-  }, []);
+  //   fetchLivePriorScreenshot();
+  //   fetchTwelveHourPriorScreenshot();
+  // }, []);
 
   const handleModal = (e) => {
     e.preventDefault();
@@ -172,8 +172,8 @@ function ThreeHourView() {
         show={showModal}
         handleClose={handleCloseModal}
         handleSubmit={handleSubmit}
-        twelveScreenshot={twelveScreenshot}
-        liveScreenShot={liveScreenShot}
+        // twelveScreenshot={twelveScreenshot}
+        // liveScreenShot={liveScreenShot}
         currentData={currentData}
       />
       <ConfModal show={showConfModal} handleClose={handleCloseConfModal} />
