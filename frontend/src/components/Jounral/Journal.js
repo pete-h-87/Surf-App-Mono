@@ -25,6 +25,7 @@ function Journal() {
     if (res.error) {
       setError(res.error.name);
     }
+    console.log(error);
     setEntries(res.data);
   };
 
@@ -32,6 +33,7 @@ function Journal() {
     const predRes = await getPredictions();
     if (predRes.error) {
       setPredError(predRes.error.name);
+      console.log(predError);
     }
     setPredictions(predRes.data);
   };
@@ -64,7 +66,7 @@ function Journal() {
       report,
     };
     try {
-      const journalResult = await addReport(journalData);
+      await addReport(journalData);
 
       // Hide the form after submission
       setVisibleForms((prevState) => ({
@@ -101,10 +103,10 @@ function Journal() {
     };
     try {
       if (field === "prediction") {
-        const predictionResult = await updatePrediction(updateData);
+        await updatePrediction(updateData);
         // return predictionResult;
       } else if (field === "report") {
-        const reportResult = await addReport(updateData);
+        await addReport(updateData);
         // return reportResult;
       }
       // Hide the edit form after submission
@@ -127,10 +129,7 @@ function Journal() {
 
   const handleDelete = async (forecast_id) => {
     try {
-      await Promise.all([
-        deleteEntry(forecast_id),
-        deleteReport(forecast_id)
-      ]);
+      await Promise.all([deleteEntry(forecast_id), deleteReport(forecast_id)]);
       // update the entries state to reflect the deletion
       setEntries((prevState) =>
         prevState.filter((entry) => entry.forecast_id !== forecast_id)
@@ -262,7 +261,9 @@ function Journal() {
                     <>
                       {entry.report}
                       <button
-                        onClick={() => toggleEditFormVisibility(entry.forecast_id, "report")}
+                        onClick={() =>
+                          toggleEditFormVisibility(entry.forecast_id, "report")
+                        }
                         className={styles.editButton}
                       >
                         <FontAwesomeIcon icon={faPencilAlt} />
@@ -270,7 +271,9 @@ function Journal() {
                     </>
                   ) : (
                     <button
-                      onClick={() => toggleEditFormVisibility(entry.forecast_id, "report")}
+                      onClick={() =>
+                        toggleEditFormVisibility(entry.forecast_id, "report")
+                      }
                       className={styles.addButton}
                     >
                       Add Report
