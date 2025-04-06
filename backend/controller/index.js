@@ -34,10 +34,7 @@ exports.readPredictions = async (req, res) => {
 exports.create = async (req, res) => {
   try {
     const data = req.body;
-    // const stringy = JSON.stringify(data);
-    console.log("the body:", req.body);
     const result = await create(data);
-    // console.log("the data:", stringy);
     return res.status(201).json(result);
   } catch (err) {
     console.error("Error creating forecast1:", err);
@@ -63,6 +60,7 @@ exports.createJournalEntry = async (req, res) => {
 exports.addReport = async (req, res) => {
   try {
     const data = req.body;
+    console.log("the add report:", req.body);
     const result = await addReport(data);
     return res.status(201).json(result);
   } catch (err) {
@@ -76,6 +74,7 @@ exports.addReport = async (req, res) => {
 exports.updatePrediction = async (req, res) => {
   try {
     const data = req.body;
+    console.log("the update prediction:", req.body);
     const result = await updatePrediction(data);
     return res.status(201).json(result);
   } catch (err) {
@@ -89,6 +88,7 @@ exports.updatePrediction = async (req, res) => {
 exports.deleteEntry = async (req, res) => {
   try {
     const { forecast_id } = req.body;
+    console.log("the delete entry:", req.body);
     if (!forecast_id) {
       throw new Error("forecast_id is required");
     }
@@ -98,6 +98,7 @@ exports.deleteEntry = async (req, res) => {
       .json({
         message: `Entries with forecast_id ${forecast_id} deleted from journal table`,
       });
+      
   } catch (err) {
     console.error(
       `Error deleting entry with forecast_id ${req.body.forecast_id}:`,
@@ -112,6 +113,7 @@ exports.deleteEntry = async (req, res) => {
 exports.deleteReport = async (req, res) => {
   try {
     const { forecast_id } = req.body;
+    console.log("the delete report:", req.body);
     if (!forecast_id) {
       throw new Error("forecast_id is required");
     }
