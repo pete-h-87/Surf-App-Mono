@@ -102,8 +102,10 @@ function Journal() {
     try {
       if (field === "prediction") {
         const predictionResult = await updatePrediction(updateData);
+        // return predictionResult;
       } else if (field === "report") {
         const reportResult = await addReport(updateData);
+        // return reportResult;
       }
       // Hide the edit form after submission
       setEditForms((prevState) => ({

@@ -15,6 +15,8 @@ const create = async (data) => {
     wave_direction,
     temperature,
   } = data;
+
+  
   
   try {
     const forecastQuery = `
@@ -66,6 +68,7 @@ const addReport = async (data) => {
       WHERE forecast_id = $2
       RETURNING journal_id, report
     `;
+    console.log("da data:", data);
     const values = [report, forecast_id];
     const result = await pool.query(query, values);
     return result.rows[0];
@@ -86,6 +89,7 @@ const updatePrediction = async (data) => {
     `;
     const values = [prediction, forecast_id];
     const result = await pool.query(query, values);
+    
     return result.rows[0];
   } catch (error) {
     console.error("Error updating prediction:", error);

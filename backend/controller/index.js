@@ -34,9 +34,10 @@ exports.readPredictions = async (req, res) => {
 exports.create = async (req, res) => {
   try {
     const data = req.body;
-    const stringy = JSON.stringify(data);
+    // const stringy = JSON.stringify(data);
+    console.log("the body:", req.body);
     const result = await create(data);
-    console.log("the data:", stringy);
+    // console.log("the data:", stringy);
     return res.status(201).json(result);
   } catch (err) {
     console.error("Error creating forecast1:", err);
@@ -89,12 +90,19 @@ exports.deleteEntry = async (req, res) => {
   try {
     const { forecast_id } = req.body;
     if (!forecast_id) {
-      throw new Error('forecast_id is required');
+      throw new Error("forecast_id is required");
     }
     await deleteEntry(forecast_id);
-    return res.status(200).json({ message: `Entries with forecast_id ${forecast_id} deleted from journal table` });
+    return res
+      .status(200)
+      .json({
+        message: `Entries with forecast_id ${forecast_id} deleted from journal table`,
+      });
   } catch (err) {
-    console.error(`Error deleting entry with forecast_id ${req.body.forecast_id}:`, err);
+    console.error(
+      `Error deleting entry with forecast_id ${req.body.forecast_id}:`,
+      err
+    );
     return res.status(400).json({
       error: err.message,
     });
@@ -105,12 +113,19 @@ exports.deleteReport = async (req, res) => {
   try {
     const { forecast_id } = req.body;
     if (!forecast_id) {
-      throw new Error('forecast_id is required');
+      throw new Error("forecast_id is required");
     }
     await deleteReport(forecast_id);
-    return res.status(200).json({ message: `Entries with forecast_id ${forecast_id} deleted from forecast table` });
+    return res
+      .status(200)
+      .json({
+        message: `Entries with forecast_id ${forecast_id} deleted from forecast table`,
+      });
   } catch (err) {
-    console.error(`Error deleting entry with forecast_id ${req.body.forecast_id}:`, err);
+    console.error(
+      `Error deleting entry with forecast_id ${req.body.forecast_id}:`,
+      err
+    );
     return res.status(400).json({
       error: err.message,
     });

@@ -11,10 +11,6 @@ function Home() {
   const { threeHourWind, threeHourWave } = useContext(GlobalContext);
   const navigate = useNavigate();
 
-  console.log(threeHourWave)
-  
-  console.log(threeHourWind)
-
   // Filter to get every other index starting from the second one
   const days = Array.from({ length: 7 }, (_, dayIndex) => { // the first arg in this callback is _, because we are creating the skelelton of an array first, to be mapped over later and populated.  but as of now, there is no element to process, so it's blank
     return Array.from({ length: 4 }, (_, sixHourPeriodIndex) => {
