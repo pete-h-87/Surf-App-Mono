@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { useLocation, Link } from "react-router-dom";
-import dayjs from "dayjs";
+// import dayjs from "dayjs";
 import styles from "./ThreeHourView.module.css";
 import { GlobalContext } from "../../GlobalState";
 import Modal from "./Modal/Modal";
@@ -19,12 +19,12 @@ function ThreeHourView() {
   const [showConfModal, setShowConfModal] = useState(false);
 
   // format the date to insert into URL
-  const originalDate = dayjs(date);
-  const month = originalDate.format("MM");
-  const day = originalDate.format("DD");
-  const currentYear = dayjs().year();
-  const fullDate = `${currentYear}-${month}-${day}`;
-  const formattedDate = dayjs(fullDate).format("YYYY-MM-DD");
+  // const originalDate = dayjs(date);
+  // const month = originalDate.format("MM");
+  // const day = originalDate.format("DD");
+  // const currentYear = dayjs().year();
+  // const fullDate = `${currentYear}-${month}-${day}`;
+  // const formattedDate = dayjs(fullDate).format("YYYY-MM-DD");
 
   //fetch the screenshots with the formattedDate
   // useEffect(() => {

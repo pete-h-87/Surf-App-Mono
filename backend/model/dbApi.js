@@ -15,6 +15,7 @@ const create = async (data) => {
     wave_direction,
     temperature,
   } = data;
+  
   try {
     const forecastQuery = `
       INSERT INTO forecast (date_recorded, session_time, wind_speed, wind_direction, wave_height, wave_period, wave_direction, temperature)

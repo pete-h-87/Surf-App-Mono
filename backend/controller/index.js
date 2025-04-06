@@ -34,7 +34,9 @@ exports.readPredictions = async (req, res) => {
 exports.create = async (req, res) => {
   try {
     const data = req.body;
+    const stringy = JSON.stringify(data);
     const result = await create(data);
+    console.log("the data:", stringy);
     return res.status(201).json(result);
   } catch (err) {
     console.error("Error creating forecast1:", err);
