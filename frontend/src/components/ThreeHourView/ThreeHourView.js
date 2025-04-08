@@ -124,7 +124,7 @@ function ThreeHourView() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(null);
+    setError(null); 
     const data = currentData;
     const formData = new FormData(e.target);
     const prediction = formData.get("prediction");
@@ -134,7 +134,7 @@ function ThreeHourView() {
         forecast_id: result.forecast_id,
         prediction,
       };
-      const journalResult = await createJournalEntry(journalData);
+      await createJournalEntry(journalData);
       setShowModal(false);
       setShowConfModal(true);
     } catch (err) {
