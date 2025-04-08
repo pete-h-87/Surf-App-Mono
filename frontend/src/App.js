@@ -1,22 +1,20 @@
 import React from "react";
-import {
-  Route,
-  Routes,
-} from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import styles from "./styling/App.module.css";
 import Home from "./components/Home/Home";
 import OneDayView from "./components/OneDayView/OneDayView";
 import ThreeHourView from "./components/ThreeHourView/ThreeHourView";
 import Journal from "./components/Jounral/Journal";
 import { Login } from "./components/Login/Login";
+import { Register } from "./components/Register/Register";
 
 function App() {
-
   return (
     <div className={styles.App}>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/one-day-view" element={<OneDayView />} />
         <Route path="/three-hour-view" element={<ThreeHourView />} />
         <Route path="/journal" element={<Journal />} />
@@ -26,7 +24,6 @@ function App() {
 }
 
 export default App;
-
 
 // STEP EIGHT - we can now set our functions into our handlers,
 // for the specific actions the user may take

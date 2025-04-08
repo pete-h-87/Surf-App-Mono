@@ -80,7 +80,7 @@
   margin: 0;
   padding: 0;
   display: flex;
-  justify-content: right;
+  justify-content: space-between;
 }
 
 .navbar li {
