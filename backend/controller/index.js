@@ -130,9 +130,20 @@ exports.deleteReport = async (req, res) => {
   }
 };
 
+const users = [{ name: "testBoi", password: "qwe" }];
+
 exports.readUser = async (req, res) => {
   try {
-    const users = [{ name: "testBoi" }];
+    res.json(users);
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+exports.createUser = async (req, res) => {
+  try {
+    const user = { name: req.body.name, password: req.body.password };
+    users.push(user);
     res.json(users);
   } catch (err) {
     console.error(err);

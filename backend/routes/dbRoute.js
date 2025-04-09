@@ -1,10 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const { read, readUser, readPredictions, create, createJournalEntry, addReport, updatePrediction, deleteEntry, deleteReport } = require("../controller/index");
+const { read, readUser, createUser, readPredictions, create, createJournalEntry, addReport, updatePrediction, deleteEntry, deleteReport } = require("../controller/index");
 
 router.get("/", read);
 router.get("/readPredictions", readPredictions);
 router.get("/users", readUser);
+router.post("/createUser", createUser)
 router.post("/create", create);
 router.post("/createJournalEntry", createJournalEntry);
 router.post("/addReport", addReport);
