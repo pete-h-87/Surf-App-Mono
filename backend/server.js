@@ -5,6 +5,7 @@ require("dotenv").config();
 const dbRoute = require("./routes/dbRoute");
 const mateoWeatherRoutes = require("./routes/mateoWeatherRoutes")
 const screenshotRoutes = require("./routes/screenshotRoutes");
+const userRoute = require("./routes/userRoute");
 
 const app = express();
 const port = process.env.PORT || 8000;
@@ -17,6 +18,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(express.json());
+app.use("/users", userRoute);
 app.use("/api/dbRoute", dbRoute);
 app.use("/api/mateoWeatherRoutes", mateoWeatherRoutes);
 app.use("/api/screenshot", screenshotRoutes);

@@ -12,6 +12,7 @@ const {
 exports.read = async (req, res) => {
   try {
     const forecast = await get();
+    // const
     return res.json({ data: forecast.rows });
   } catch (err) {
     return res.status(400).json({
@@ -93,12 +94,9 @@ exports.deleteEntry = async (req, res) => {
       throw new Error("forecast_id is required");
     }
     await deleteEntry(forecast_id);
-    return res
-      .status(200)
-      .json({
-        message: `Entries with forecast_id ${forecast_id} deleted from journal table`,
-      });
-      
+    return res.status(200).json({
+      message: `Entries with forecast_id ${forecast_id} deleted from journal table`,
+    });
   } catch (err) {
     console.error(
       `Error deleting entry with forecast_id ${req.body.forecast_id}:`,
@@ -118,11 +116,9 @@ exports.deleteReport = async (req, res) => {
       throw new Error("forecast_id is required");
     }
     await deleteReport(forecast_id);
-    return res
-      .status(200)
-      .json({
-        message: `Entries with forecast_id ${forecast_id} deleted from forecast table`,
-      });
+    return res.status(200).json({
+      message: `Entries with forecast_id ${forecast_id} deleted from forecast table`,
+    });
   } catch (err) {
     console.error(
       `Error deleting entry with forecast_id ${req.body.forecast_id}:`,
@@ -131,6 +127,15 @@ exports.deleteReport = async (req, res) => {
     return res.status(400).json({
       error: err.message,
     });
+  }
+};
+
+exports.readUser = async (req, res) => {
+  try {
+    const users = [{ name: "testBoi" }];
+    res.json(users);
+  } catch (err) {
+    console.error(err);
   }
 };
 
