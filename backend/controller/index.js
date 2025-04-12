@@ -1,3 +1,5 @@
+const bcrypt = require("bcryptjs");
+
 const {
   get,
   getPredictions,
@@ -142,11 +144,29 @@ exports.readUser = async (req, res) => {
 
 exports.createUser = async (req, res) => {
   try {
-    const user = { name: req.body.name, password: req.body.password };
+    const hashSaltPassword = await bcrypt.hash(req.body.password, 10);
+    const user = { name: req.body.name, password: hashSaltPassword };
     users.push(user);
     res.json(users);
   } catch (err) {
     console.error(err);
+  }
+};
+
+exports.loginUser = async (req, res) => {
+  const user = users.find((user) => user.name === req.body.user);
+  if (user == null) {
+    return res.status(400).send("Cannot find user");
+  }
+  try {
+    if (await bcrypt.compare(req.body.password, user.password)) {
+      res.send("Succesfuly logged in")
+    } else {
+      res.send("not allowed!")
+    };
+
+  } catch {
+    res.status(500).send();
   }
 };
 
