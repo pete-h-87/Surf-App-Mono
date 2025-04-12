@@ -87,7 +87,7 @@ const updatePrediction = async (data) => {
     `;
     const values = [prediction, forecast_id];
     const result = await pool.query(query, values);
-
+    // console.log("updated rows:", result.rows)
     return result.rows[0];
   } catch (error) {
     console.error("Error updating prediction:", error);
@@ -140,6 +140,20 @@ const addNewUser = async (userData) => {
   }
 };
 
+const findUser = async (name) => {
+  try{
+    const query = `SELECT * FROM users WHERE user_name = $1`;
+    const values = [name];
+    const result = await pool.query(query, values);
+    if (result.rows.length === 0) {
+      return null;
+    }
+    return result.rows[0];
+  } catch (error) {
+    console.error("Error attempting to find user:", error);
+  }
+};
+
 module.exports = {
   get,
   getPredictions,
@@ -150,6 +164,7 @@ module.exports = {
   deleteEntry,
   deleteReport,
   addNewUser,
+  findUser,
 };
 
 // STEP THREE - recieve the pool from database.js in same folder,

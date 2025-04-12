@@ -10,6 +10,7 @@ const {
   deleteEntry,
   deleteReport,
   addNewUser,
+  findUser,
 } = require("../model/dbApi");
 
 exports.read = async (req, res) => {
@@ -148,7 +149,6 @@ exports.createUser = async (req, res) => {
     const hashSaltPassword = await bcrypt.hash(req.body.password, 10);
     const user = { name: req.body.name, password: hashSaltPassword };
     const result = await addNewUser(user);
-    console.log(result);
     return res.status(201).json(result);
   } catch (err) {
     console.error(err);
@@ -156,17 +156,16 @@ exports.createUser = async (req, res) => {
 };
 
 exports.loginUser = async (req, res) => {
-  const user = users.find((user) => user.name === req.body.name);
+  const user = await findUser(req.body.name);
   if (user == null) {
     return res.status(400).send("Cannot find userrrrr");
   }
   try {
-    if (await bcrypt.compare(req.body.password, user.password)) {
+    if (await bcrypt.compare(req.body.password, user.user_password)) {
       res.send("Succesfuly logged in")
     } else {
       res.send("not allowed!")
     };
-
   } catch {
     res.status(500).send();
   }
