@@ -14,14 +14,14 @@ CREATE TABLE forecast(
 
 CREATE TABLE journal(
     journal_id SERIAL PRIMARY KEY,
-    forecast_id INT REFERENCES forecast(journal_id),
+    forecast_id INT REFERENCES forecast(forecast_id),
     prediction VARCHAR,
     report VARCHAR
 );
 
 CREATE TABLE snapshot(
     snapshot_id SERIAL PRIMARY KEY,
-    journal_id INT REFERENCES forecast(journal_id),
+    journal_id INT REFERENCES forecast(forecast_id),
     picture1 BYTEA NOT NULL,
     picture2 BYTEA NOT NULL
 ); 
