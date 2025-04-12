@@ -18,7 +18,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(express.json());
-app.use("/users", userRoute);
+app.use("/api/userRoute", userRoute);
 app.use("/api/dbRoute", dbRoute);
 app.use("/api/mateoWeatherRoutes", mateoWeatherRoutes);
 app.use("/api/screenshot", screenshotRoutes);
