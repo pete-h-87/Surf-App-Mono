@@ -180,12 +180,11 @@ export const createNewUser = async (data) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
-      
     });
     if (!res.ok) {
       throw new Error("Network response was not ok for creating USER");
     }
-    const result = await res.json();
+    await res.json();
   } catch (err) {
     console.error("Error creating new USER:", err);
     throw err;

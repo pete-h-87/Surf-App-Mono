@@ -16,8 +16,6 @@ const create = async (data) => {
     temperature,
   } = data;
 
-  
-  
   try {
     const forecastQuery = `
       INSERT INTO forecast (date_recorded, session_time, wind_speed, wind_direction, wave_height, wave_period, wave_direction, temperature)
@@ -89,7 +87,7 @@ const updatePrediction = async (data) => {
     `;
     const values = [prediction, forecast_id];
     const result = await pool.query(query, values);
-    
+
     return result.rows[0];
   } catch (error) {
     console.error("Error updating prediction:", error);
@@ -97,7 +95,8 @@ const updatePrediction = async (data) => {
   }
 };
 
-const deleteEntry = async (forecast_id) => { //foreign/primary key constraints - first to delete
+const deleteEntry = async (forecast_id) => {
+  //foreign/primary key constraints - first to delete
   try {
     const deleteJournalQuery = `DELETE FROM journal WHERE forecast_id = $1`;
     const values = [forecast_id];
@@ -126,20 +125,20 @@ const deleteReport = async (forecast_id) => {
 };
 
 const addNewUser = async (userData) => {
-  try{
+  try {
     const { name, password } = userData;
     const addNewUserquery = `
-    INSERT INTO users (name, password)
+    INSERT INTO users (user_name, user_password)
     VALUES ($1, $2)
     RETURNING user_id
   `;
-  const values = { name, password };
-  await pool.query(addNewUserquery, values);
+    const values = [name, password];
+    await pool.query(addNewUserquery, values);
   } catch (error) {
-    console.error('Error in creating a new user in database');
+    console.error("Error in creating a new user in database");
     throw error;
-  };
-}
+  }
+};
 
 module.exports = {
   get,

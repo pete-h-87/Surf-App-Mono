@@ -3,10 +3,20 @@ import { Link } from "react-router-dom";
 import styles from "./Register.module.css";
 import { createNewUser } from "../../util";
 
-const handleSubmit = (e) => {
+const handleSubmit = async (e) => {
   e.preventDefault();
-  
-}
+  const formData = new FormData(e.target);
+  const data = {
+    name: formData.get("name"),
+    password: formData.get("password"),
+  };
+  console.log(data);
+  try {
+    await createNewUser(data);
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 export const Register = () => {
   return (
@@ -24,14 +34,19 @@ export const Register = () => {
           </li>
         </ul>
       </nav>
-      <form action="/register" method="POST">
+      <form
+        name="login"
+        action="/register"
+        onSubmit={handleSubmit}
+        method="POST"
+      >
         <div>
           <label for="name">Name</label>
-          <input type="text" id="name" name="name" required/>
+          <input type="text" id="name" name="name" required />
         </div>
         <div>
           <label for="password">Password</label>
-          <input type="text" id="password" name="password" required/>
+          <input type="text" id="password" name="password" required />
         </div>
         <button type="submit">Register</button>
       </form>
