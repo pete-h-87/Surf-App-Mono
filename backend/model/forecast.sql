@@ -24,7 +24,12 @@ CREATE TABLE snapshot(
     journal_id INT REFERENCES forecast(forecast_id),
     picture1 BYTEA NOT NULL,
     picture2 BYTEA NOT NULL
-); 
+);
+
+CREATE TABLE users(
+  user_id SERIAL PRIMARY KEY,
+  user_password INT
+);
 
 DELETE FROM forecast;
 
