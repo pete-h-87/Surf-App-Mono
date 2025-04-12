@@ -1,6 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./Register.module.css";
+import { createNewUser } from "../../util";
+
+const handleSubmit = (e) => {
+  e.preventDefault();
+  
+}
 
 export const Register = () => {
   return (

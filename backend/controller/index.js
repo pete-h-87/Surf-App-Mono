@@ -9,6 +9,7 @@ const {
   addReport,
   deleteEntry,
   deleteReport,
+  addNewUser,
 } = require("../model/dbApi");
 
 exports.read = async (req, res) => {
@@ -146,8 +147,8 @@ exports.createUser = async (req, res) => {
   try {
     const hashSaltPassword = await bcrypt.hash(req.body.password, 10);
     const user = { name: req.body.name, password: hashSaltPassword };
-    users.push(user);
-    res.json(users);
+    const result = await addNewUser(user);
+    return res.status(201).json(result);
   } catch (err) {
     console.error(err);
   }

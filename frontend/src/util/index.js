@@ -172,6 +172,26 @@ export const getSixHourWaveForecast = async () => {
   }
 };
 
+export const createNewUser = async (data) => {
+  try {
+    const res = await fetch("/api/userRoute/users/createUser", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+      
+    });
+    if (!res.ok) {
+      throw new Error("Network response was not ok for creating USER");
+    }
+    const result = await res.json();
+  } catch (err) {
+    console.error("Error creating new USER:", err);
+    throw err;
+  }
+}
+
 
 // STEP SEVEN - since we now have a port that's listening, we can create some utilities that throw
 // some http towards that port, with requests to go down certain paths with certain payloads.

@@ -2,6 +2,7 @@ CREATE DATABASE surf_check_db;
 
 CREATE TABLE forecast(
     forecast_id SERIAL PRIMARY KEY,
+    user_id INT REFERENCES users(user_id),
   	date_recorded VARCHAR NOT NULL,
     session_time VARCHAR NOT NULL,
     wind_speed DECIMAL(5, 2) NOT NULL,
@@ -32,6 +33,16 @@ CREATE TABLE users(
 );
 
 DELETE FROM forecast;
+
+-- corrections and insertions
+
+ALTER TABLE forecast
+ADD COLUMN user_id INT;
+
+ALTER TABLE forecast
+ADD CONSTRAINT fk_user
+FOREIGN KEY (user_id)
+REFERENCES users(user_id);
 
 -- for gitBash:
 CREATE TABLE forecast(forecast_id SERIAL PRIMARY KEY, date_recorded VARCHAR NOT NULL, session_time VARCHAR NOT NULL, wind_speed DECIMAL(5, 2) NOT NULL, wind_direction DECIMAL(5, 2) NOT NULL, wave_height DECIMAL(5, 2) NOT NULL, wave_period DECIMAL(5, 2) NOT NULL, wave_direction DECIMAL(5,2) NOT NULL, temperature DECIMAL(5, 2) NOT NULL);

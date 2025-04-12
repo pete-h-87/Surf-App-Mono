@@ -125,6 +125,22 @@ const deleteReport = async (forecast_id) => {
   }
 };
 
+const addNewUser = async (userData) => {
+  try{
+    const { name, password } = userData;
+    const addNewUserquery = `
+    INSERT INTO users (name, password)
+    VALUES ($1, $2)
+    RETURNING user_id
+  `;
+  const values = { name, password };
+  await pool.query(addNewUserquery, values);
+  } catch (error) {
+    console.error('Error in creating a new user in database');
+    throw error;
+  };
+}
+
 module.exports = {
   get,
   getPredictions,
@@ -134,6 +150,7 @@ module.exports = {
   updatePrediction,
   deleteEntry,
   deleteReport,
+  addNewUser,
 };
 
 // STEP THREE - recieve the pool from database.js in same folder,
