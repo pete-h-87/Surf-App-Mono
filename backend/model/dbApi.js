@@ -126,13 +126,13 @@ const deleteReport = async (forecast_id) => {
 
 const addNewUser = async (userData) => {
   try {
-    const { name, password } = userData;
+    const { name, password, email } = userData;
     const addNewUserquery = `
-    INSERT INTO users (user_name, user_password)
-    VALUES ($1, $2)
+    INSERT INTO users (user_name, user_password, user_email)
+    VALUES ($1, $2, $3)
     RETURNING user_id
   `;
-    const values = [name, password];
+    const values = [name, password, email];
     await pool.query(addNewUserquery, values);
   } catch (error) {
     console.error("Error in creating a new user in database");

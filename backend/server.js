@@ -3,6 +3,13 @@ const cors = require("cors");
 require("dotenv").config();
 
 const app = express();
+
+const { findUser } = require("./model/dbApi")
+
+const session = require("express-session");
+const flash = require("express-flash");
+
+
 const port = process.env.PORT || 8000;
 
 const corsOptions = {
@@ -12,13 +19,12 @@ const corsOptions = {
 };
 
 //passport
-const passport = require('passport');
-const initializePassport = require('./passport-config');
-// initializePassport(passport);
+const passport = require("passport");
+const initializePassport = require("./passport-config");
 
 //routes
 const dbRoute = require("./routes/dbRoute");
-const mateoWeatherRoutes = require("./routes/mateoWeatherRoutes")
+const mateoWeatherRoutes = require("./routes/mateoWeatherRoutes");
 const screenshotRoutes = require("./routes/screenshotRoutes");
 const userRoute = require("./routes/userRoute");
 
@@ -28,6 +34,24 @@ app.use("/api/userRoute", userRoute);
 app.use("/api/dbRoute", dbRoute);
 app.use("/api/mateoWeatherRoutes", mateoWeatherRoutes);
 app.use("/api/screenshot", screenshotRoutes);
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false
+}));
+
+app.use(passport.initialize())
+app.use(passport.session())
+app.use(flash());
+
+//login
+initializePassport(passport, findUser);
+
+app.post("/users/loginUser", passport.authenticate("local", {
+    successRedirect: "/",
+    failureRedirect: "/login",
+    failureFlash: true
+}));
 
 app.listen(port, () => {
   console.log(`App listening at http://localhost:${port}`);

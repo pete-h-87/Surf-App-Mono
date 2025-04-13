@@ -147,7 +147,7 @@ exports.readUser = async (req, res) => {
 exports.createUser = async (req, res) => {
   try {
     const hashSaltPassword = await bcrypt.hash(req.body.password, 10);
-    const user = { name: req.body.name, password: hashSaltPassword };
+    const user = { name: req.body.name, password: hashSaltPassword, email: req.body.email };
     const result = await addNewUser(user);
     return res.status(201).json(result);
   } catch (err) {

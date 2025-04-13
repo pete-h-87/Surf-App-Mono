@@ -9,6 +9,7 @@ const handleSubmit = async (e) => {
   const data = {
     name: formData.get("name"),
     password: formData.get("password"),
+    email: formData.get("email")
   };
   console.log(data);
   try {

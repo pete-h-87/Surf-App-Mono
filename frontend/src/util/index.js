@@ -184,7 +184,7 @@ export const createNewUser = async (data) => {
     if (!res.ok) {
       throw new Error("Network response was not ok for creating USER");
     }
-    await res.json();
+    return res;
   } catch (err) {
     console.error("Error creating new USER:", err);
     throw err;
