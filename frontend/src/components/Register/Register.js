@@ -41,11 +41,15 @@ export const Register = () => {
         method="POST"
       >
         <div>
-          <label for="name">Name</label>
+          <label>Name</label>
           <input type="text" id="name" name="name" required />
         </div>
         <div>
-          <label for="password">Password</label>
+          <label>Email</label>
+          <input type="text" id="email" name="email" required />
+        </div>
+        <div>
+          <label>Password</label>
           <input type="text" id="password" name="password" required />
         </div>
         <button type="submit">Register</button>

@@ -41,16 +41,15 @@ export const Login = () => {
         method="POST"
       >
         <div>
-          <label for="name">Name</label>
+          <label>Email</label>
           <input type="text" id="name" name="name" required />
         </div>
         <div>
-          <label for="password">Password</label>
+          <label>Password</label>
           <input type="text" id="password" name="password" required />
         </div>
         <button type="submit">Login</button>
       </form>
-      <div>Hi there</div>
     </div>
   );
 };

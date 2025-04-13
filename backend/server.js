@@ -2,11 +2,6 @@ const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
 
-const dbRoute = require("./routes/dbRoute");
-const mateoWeatherRoutes = require("./routes/mateoWeatherRoutes")
-const screenshotRoutes = require("./routes/screenshotRoutes");
-const userRoute = require("./routes/userRoute");
-
 const app = express();
 const port = process.env.PORT || 8000;
 
@@ -15,6 +10,17 @@ const corsOptions = {
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
 };
+
+//passport
+const passport = require('passport');
+const initializePassport = require('./passport-config');
+// initializePassport(passport);
+
+//routes
+const dbRoute = require("./routes/dbRoute");
+const mateoWeatherRoutes = require("./routes/mateoWeatherRoutes")
+const screenshotRoutes = require("./routes/screenshotRoutes");
+const userRoute = require("./routes/userRoute");
 
 app.use(cors(corsOptions));
 app.use(express.json());
