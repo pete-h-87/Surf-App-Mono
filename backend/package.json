@@ -19,6 +19,8 @@
         "dotenv": "^16.4.7",
         "express": "^4.21.2",
         "openmeteo": "^1.1.4",
+        "passport": "^0.7.0",
+        "passport-local": "^1.0.0",
         "pg": "^8.13.1",
         "puppeteer": "^23.11.1"
     },

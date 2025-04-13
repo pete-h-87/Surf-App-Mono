@@ -203,7 +203,13 @@ export const loggingInTheUser = async (data) => {
     if (!res.ok) {
       throw new Error("Network response was not ok for finding USER");
     }
-    await res.json();
+    const result = await res.json();
+    console.log(result);
+    if (res.ok) {
+      console.log(result.message)
+    } else {
+      console.error("Login response not ok")
+    }
   } catch (err) {
     console.error("Error finding USER:", err);
     throw err;

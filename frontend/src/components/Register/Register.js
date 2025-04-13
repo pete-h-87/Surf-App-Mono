@@ -20,11 +20,11 @@ const handleSubmit = async (e) => {
 
 export const Register = () => {
   return (
-    <div>
+    <div className={styles.page}>
       <nav className={styles.navbar}>
         <ul>
           <li>
-            <Link to="/">Back</Link>
+            <Link to="/login">Back</Link>
           </li>
           <li>
             <Link to="/">Home</Link>

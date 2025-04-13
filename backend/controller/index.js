@@ -162,7 +162,7 @@ exports.loginUser = async (req, res) => {
   }
   try {
     if (await bcrypt.compare(req.body.password, user.user_password)) {
-      res.send("Succesfuly logged in")
+      res.status(200).json({message: "Succesfuly logged in"})
     } else {
       res.send("not allowed!")
     };
