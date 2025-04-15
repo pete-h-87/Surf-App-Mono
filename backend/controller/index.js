@@ -134,6 +134,9 @@ exports.deleteReport = async (req, res) => {
   }
 };
 
+
+//authentication
+
 const users = [{ name: "testBoi", password: "qwe" }];
 
 exports.readUser = async (req, res) => {

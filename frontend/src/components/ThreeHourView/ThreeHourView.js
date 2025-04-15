@@ -156,7 +156,7 @@ function ThreeHourView() {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/journal">Journal</Link>
+            <Link to="/login">Log In</Link>
           </li>
         </ul>
       </nav>

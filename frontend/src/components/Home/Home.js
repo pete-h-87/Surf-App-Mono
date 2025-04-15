@@ -42,10 +42,10 @@ function Home() {
       <nav className={styles.navbar}>
         <ul>
           <li>
-            <Link to="/login">Login</Link>
+            <Link to="/journal">Journal</Link>
           </li>
           <li>
-            <Link to="/journal">Journal</Link>
+            <Link to="/login">Log In</Link>
           </li>
         </ul>
       </nav>

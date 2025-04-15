@@ -20,5 +20,5 @@ pool.on('error', (err) => {
 
 module.exports = pool;
 
-// STEP TWO - recieve .env info from 'dotenv' from process.env now,
+// STEP TWO - recieve .env info from 'dotenv' from process.env, now,
 // create pool, pass to dbApi.js in same model folder

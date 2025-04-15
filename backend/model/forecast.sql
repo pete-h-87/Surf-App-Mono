@@ -30,7 +30,8 @@ CREATE TABLE snapshot(
 CREATE TABLE users(
   user_id SERIAL PRIMARY KEY,
   user_name VARCHAR NOT NULL,
-  user_password VARCHAR
+  user_password VARCHAR NOT NULL,
+  user_email VARCHAR NOT NULL
 );
 
 DELETE FROM forecast;

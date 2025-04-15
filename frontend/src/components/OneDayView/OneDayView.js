@@ -52,7 +52,7 @@ function OneDayView() {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/journal">Journal</Link>
+            <Link to="/login">Log In</Link>
           </li>
         </ul>
       </nav>
@@ -63,7 +63,7 @@ function OneDayView() {
             <h5>
               {index * 3}:00 - {index * 3 + 3}:00
             </h5>
-            <div>
+            <div> 
               <div
                 key={index}
                 className={styles.session}
