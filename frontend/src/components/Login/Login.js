@@ -8,7 +8,7 @@ export const Login = () => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const data = {
-      name: formData.get("name"),
+      email: formData.get("email"),
       password: formData.get("password"),
     };
     console.log(data);
@@ -42,7 +42,7 @@ export const Login = () => {
       >
         <div>
           <label>Email</label>
-          <input type="text" id="name" name="name" required />
+          <input type="text" id="email" name="email" required />
         </div>
         <div>
           <label>Password</label>

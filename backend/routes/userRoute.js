@@ -5,7 +5,7 @@ const { readUser, createUser, loginUser } = require("../controller/index");
 
 router.get("/users", readUser);
 router.post("/users/createUser", createUser);
-// router.post("/users/loginUser", loginUser);
+router.post("/users/loginUser", loginUser);
 
 module.exports = router;
 

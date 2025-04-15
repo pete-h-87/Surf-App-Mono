@@ -159,7 +159,8 @@ exports.createUser = async (req, res) => {
 };
 
 exports.loginUser = async (req, res) => {
-  const user = await findUser(req.body.name);
+  const user = await findUser(req.body.email);
+  console.log("req:", req.body)
   if (user == null) {
     return res.status(400).send("Cannot find userrrrr");
   }
