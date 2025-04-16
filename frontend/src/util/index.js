@@ -193,7 +193,7 @@ export const createNewUser = async (data) => {
 
 export const loggingInTheUser = async (data) => {
   try {
-    const res = await fetch("/api/userRoute/users/loginUser", {
+    const res = await fetch("/api/userRoute/users/auth", { //HERE, we are connecting the front end directly to the route to the backend
       method: "POST",
       headers: {
         "Content-Type": "application/json",

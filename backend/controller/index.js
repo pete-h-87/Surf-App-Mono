@@ -1,4 +1,5 @@
 const bcrypt = require("bcryptjs");
+const passport = require("passport");
 
 const {
   get,
@@ -134,7 +135,6 @@ exports.deleteReport = async (req, res) => {
   }
 };
 
-
 //authentication
 
 const users = [{ name: "testBoi", password: "qwe" }];
@@ -150,7 +150,11 @@ exports.readUser = async (req, res) => {
 exports.createUser = async (req, res) => {
   try {
     const hashSaltPassword = await bcrypt.hash(req.body.password, 10);
-    const user = { name: req.body.name, password: hashSaltPassword, email: req.body.email };
+    const user = {
+      name: req.body.name,
+      password: hashSaltPassword,
+      email: req.body.email,
+    };
     const result = await addNewUser(user);
     return res.status(201).json(result);
   } catch (err) {
@@ -160,16 +164,33 @@ exports.createUser = async (req, res) => {
 
 exports.loginUser = async (req, res) => {
   const user = await findUser(req.body.email);
-  console.log("req:", req.body)
+  console.log("req:", req.body);
   if (user == null) {
     return res.status(400).send("Cannot find userrrrr");
   }
   try {
     if (await bcrypt.compare(req.body.password, user.user_password)) {
-      res.status(200).json({message: "Succesfuly logged in"})
+      res.status(200).json({ message: "Succesfuly logged in" });
     } else {
-      res.send("not allowed!")
-    };
+      res.send("not allowed!");
+    }
+  } catch {
+    res.status(500).send();
+  }
+};
+
+exports.loginUserWithAuth = async (req, res) => {
+  const user = await findUser(req.body.email);
+  console.log("req:", req.body);
+  if (user == null) {
+    return res.status(400).send("Cannot find userrrrrzzz");
+  }
+  try {
+    if (await bcrypt.compare(req.body.password, user.user_password)) {
+      res.status(200).json({ message: "Succesfuly logged in" });
+    } else {
+      res.send("not allowed!");
+    }
   } catch {
     res.status(500).send();
   }
