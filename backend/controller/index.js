@@ -137,15 +137,13 @@ exports.deleteReport = async (req, res) => {
 
 //authentication
 
-const users = [{ name: "testBoi", password: "qwe" }];
-
-exports.readUser = async (req, res) => {
-  try {
-    res.json(users);
-  } catch (err) {
-    console.error(err);
-  }
-};
+// exports.readUser = async (req, res) => {
+//   try {
+//     res.json(users);
+//   } catch (err) {
+//     console.error(err);
+//   }
+// };
 
 exports.createUser = async (req, res) => {
   try {
@@ -162,26 +160,29 @@ exports.createUser = async (req, res) => {
   }
 };
 
-exports.loginUserWithAuth = (req, res, next) => {
-  passport.authenticate("local", (err, user, info) => {
-    if (err) {
-      console.error("Error during authentication:", err);
-      return res.status(500).json({ message: "Internal server error" });
-    }
-    if (!user) {
-      console.log("Authentication failed:", info.message);
-      return res.status(401).json({ message: info.message }); // Send error message from strategy
-    }
-    req.logIn(user, (err) => {
-      if (err) {
-        console.error("Error during login:", err);
-        return res.status(500).json({ message: "Internal server error" });
-      }
-      console.log("User logged in successfully:", user);
-      return res.status(200).json({ message: "Login successful", user });
-    });
-  })(req, res, next); // Pass req, res, and next to passport.authenticate
-};
+// exports.loginUserWithAuth = (req, res, next) => {
+//   passport.authenticate("local", (err, user, info) => {
+//     if (err) {
+//       console.error("Error during authentication:", err);
+//       return res.status(500).json({ message: "Internal server error" });
+//     }
+//     if (!user) {
+//       console.log("Authentication failed:", info.message);
+//       return res.status(401).json({ message: info.message }); // Send error message from strategy
+//     }
+//     req.logIn(user, (err) => {
+//       if (err) {
+//         console.error("Error during login:", err);
+//         return res.status(500).json({ message: "Internal server error" });
+//       }
+//       // console.log("User logged in successfully:", user);
+//       console.log("response in logingUserWithAuth func:", res.statusCode)
+//       return res.status(200).json({ message: "Login successful", redirectUrl: "/" });
+//     });
+//   })(req, res, next); // Pass req, res, and next to passport.authenticate
+// };
+
+
 
 // STEP FOUR - recieve the SQL injections from the model, and make middelware in your controller folder -
 // pass to your routes

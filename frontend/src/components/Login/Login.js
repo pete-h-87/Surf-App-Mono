@@ -4,16 +4,20 @@ import { Link } from "react-router-dom";
 import { loggingInTheUser } from "../../util";
 
 export const Login = () => {
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("BUTTON PRESSED")
     const formData = new FormData(e.target);
     const data = {
       email: formData.get("email"),
       password: formData.get("password"),
     };
-    console.log(data);
+    console.log("SSSSSS", data);
     try {
-      await loggingInTheUser(data);
+      // console.log("EEEEEE", data)
+      const response = await loggingInTheUser(data);
+      console.log("KKKKKKK:", response)
     } catch (err) {
       console.log(err);
     }
@@ -35,18 +39,15 @@ export const Login = () => {
         </ul>
       </nav>
       <form
-        name="login"
-        action="/register"
         onSubmit={handleSubmit}
-        method="POST"
       >
         <div>
           <label>Email</label>
-          <input type="text" id="email" name="email" required />
+          <input type="email" id="email" name="email" required />
         </div>
         <div>
           <label>Password</label>
-          <input type="text" id="password" name="password" required />
+          <input type="password" id="password" name="password" required />
         </div>
         <button type="submit">Login</button>
       </form>

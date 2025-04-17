@@ -2,10 +2,11 @@ const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
 const passport = require("passport");
-const initializePassport = require("./passport-config");
+const initializePassport = require("./local-strategy");
 const app = express();
 const session = require("express-session");
 const flash = require("express-flash");
+const strategies = require("./local-strategy");
 
 const port = process.env.PORT || 8000;
 
@@ -44,8 +45,33 @@ app.use("/api/dbRoute", dbRoute);
 app.use("/api/mateoWeatherRoutes", mateoWeatherRoutes);
 app.use("/api/screenshot", screenshotRoutes);
 
+app.post("/api/userRoute/users/auth", (req, res, next) => {
+  passport.authenticate("local", (err, user, info) => {
+    if (err) {
+      console.error("Error during authentication:", err);
+      return res.status(500).json({ message: "Internal server error" });
+    }
+    if (!user) {
+      console.log("Authentication failed:", info.message);
+      return res.status(401).json({ message: info.message });
+    }
+
+    // Authentication successful
+    console.log("User authenticated successfullyyyy:", user);
+    res.status(200).json({
+      message: "Login successfulll",
+      user: {
+        id: user.user_id,
+        name: user.name,
+        email: user.email,
+      },
+      redirectUrl: "/",
+    });
+  })(req, res, next); // Pass req, res, and next to passport.authenticate
+});
+
 //login
-initializePassport();
+// initializePassport();
 
 app.listen(port, () => {
   console.log(`App listening at http://localhost:${port}`);

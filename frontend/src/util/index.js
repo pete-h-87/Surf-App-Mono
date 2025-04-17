@@ -47,7 +47,7 @@ export const createJournalEntry = async (data) => {
     if (!res.ok) {
       throw new Error("Network response was not ok");
     }
-    const result = await res.json();
+    await res.json();
   } catch (err) {
     console.error("Error creating journal entry:", err);
     throw err;
@@ -66,7 +66,7 @@ export const addReport = async (data) => {
     if (!res.ok) {
       throw new Error("Network response was not ok for updateReport");
     }
-    const result = await res.json();
+    await res.json();
   } catch (err) {
     console.error("Error in adding report1", err);
     throw err;
@@ -85,7 +85,7 @@ export const updatePrediction = async (data) => {
     if (!res.ok) {
       throw new Error("Network response was not ok for updatePrediction");
     }
-    const result = await res.json();
+    await res.json();
   } catch (err) {
     console.error("Error in updating prediction1", err);
     throw err;
@@ -192,7 +192,9 @@ export const createNewUser = async (data) => {
 }
 
 export const loggingInTheUser = async (data) => {
+  console.log("INVOKED")
   try {
+    console.log("DATADATA", data)
     const res = await fetch("/api/userRoute/users/auth", { //HERE, we are connecting the frontend directly to the route to the backend
       method: "POST",
       headers: {
@@ -200,16 +202,21 @@ export const loggingInTheUser = async (data) => {
       },
       body: JSON.stringify(data),
     });
+    console.log("LLLLLLLLLLLLLLLLLLLLLL", res);
+
     if (!res.ok) {
       throw new Error("Network response was not ok for finding USER");
     }
+
     const result = await res.json();
-    console.log(result);
+    console.log("ZZZZZZZZZZZZZZZZZZZZZZZ", result);
+
     if (res.ok) {
-      console.log(result.message)
-    } else {
-      console.error("Login response not ok")
+      console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+      window.location.href = result.redirectUrl;
     }
+    // return res;
+  
   } catch (err) {
     console.error("Error finding USER:", err);
     throw err;

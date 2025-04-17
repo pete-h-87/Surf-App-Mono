@@ -149,7 +149,7 @@ const findUserByEmail = async (email) => {
     if (result.rows.length === 0) {
       return null;
     }
-    console.log("the email?:", result.rows[0])
+    // console.log("the email?:", result.rows[0])
     return result.rows[0];
   } catch (error) {
     console.error("Error attempting to find user email:", error);
@@ -164,7 +164,7 @@ const findUserById = async (id) => {
     if (result.rows.length === 0) {
       return null;
     }
-    console.log("the id?:", result.rows[0])
+    // console.log("the id?:", result.rows[0])
     return result.rows[0];
   } catch (error) {
     console.error("Error attempting to find user id:", error);
