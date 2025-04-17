@@ -1,10 +1,8 @@
 const express = require("express");
-const passport = require("passport");
 const router = express.Router();
-const { createUser, loginUserWithAuth } = require("../controller/index");
+const { createUser } = require("../controller/index");
 
 router.post("/users/createUser", createUser);
-
 
 module.exports = router;
 

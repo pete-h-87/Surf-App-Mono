@@ -1,5 +1,4 @@
 const bcrypt = require("bcryptjs");
-const passport = require("passport");
 
 const {
   get,
@@ -11,7 +10,6 @@ const {
   deleteEntry,
   deleteReport,
   addNewUser,
-  findUser,
 } = require("../model/dbApi");
 
 exports.read = async (req, res) => {

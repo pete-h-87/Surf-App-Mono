@@ -2,11 +2,9 @@ const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
 const passport = require("passport");
-const initializePassport = require("./local-strategy");
 const app = express();
 const session = require("express-session");
 const flash = require("express-flash");
-const strategies = require("./local-strategy");
 
 const port = process.env.PORT || 8000;
 
