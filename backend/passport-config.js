@@ -1,17 +1,36 @@
 const passport = require("passport");
 const Strategy = require("passport-local");
 const bcrypt = require("bcryptjs");
-// const { loggingInTheUser } = require("../frontend/src/util/index");
+const { findUserByEmail, findUserById } = require("./model/dbApi");
+
+passport.serializeUser((user, done) => {
+  console.log("the serialized user id:", user.user_id)
+  done(null, user.user_id) 
+});
+
+passport.deserializeUser(async (id, done) => {
+  console.log("the id in desirelize", id)
+  try {
+    const user = await findUserById(id);
+    console.log("the deserialized ID:", id)
+    if(!user) throw new Error ("user not found in deserializer");
+    done(null, user);
+  } catch (err) {
+    done(err, null);
+  }
+})
 
 const initializePassport = () => {
   passport.use(
-    new Strategy(async (username, password, done) => {
-      console.log("username:", username);
+    new Strategy({usernameField: "email", passReqToCallback: true}, async (req, email, password, done) => {
+      console.log("Request body:", req.body);
+      console.log("username:", email);
       console.log("password:", password);
       try {
-        const user = username;
-        if (!user) throw new Error("user not found");
-        const isMatch = await bcrypt.compare(password, user.password);
+        const user = await findUserByEmail(email);
+        // console.log(user)
+        if (!user) throw new Error("email not found");
+        const isMatch = await bcrypt.compare(password, user.user_password);
         if (!isMatch) throw new Error("Invalid password");
         done(null, user);
       } catch (err) {

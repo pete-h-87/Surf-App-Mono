@@ -15,22 +15,10 @@ const corsOptions = {
   allowedHeaders: ["Content-Type", "Authorization"],
 };
 
-//routes
-const dbRoute = require("./routes/dbRoute");
-const mateoWeatherRoutes = require("./routes/mateoWeatherRoutes");
-const screenshotRoutes = require("./routes/screenshotRoutes");
-const userRoute = require("./routes/userRoute");
-
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false })); 
 
-app.use("/api/userRoute", userRoute);
-app.use("/api/dbRoute", dbRoute);
-app.use("/api/mateoWeatherRoutes", mateoWeatherRoutes);
-app.use("/api/screenshot", screenshotRoutes);
-
-app.use(flash());
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
@@ -43,9 +31,21 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
+
+//routes
+const dbRoute = require("./routes/dbRoute");
+const mateoWeatherRoutes = require("./routes/mateoWeatherRoutes");
+const screenshotRoutes = require("./routes/screenshotRoutes");
+const userRoute = require("./routes/userRoute");
+
+app.use("/api/userRoute", userRoute);
+app.use("/api/dbRoute", dbRoute);
+app.use("/api/mateoWeatherRoutes", mateoWeatherRoutes);
+app.use("/api/screenshot", screenshotRoutes);
 
 //login
-initializePassport(); // how are we passing the data to find user here?
+initializePassport();
 
 app.listen(port, () => {
   console.log(`App listening at http://localhost:${port}`);

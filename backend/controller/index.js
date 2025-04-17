@@ -162,38 +162,25 @@ exports.createUser = async (req, res) => {
   }
 };
 
-exports.loginUser = async (req, res) => {
-  const user = await findUser(req.body.email);
-  console.log("req:", req.body);
-  if (user == null) {
-    return res.status(400).send("Cannot find userrrrr");
-  }
-  try {
-    if (await bcrypt.compare(req.body.password, user.user_password)) {
-      res.status(200).json({ message: "Succesfuly logged in" });
-    } else {
-      res.send("not allowed!");
+exports.loginUserWithAuth = (req, res, next) => {
+  passport.authenticate("local", (err, user, info) => {
+    if (err) {
+      console.error("Error during authentication:", err);
+      return res.status(500).json({ message: "Internal server error" });
     }
-  } catch {
-    res.status(500).send();
-  }
-};
-
-exports.loginUserWithAuth = async (req, res) => {
-  const user = await findUser(req.body.email);
-  console.log("req:", req.body);
-  if (user == null) {
-    return res.status(400).send("Cannot find userrrrrzzz");
-  }
-  try {
-    if (await bcrypt.compare(req.body.password, user.user_password)) {
-      res.status(200).json({ message: "Succesfuly logged in" });
-    } else {
-      res.send("not allowed!");
+    if (!user) {
+      console.log("Authentication failed:", info.message);
+      return res.status(401).json({ message: info.message }); // Send error message from strategy
     }
-  } catch {
-    res.status(500).send();
-  }
+    req.logIn(user, (err) => {
+      if (err) {
+        console.error("Error during login:", err);
+        return res.status(500).json({ message: "Internal server error" });
+      }
+      console.log("User logged in successfully:", user);
+      return res.status(200).json({ message: "Login successful", user });
+    });
+  })(req, res, next); // Pass req, res, and next to passport.authenticate
 };
 
 // STEP FOUR - recieve the SQL injections from the model, and make middelware in your controller folder -

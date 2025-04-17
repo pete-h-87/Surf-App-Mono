@@ -14,12 +14,12 @@ const create = async (data) => {
     wave_period,
     wave_direction,
     temperature,
+    user_id
   } = data;
-
   try {
     const forecastQuery = `
-      INSERT INTO forecast (date_recorded, session_time, wind_speed, wind_direction, wave_height, wave_period, wave_direction, temperature)
-      VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+      INSERT INTO forecast (date_recorded, session_time, wind_speed, wind_direction, wave_height, wave_period, wave_direction, temperature, user_id)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
       RETURNING forecast_id
     `;
     const forecastValues = [
@@ -31,6 +31,7 @@ const create = async (data) => {
       wave_period,
       wave_direction,
       temperature,
+      user_id
     ];
     const forecastResult = await pool.query(forecastQuery, forecastValues);
     return forecastResult.rows[0];
@@ -140,7 +141,7 @@ const addNewUser = async (userData) => {
   }
 };
 
-const findUser = async (email) => {
+const findUserByEmail = async (email) => {
   try{
     const query = `SELECT * FROM users WHERE user_email = $1`;
     const values = [email];
@@ -148,9 +149,25 @@ const findUser = async (email) => {
     if (result.rows.length === 0) {
       return null;
     }
+    console.log("the email?:", result.rows[0])
     return result.rows[0];
   } catch (error) {
-    console.error("Error attempting to find user:", error);
+    console.error("Error attempting to find user email:", error);
+  }
+};
+
+const findUserById = async (id) => {
+  try{
+    const query = `SELECT * FROM users WHERE user_id = $1`;
+    const values = [id];
+    const result = await pool.query(query, values);
+    if (result.rows.length === 0) {
+      return null;
+    }
+    console.log("the id?:", result.rows[0])
+    return result.rows[0];
+  } catch (error) {
+    console.error("Error attempting to find user id:", error);
   }
 };
 
@@ -164,7 +181,8 @@ module.exports = {
   deleteEntry,
   deleteReport,
   addNewUser,
-  findUser,
+  findUserByEmail,
+  findUserById
 };
 
 // STEP THREE - recieve the pool from database.js in same folder,
