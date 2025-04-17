@@ -15,7 +15,7 @@ export const Login = () => {
     };
     console.log("SSSSSS", data);
     try {
-      // console.log("EEEEEE", data)
+      console.log("EEEEEE", data)
       const response = await loggingInTheUser(data);
       console.log("KKKKKKK:", response)
     } catch (err) {
@@ -43,11 +43,11 @@ export const Login = () => {
       >
         <div>
           <label>Email</label>
-          <input type="email" id="email" name="email" required />
+          <input name="email" required />
         </div>
         <div>
           <label>Password</label>
-          <input type="password" id="password" name="password" required />
+          <input name="password" required />
         </div>
         <button type="submit">Login</button>
       </form>

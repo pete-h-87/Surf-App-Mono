@@ -2,9 +2,11 @@ const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
 const passport = require("passport");
+// const initializePassport = require("./local-strategy");
 const app = express();
 const session = require("express-session");
 const flash = require("express-flash");
+require("./local-strategy");
 
 const port = process.env.PORT || 8000;
 
@@ -54,18 +56,23 @@ app.post("/api/userRoute/users/auth", (req, res, next) => {
       return res.status(401).json({ message: info.message });
     }
 
-    // Authentication successful
-    console.log("User authenticated successfullyyyy:", user);
-    res.status(200).json({
-      message: "Login successfulll",
-      user: {
-        id: user.user_id,
-        name: user.name,
-        email: user.email,
-      },
-      redirectUrl: "/",
+    req.logIn(user, (err) => {
+      if (err) {
+        console.error("Error during login:", err);
+        return res.status(500).json({ message: "Internal server error" });
+      }
+      console.log("User logged in successfully:", user);
+      res.status(200).json({
+        message: "Login successful",
+        user: {
+          id: user.user_id,
+          name: user.name,
+          email: user.email,
+        },
+        redirectUrl: "/",
+      });
     });
-  })(req, res, next); // Pass req, res, and next to passport.authenticate
+  })(req, res, next);
 });
 
 //login
