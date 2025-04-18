@@ -9,6 +9,11 @@ export const GlobalProvider = ({ children }) => {
   const [threeHourWave, setThreeHourWave] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [loggedInUser, setLoggedInUser] = useState(() => {
+    // Retrieve the user from localStorage on initial load
+    const savedUser = localStorage.getItem("loggedInUser");
+    return savedUser ? JSON.parse(savedUser) : null;
+  });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,8 +33,19 @@ export const GlobalProvider = ({ children }) => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    // Save the user to localStorage whenever it changes
+    if (loggedInUser) {
+      localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
+    } else {
+      localStorage.removeItem("loggedInUser"); // Clear it if user logs out
+    }
+  }, [loggedInUser]);
+
+  console.log("Global page loggedInuser:", loggedInUser);
+
   return (
-    <GlobalContext.Provider value={{ journalData, threeHourWind, threeHourWave, loading, error }}>
+    <GlobalContext.Provider value={{ journalData, threeHourWind, threeHourWave, loading, error, loggedInUser, setLoggedInUser }}>
       {children}
     </GlobalContext.Provider>
   );

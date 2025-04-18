@@ -66,8 +66,8 @@ app.post("/api/userRoute/users/auth", (req, res, next) => {
         message: "Login successful",
         user: {
           id: user.user_id,
-          name: user.name,
-          email: user.email,
+          name: user.user_name,
+          email: user.user_email,
         },
         redirectUrl: "/",
       });

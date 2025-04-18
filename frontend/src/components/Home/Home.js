@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import styles from "./Home.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,7 +8,7 @@ import { GlobalContext } from "../../GlobalState";
 import getBackgroundColor from "../../util/colorCoding";
 
 function Home() {
-  const { threeHourWind, threeHourWave } = useContext(GlobalContext);
+  const { threeHourWind, threeHourWave, loggedInUser } = useContext(GlobalContext);
   const navigate = useNavigate();
 
   // Filter to get every other index starting from the second one
@@ -37,6 +37,15 @@ function Home() {
     navigate("/one-day-view", { state: { dayIndex, date } });
   };
 
+  console.log("the logged in user at HOME.js:", loggedInUser)
+
+  useEffect(() => {
+    if (loggedInUser) {
+      console.log("User logged in:", loggedInUser);
+      // Perform any side effects here
+    }
+  }, [loggedInUser]); // Runs whenever loggedInUser changes
+
   return (
     <div className={styles.page}>
       <nav className={styles.navbar}>
@@ -45,7 +54,11 @@ function Home() {
             <Link to="/journal">Journal</Link>
           </li>
           <li>
-            <Link to="/login">Log In</Link>
+            {loggedInUser ? (
+              <Link to="/login">LOGIN</Link>
+            ) : (
+              <Link to="/login">Log In</Link>
+            )}
           </li>
         </ul>
       </nav>

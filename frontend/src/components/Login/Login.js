@@ -1,23 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./Login.module.css";
 import { Link } from "react-router-dom";
 import { loggingInTheUser } from "../../util";
+import { GlobalContext } from "../../GlobalState";
 
 export const Login = () => {
+  const { setLoggedInUser } = useContext(GlobalContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("BUTTON PRESSED")
     const formData = new FormData(e.target);
     const data = {
       email: formData.get("email"),
       password: formData.get("password"),
     };
-    console.log("SSSSSS", data);
     try {
-      console.log("EEEEEE", data)
       const response = await loggingInTheUser(data);
-      console.log("KKKKKKK:", response)
+      console.log("handle submit try/catch response:", response.user.name);
+      setLoggedInUser(response.user.name);
     } catch (err) {
       console.log(err);
     }
@@ -38,9 +38,7 @@ export const Login = () => {
           </li>
         </ul>
       </nav>
-      <form
-        onSubmit={handleSubmit}
-      >
+      <form onSubmit={handleSubmit}>
         <div>
           <label>Email</label>
           <input name="email" required />

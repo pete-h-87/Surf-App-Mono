@@ -214,9 +214,8 @@ export const loggingInTheUser = async (data) => {
     if (res.ok) {
       console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
       window.location.href = result.redirectUrl;
+      return result;
     }
-    // return res;
-  
   } catch (err) {
     console.error("Error finding USER:", err);
     throw err;
