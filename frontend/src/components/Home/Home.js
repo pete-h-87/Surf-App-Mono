@@ -8,8 +8,12 @@ import { GlobalContext } from "../../GlobalState";
 import getBackgroundColor from "../../util/colorCoding";
 
 function Home() {
-  const { threeHourWind, threeHourWave, loggedInUser } = useContext(GlobalContext);
+  const { threeHourWind, threeHourWave, loggedInUser, setLoggedInUser } = useContext(GlobalContext);
   const navigate = useNavigate();
+
+  function logout() {
+    setLoggedInUser(null);
+  }
 
   // Filter to get every other index starting from the second one
   const days = Array.from({ length: 7 }, (_, dayIndex) => { // the first arg in this callback is _, because we are creating the skelelton of an array first, to be mapped over later and populated.  but as of now, there is no element to process, so it's blank
@@ -53,6 +57,9 @@ function Home() {
           <li>
             <Link to="/journal">Journal</Link>
           </li>
+          <div>
+            <button onClick={logout}>logout?</button>
+          </div>
           <li>
             {loggedInUser ? (
               <Link to="/login">LOGIN</Link>

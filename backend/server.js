@@ -7,6 +7,7 @@ const app = express();
 const session = require("express-session");
 const flash = require("express-flash");
 require("./local-strategy");
+const checkSession = require("./middleware/middleware")
 
 const port = process.env.PORT || 8000;
 
@@ -26,12 +27,17 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: {
-      maxAge: 60000 * 60,
+      maxAge: 20000,
     },
   })
 );
+
 app.use(passport.initialize());
 app.use(passport.session());
+app.use((req, res, next) => {
+  console.log("Session Info:", req.session);
+  next();
+});
 app.use(flash());
 
 //routes
