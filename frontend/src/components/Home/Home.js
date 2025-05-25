@@ -57,7 +57,7 @@ function Home() {
     // Trigger the entrance animation after a short delay
     const timer = setTimeout(() => {
       setAnimateIn(true);
-    }, 100); // time waiting to begin animations
+    }, 10); // time waiting to begin animations
     return () => clearTimeout(timer); // Cleanup timer on unmount
   }, []); // Runs whenever loggedInUser changes
 
