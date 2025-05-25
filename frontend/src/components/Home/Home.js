@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import styles from "./Home.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,7 +8,9 @@ import { GlobalContext } from "../../GlobalState";
 import getBackgroundColor from "../../util/colorCoding";
 
 function Home() {
-  const { threeHourWind, threeHourWave, loggedInUser, setLoggedInUser } = useContext(GlobalContext);
+  const [animateIn, setAnimateIn] = useState(false);
+  const { threeHourWind, threeHourWave, loggedInUser, setLoggedInUser } =
+    useContext(GlobalContext);
   const navigate = useNavigate();
 
   function logout() {
@@ -16,7 +18,8 @@ function Home() {
   }
 
   // Filter to get every other index starting from the second one
-  const days = Array.from({ length: 7 }, (_, dayIndex) => { // the first arg in this callback is _, because we are creating the skelelton of an array first, to be mapped over later and populated.  but as of now, there is no element to process, so it's blank
+  const days = Array.from({ length: 7 }, (_, dayIndex) => {
+    // the first arg in this callback is _, because we are creating the skelelton of an array first, to be mapped over later and populated.  but as of now, there is no element to process, so it's blank
     return Array.from({ length: 4 }, (_, sixHourPeriodIndex) => {
       const index = dayIndex * 8 + sixHourPeriodIndex * 2 + 1; // getting every-other index in a 56-itemed array
       return {
@@ -41,14 +44,22 @@ function Home() {
     navigate("/one-day-view", { state: { dayIndex, date } });
   };
 
-  console.log("the logged in user at HOME.js:", loggedInUser)
+  console.log("the logged in user at HOME.js:", loggedInUser);
 
   useEffect(() => {
     if (loggedInUser) {
       console.log("User logged in:", loggedInUser);
       // Perform any side effects here
     }
-  }, [loggedInUser]); // Runs whenever loggedInUser changes
+  }, [loggedInUser]);
+
+  useEffect(() => {
+    // Trigger the entrance animation after a short delay
+    const timer = setTimeout(() => {
+      setAnimateIn(true);
+    }, 100); // time waiting to begin animations
+    return () => clearTimeout(timer); // Cleanup timer on unmount
+  }, []); // Runs whenever loggedInUser changes
 
   return (
     <div className={styles.page}>
@@ -76,6 +87,11 @@ function Home() {
           <h5>{day[0].date}</h5>
           <div
             className={styles.container}
+            style={{
+              opacity: animateIn ? "1" : "0",
+              transition: "opacity 0.5s ease-in-out",
+              transitionDelay: animateIn ? `${dayIndex * 0.1}s` : 0,
+            }}
             onClick={() => handleDayClick(dayIndex, day[0].date)}
           >
             {day.map((sixHourPeriod, quarterDayIndex) => (
@@ -83,7 +99,7 @@ function Home() {
                 <div
                   className={styles.item}
                   style={{
-                    backgroundColor: getBackgroundColor(
+                    background: getBackgroundColor(
                       parseFloat(sixHourPeriod.waveHeight),
                       parseFloat(sixHourPeriod.wavePeriod),
                       parseFloat(sixHourPeriod.windDirection)

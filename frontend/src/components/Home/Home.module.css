@@ -1,6 +1,10 @@
 .page {
   padding: 5px;
-  background-color: #f0f0f0;
+  background: linear-gradient(
+    to bottom,
+    #6e6e6e,
+    #3b3b3b
+  ); /* Gradient from light gray to darker gray */
 }
 
 .dayContainer {
@@ -9,11 +13,13 @@
 }
 
 .dayContainer h5 {
-  margin-bottom: 5px; /* Reduce the bottom margin of the h4 element */
+  margin-bottom: 5px;
+  color: white; /* Reduce the bottom margin of the h4 element */
 }
 
 .page h2 {
   margin: 4px;
+  color: white;
 }
 
 .container {
@@ -24,7 +30,7 @@
   height: 60px;
   border-radius: 15px;
   background-color: transparent;
-  border: 1px solid #ccc;
+  border: 1px #000000;
   font-size: 11px;
   text-align: center; /* Ensure text is centered */
   padding: 0; /* Remove padding */
@@ -70,7 +76,8 @@
 }
 
 .navbar {
-  background-color: #717171;
+  background: linear-gradient(to bottom, #a1a0a0, #3b3b3b);
+  border: 4px #000000;
   overflow: hidden;
   border-radius: 5px;
 }
@@ -98,4 +105,3 @@
 .navbar li a:hover {
   background-color: #111;
 }
-
