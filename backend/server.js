@@ -7,7 +7,7 @@ const app = express();
 const session = require("express-session");
 const flash = require("express-flash");
 require("./local-strategy");
-const checkSession = require("./middleware/middleware")
+const checkSession = require("./middleware/middleware");
 
 const port = process.env.PORT || 8000;
 
@@ -19,7 +19,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false })); 
+app.use(express.urlencoded({ extended: false }));
 
 app.use(
   session({
@@ -85,7 +85,7 @@ app.post("/api/userRoute/users/auth", (req, res, next) => {
 // initializePassport();
 
 app.listen(port, () => {
-  console.log(`App listening at http://localhost:${port}`);
+  console.log(`App listening at the PORT: http://localhost:${port}`);
 });
 
 // STEP SIX
