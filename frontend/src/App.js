@@ -8,14 +8,14 @@ import ThreeHourView from "./components/ThreeHourView/ThreeHourView";
 import Journal from "./components/Jounral/Journal";
 import { Login } from "./components/Login/Login";
 import { Register } from "./components/Register/Register";
-import HomeScreen from "./components/LandingTwo/LandingTwo";
+import LandingTwo from "./components/LandingTwo/LandingTwo";
 
 function App() {
   return (
     <div className={styles.App}>
       <Routes>
         <Route path="/landing" element={<Landing />} />
-        {/* <Route path="/homescreen" element={<HomeScreen />} /> */}
+        <Route path="/homescreen" element={<LandingTwo />} />
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
