@@ -14,7 +14,7 @@ const create = async (data) => {
     wave_period,
     wave_direction,
     temperature,
-    user_id
+    user_id,
   } = data;
   try {
     const forecastQuery = `
@@ -31,9 +31,10 @@ const create = async (data) => {
       wave_period,
       wave_direction,
       temperature,
-      user_id
+      user_id,
     ];
     const forecastResult = await pool.query(forecastQuery, forecastValues);
+    console.log("forecastVAlUES:", forecastValues);
     return forecastResult.rows[0];
   } catch (error) {
     console.error("Error creating forecast:", error);
@@ -51,6 +52,7 @@ const createJournalEntry = async (data) => {
     `;
     const values = [forecast_id, prediction];
     const result = await pool.query(query, values);
+    console.log("the create journal entry result:", result.rows[0]);
     return result.rows[0];
   } catch (error) {
     console.error("Error creating journal entry:", error);
@@ -142,7 +144,7 @@ const addNewUser = async (userData) => {
 };
 
 const findUserByEmail = async (email) => {
-  try{
+  try {
     const query = `SELECT * FROM users WHERE user_email = $1`;
     const values = [email];
     const result = await pool.query(query, values);
@@ -157,7 +159,7 @@ const findUserByEmail = async (email) => {
 };
 
 const findUserById = async (id) => {
-  try{
+  try {
     const query = `SELECT * FROM users WHERE user_id = $1`;
     const values = [id];
     const result = await pool.query(query, values);
@@ -182,7 +184,7 @@ module.exports = {
   deleteReport,
   addNewUser,
   findUserByEmail,
-  findUserById
+  findUserById,
 };
 
 // STEP THREE - recieve the pool from database.js in same folder,

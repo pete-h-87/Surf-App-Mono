@@ -5,7 +5,7 @@ import { loggingInTheUser } from "../../util";
 import { GlobalContext } from "../../GlobalState";
 
 export const Login = () => {
-  const { setLoggedInUser } = useContext(GlobalContext);
+  const { setLoggedInUser, setLoggedInUserId } = useContext(GlobalContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,8 +16,12 @@ export const Login = () => {
     };
     try {
       const response = await loggingInTheUser(data);
-      console.log("handle submit try/catch response:", response.user.name);
+      console.log(
+        "handle submit try/catch userID XXXX:",
+        response.user.user_id
+      );
       setLoggedInUser(response.user.name);
+      setLoggedInUserId(response.user.user_id);
     } catch (err) {
       console.log(err);
     }

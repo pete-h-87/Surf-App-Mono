@@ -9,8 +9,13 @@ import getBackgroundColor from "../../util/colorCoding";
 
 function Home() {
   const [animateIn, setAnimateIn] = useState(false);
-  const { threeHourWind, threeHourWave, loggedInUser, setLoggedInUser } =
-    useContext(GlobalContext);
+  const {
+    threeHourWind,
+    threeHourWave,
+    loggedInUser,
+    setLoggedInUser,
+    loggedInUserId,
+  } = useContext(GlobalContext);
   const navigate = useNavigate();
 
   function logout() {
@@ -37,7 +42,6 @@ function Home() {
       };
     });
   });
-
   // it is waiting for the .map to give it the index information it needs to calculate the exact index number of the item we need in the forecast array we recieve back from the API call.  it's 56 items (7 days, 8 periods in a day).
 
   const handleDayClick = (dayIndex, date) => {
@@ -49,6 +53,7 @@ function Home() {
   useEffect(() => {
     if (loggedInUser) {
       console.log("User logged in:", loggedInUser);
+      console.log("User logged in ID:", loggedInUserId);
       // Perform any side effects here
     }
   }, [loggedInUser]);

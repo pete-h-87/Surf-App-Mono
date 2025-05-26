@@ -11,7 +11,8 @@ import { createEntry, createJournalEntry } from "../../util";
 function ThreeHourView() {
   const location = useLocation();
   const { threeHourPeriodIndex, date, dayIndex } = location.state || {};
-  const { threeHourWind, threeHourWave } = useContext(GlobalContext);
+  const { threeHourWind, threeHourWave, loggedInUser, loggedInUserId } =
+    useContext(GlobalContext);
   const [twelveScreenshot, setTwelveScreenshot] = useState(null);
   const [liveScreenShot, setLiveScreenShot] = useState(null);
   const [error, setError] = useState(null);
@@ -90,6 +91,10 @@ function ThreeHourView() {
 
   const handleCloseConfModal = async (e) => {
     setShowConfModal(false);
+    console.log(
+      "Global page loggedInuser ON THREE HOUR VIEW PAGE XXXXXXXXXXXX:",
+      loggedInUser
+    );
   };
 
   //get the data from the state
@@ -107,24 +112,25 @@ function ThreeHourView() {
         dayIndex * 8 + threeHourPeriodIndex
       ],
     wave_height:
-      threeHourWave?.hourly?.waveHeight[dayIndex * 8 + threeHourPeriodIndex].toFixed(2),
+      threeHourWave?.hourly?.waveHeight[
+        dayIndex * 8 + threeHourPeriodIndex
+      ].toFixed(2),
     wave_period:
       threeHourWave?.hourly?.swellWavePeriod[
         dayIndex * 8 + threeHourPeriodIndex
       ].toFixed(2),
     wave_direction:
-      threeHourWave?.hourly?.waveDirection[
-        dayIndex * 8 + threeHourPeriodIndex
-      ],
+      threeHourWave?.hourly?.waveDirection[dayIndex * 8 + threeHourPeriodIndex],
     temperature:
       threeHourWind?.hourly?.temperature2m[
         dayIndex * 8 + threeHourPeriodIndex
       ].toFixed(2),
+    user_id: loggedInUserId,
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(null); 
+    setError(null);
     const data = currentData;
     const formData = new FormData(e.target);
     const prediction = formData.get("prediction");

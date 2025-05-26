@@ -1,5 +1,9 @@
-import React, { createContext, useState, useEffect } from 'react';
-import { getForecast, getThreeHourWaveForecast, getThreeHourWindForecast } from './util';
+import React, { createContext, useState, useEffect } from "react";
+import {
+  getForecast,
+  getThreeHourWaveForecast,
+  getThreeHourWindForecast,
+} from "./util";
 
 export const GlobalContext = createContext();
 
@@ -13,6 +17,11 @@ export const GlobalProvider = ({ children }) => {
     // Retrieve the user from localStorage on initial load
     const savedUser = localStorage.getItem("loggedInUser");
     return savedUser ? JSON.parse(savedUser) : null;
+  });
+  const [loggedInUserId, setLoggedInUserId] = useState(() => {
+    // Retrieve the user ID from localStorage on initial load
+    const savedUserId = localStorage.getItem("loggedInUserId");
+    return savedUserId ? JSON.parse(savedUserId) : null;
   });
 
   useEffect(() => {
@@ -45,7 +54,19 @@ export const GlobalProvider = ({ children }) => {
   console.log("Global page loggedInuser:", loggedInUser);
 
   return (
-    <GlobalContext.Provider value={{ journalData, threeHourWind, threeHourWave, loading, error, loggedInUser, setLoggedInUser }}>
+    <GlobalContext.Provider
+      value={{
+        journalData,
+        threeHourWind,
+        threeHourWave,
+        loading,
+        error,
+        loggedInUser,
+        setLoggedInUser,
+        loggedInUserId,
+        setLoggedInUserId,
+      }}
+    >
       {children}
     </GlobalContext.Provider>
   );
