@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styles from "./Journal.module.css";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -11,6 +11,7 @@ import {
   deleteEntry,
   deleteReport,
 } from "../../util";
+import { GlobalContext } from "../../GlobalState";
 
 function Journal() {
   const [entries, setEntries] = useState([]);
@@ -19,9 +20,10 @@ function Journal() {
   const [predError, setPredError] = useState(null);
   const [visibleForms, setVisibleForms] = useState({});
   const [editForms, setEditForms] = useState({});
+  const { loggedInUserId } = useContext(GlobalContext);
 
   const fetchEntries = async () => {
-    const res = await getForecast();
+    const res = await getForecast(loggedInUserId);
     if (res.error) {
       setError(res.error.name);
     }

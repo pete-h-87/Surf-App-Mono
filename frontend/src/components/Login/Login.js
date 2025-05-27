@@ -16,12 +16,12 @@ export const Login = () => {
     };
     try {
       const response = await loggingInTheUser(data);
-      console.log(
-        "handle submit try/catch userID XXXX:",
-        response.user.user_id
-      );
+      console.log("handle submit try/catch userID RESPONSE XXXX:", response);
+
       setLoggedInUser(response.user.name);
-      setLoggedInUserId(response.user.user_id);
+
+      setLoggedInUserId(response.user.id);
+      console.log("response user id MMMMM:", response.user.id);
     } catch (err) {
       console.log(err);
     }

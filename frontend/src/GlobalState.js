@@ -21,7 +21,7 @@ export const GlobalProvider = ({ children }) => {
   const [loggedInUserId, setLoggedInUserId] = useState(() => {
     // Retrieve the user ID from localStorage on initial load
     const savedUserId = localStorage.getItem("loggedInUserId");
-    return savedUserId ? JSON.parse(savedUserId) : null;
+    return savedUserId ? savedUserId : null;
   });
 
   useEffect(() => {
@@ -46,10 +46,11 @@ export const GlobalProvider = ({ children }) => {
     // Save the user to localStorage whenever it changes
     if (loggedInUser) {
       localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
+      localStorage.setItem("loggedInUserId", loggedInUserId);
     } else {
       localStorage.removeItem("loggedInUser"); // Clear it if user logs out
     }
-  }, [loggedInUser]);
+  }, [loggedInUser, loggedInUserId]);
 
   console.log("Global page loggedInuser:", loggedInUser);
 

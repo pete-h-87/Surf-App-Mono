@@ -92,8 +92,8 @@ function ThreeHourView() {
   const handleCloseConfModal = async (e) => {
     setShowConfModal(false);
     console.log(
-      "Global page loggedInuser ON THREE HOUR VIEW PAGE XXXXXXXXXXXX:",
-      loggedInUser
+      "Global page loggedInuserId ON THREE HOUR VIEW PAGE XXXXXXXXXXXX:",
+      loggedInUserId
     );
   };
 

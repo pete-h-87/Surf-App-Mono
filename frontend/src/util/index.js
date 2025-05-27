@@ -8,6 +8,16 @@ export const getForecast = async () => {
   }
 };
 
+// export const getForecast = async (user_id) => {
+//   try {
+//     const res = await fetch(`/api/dbRoute/user/${user_id}`);
+//     const data = await res.json();
+//     return data;
+//   } catch (error) {
+//     return { error };
+//   }
+// };
+
 export const getPredictions = async () => {
   try {
     const res = await fetch("/api/dbRoute/readPredictions");
@@ -42,7 +52,6 @@ export const createJournalEntry = async (data) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
-      
     });
     if (!res.ok) {
       throw new Error("Network response was not ok");
@@ -189,30 +198,24 @@ export const createNewUser = async (data) => {
     console.error("Error creating new USER:", err);
     throw err;
   }
-}
+};
 
 export const loggingInTheUser = async (data) => {
-  console.log("INVOKED")
   try {
-    console.log("DATADATA", data)
-    const res = await fetch("/api/userRoute/users/auth", { //HERE, we are connecting the frontend directly to the route to the backend
+    const res = await fetch("/api/userRoute/users/auth", {
+      //HERE, we are connecting the frontend directly to the route to the backend
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
     });
-    console.log("LLLLLLLLLLLLLLLLLLLLLL", res);
-
     if (!res.ok) {
       throw new Error("Network response was not ok for finding USER");
     }
 
     const result = await res.json();
-    console.log("ZZZZZZZZZZZZZZZZZZZZZZZ", result);
-
     if (res.ok) {
-      console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
       window.location.href = result.redirectUrl;
       return result;
     }
@@ -220,8 +223,7 @@ export const loggingInTheUser = async (data) => {
     console.error("Error finding USER:", err);
     throw err;
   }
-}
-
+};
 
 // STEP SEVEN - since we now have a port that's listening, we can create some utilities that throw
 // some http towards that port, with requests to go down certain paths with certain payloads.

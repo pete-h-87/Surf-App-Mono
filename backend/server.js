@@ -71,7 +71,7 @@ app.post("/api/userRoute/users/auth", (req, res, next) => {
       res.status(200).json({
         message: "Login successful",
         user: {
-          user_id: user.user_id,
+          id: user.user_id,
           name: user.user_name,
           email: user.user_email,
         },
