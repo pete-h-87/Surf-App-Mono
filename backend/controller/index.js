@@ -14,8 +14,11 @@ const {
 
 exports.read = async (req, res) => {
   try {
-    const forecast = await get();
-    // const
+    const { user_id } = req.params;
+    if (!user_id) {
+      return res.status(400).json({ error: "User ID is required" });
+    }
+    const forecast = await get(user_id);
     return res.json({ data: forecast.rows });
   } catch (err) {
     return res.status(400).json({

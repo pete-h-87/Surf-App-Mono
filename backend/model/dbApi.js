@@ -1,8 +1,9 @@
 const pool = require("./database");
 
-const get = () => pool.query("SELECT * FROM forecast");
+const get = (id) =>
+  pool.query("SELECT * FROM forecast WHERE user_id = $1", [id]);
 
-const getPredictions = (id) => pool.query("SELECT * FROM journal");
+const getPredictions = () => pool.query("SELECT * FROM journal");
 
 const create = async (data) => {
   const {

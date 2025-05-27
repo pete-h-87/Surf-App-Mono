@@ -1,8 +1,17 @@
 const express = require("express");
 const router = express.Router();
-const { read, readPredictions, create, createJournalEntry, addReport, updatePrediction, deleteEntry, deleteReport } = require("../controller/index");
+const {
+  read,
+  readPredictions,
+  create,
+  createJournalEntry,
+  addReport,
+  updatePrediction,
+  deleteEntry,
+  deleteReport,
+} = require("../controller/index");
 
-router.get("/", read);
+router.get("/user/:user_id", read);
 router.get("/readPredictions", readPredictions);
 router.post("/create", create);
 router.post("/createJournalEntry", createJournalEntry);

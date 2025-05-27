@@ -1,22 +1,22 @@
-export const getForecast = async () => {
-  try {
-    const res = await fetch("/api/dbRoute");
-    const data = await res.json();
-    return data;
-  } catch (error) {
-    return { error };
-  }
-};
-
-// export const getForecast = async (user_id) => {
+// export const getForecast = async () => {
 //   try {
-//     const res = await fetch(`/api/dbRoute/user/${user_id}`);
+//     const res = await fetch("/api/dbRoute");
 //     const data = await res.json();
 //     return data;
 //   } catch (error) {
 //     return { error };
 //   }
 // };
+
+export const getForecast = async (user_id) => {
+  try {
+    const res = await fetch(`/api/dbRoute/user/${user_id}`);
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    return { error };
+  }
+};
 
 export const getPredictions = async () => {
   try {
