@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import { LogIn, Cloud, BookOpen } from "lucide-react"; // Using lucide-react for web icons
 import styles from "./LandingTwo.module.css"; // Import the CSS module
 
@@ -13,6 +14,8 @@ const LandingTwo = () => {
   const [loginPressed, setLoginPressed] = useState(false);
   const [forecastPressed, setForecastPressed] = useState(false);
   const [journalPressed, setJournalPressed] = useState(false);
+
+  const navigate = useNavigate();
 
   // Simulate `useRouter` for navigation
   const useRouter = () => {
@@ -81,7 +84,7 @@ const LandingTwo = () => {
       {/* Content Container */}
       <div className={styles.contentContainer}>
         <h1 className={styles.title}>Welcome</h1>
-        <p className={styles.subtitle}>What would you like to do today?</p>
+        <p className={styles.subtitle}>Any surf today?</p>
 
         {/* Button Container */}
         <div className={styles.buttonContainer}>
@@ -97,7 +100,7 @@ const LandingTwo = () => {
               opacity: animateIn ? "1" : "0",
               transitionDelay: animateIn ? "0.1s" : "0s",
             }}
-            onClick={() => navigateTo("login", setLoginPressed)}
+            onClick={() => navigate("/login")}
           >
             <div className={styles.buttonContent}>
               <LogIn color="#E2E8F0" size={24} className={styles.icon} />
@@ -117,7 +120,7 @@ const LandingTwo = () => {
               opacity: animateIn ? "1" : "0",
               transitionDelay: animateIn ? "0.2s" : "0s",
             }}
-            onClick={() => navigateTo("forecast", setForecastPressed)}
+            onClick={() => navigate("/")}
           >
             <div className={styles.buttonContent}>
               <Cloud color="#E2E8F0" size={24} className={styles.icon} />

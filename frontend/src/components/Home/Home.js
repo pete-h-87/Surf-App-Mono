@@ -16,6 +16,7 @@ function Home() {
     setLoggedInUser,
     loggedInUserId,
   } = useContext(GlobalContext);
+
   const navigate = useNavigate();
 
   function logout() {
@@ -73,9 +74,9 @@ function Home() {
           <li>
             <Link to="/journal">Journal</Link>
           </li>
-          <div>
-            <button onClick={logout}>logout?</button>
-          </div>
+          <li>
+            <Link to="/homescreen">Home</Link>
+          </li>
           <li>
             {loggedInUser ? (
               <Link to="/login">LOGIN</Link>
@@ -86,6 +87,9 @@ function Home() {
         </ul>
       </nav>
       <h2>Pete's Surf Report</h2>
+      <div>
+        <button onClick={logout}>logout?</button>
+      </div>
       {days.map((day, dayIndex) => (
         <div key={dayIndex} className={styles.dayContainer}>
           {/* the 0 is the first three-hour period in the array, could also be 1, 2, 3, and it'd be the same date */}

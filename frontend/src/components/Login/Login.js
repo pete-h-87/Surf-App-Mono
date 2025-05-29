@@ -35,7 +35,7 @@ export const Login = () => {
             <Link to="/">Back</Link>
           </li>
           <li>
-            <Link to="/">Home</Link>
+            <Link to="/homescreen">Home</Link>
           </li>
           <li>
             <Link to="/register">Register</Link>

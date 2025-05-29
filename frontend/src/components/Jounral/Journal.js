@@ -152,7 +152,7 @@ function Journal() {
       <nav className={styles.navbar}>
         <ul>
           <li>
-            <Link to="/">Home</Link>
+            <Link to="/homescreen">Home</Link>
           </li>
         </ul>
       </nav>
