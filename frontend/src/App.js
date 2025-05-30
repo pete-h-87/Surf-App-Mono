@@ -8,6 +8,7 @@ import Journal from "./components/Journal/Journal";
 import { Login } from "./components/Login/Login";
 import { Register } from "./components/Register/Register";
 import Landing from "./components/Landing/Landing";
+import Account from "./components/Account/Account";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/homescreen" element={<Landing />} />
         <Route path="/mainforecast" element={<MainForecast />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/account" element={<Account />} />
         <Route path="/register" element={<Register />} />
         <Route path="/one-day-view" element={<OneDayView />} />
         <Route path="/three-hour-view" element={<ThreeHourView />} />

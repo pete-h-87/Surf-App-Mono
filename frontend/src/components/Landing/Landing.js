@@ -65,15 +65,18 @@ const Landing = () => {
             onClick={() => {
               if (loggedInUser) {
                 animatePress(setLoginPressed);
-                navigate("/login");
+                navigate("/account");
               } else {
+                animatePress(setLoginPressed);
                 navigate("/login");
               }
             }}
           >
             <div className={styles.buttonContent}>
               <LogIn color="#E2E8F0" size={24} className={styles.icon} />
-              <span className={styles.buttonText}>Login</span>
+              <span className={styles.buttonText}>
+                {loggedInUser ? "Account" : "Login"}
+              </span>
             </div>
           </button>
           <button

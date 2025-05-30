@@ -1,0 +1,231 @@
+/* LandingTwo.module.css */
+
+/* CSS Variables for consistent colors */
+:root {
+  --color-dark-blue-1: #1e293b;
+  --color-dark-blue-2: #0f172a;
+  --color-light-text: #f8fafc;
+  --color-medium-text: #cbd5e1;
+  --color-button-bg: rgba(255, 255, 255, 0.1);
+  --color-button-border: rgba(255, 255, 255, 0.15);
+  --color-icon: #e2e8f0;
+  --color-blue-600: #2563eb; /* For the "Go Back Home" button */
+  --color-blue-700: #1d4ed8; /* For the "Go Back Home" button hover */
+  --color-gray-900: #111827; /* For the "Go Back Home" page background */
+}
+
+/* Base styles for font and full page sizing */
+.appContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh; /* Minimum height is viewport height */
+  width: 100%;
+  overflow: hidden; /* Prevents scrollbars from animations */
+  font-family: "Inter", sans-serif; /* Assumes Inter font is loaded globally */
+}
+
+/* Background gradient styles */
+.backgroundGradient {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(
+    to bottom,
+    var(--color-dark-blue-1),
+    var(--color-dark-blue-2)
+  );
+  z-index: -10; /* Ensures it stays behind other content */
+}
+
+/* Container for main content (title, subtitle, buttons) */
+.contentContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem; /* p-6 */
+  width: 100%;
+  max-width: 28rem; /* max-w-md (448px) */
+}
+
+/* Title styling */
+.title {
+  font-weight: 600; /* font-semibold */
+  font-size: 2.25rem; /* text-4xl */
+  line-height: 2.5rem; /* text-4xl */
+  color: var(--color-light-text); /* text-slate-50 */
+  margin-bottom: 0.5rem; /* mb-2 */
+  text-align: center;
+}
+
+/* Subtitle styling */
+.subtitle {
+  font-weight: 400; /* font-normal */
+  font-size: 1rem; /* text-base */
+  line-height: 1.5rem; /* text-base */
+  color: var(--color-medium-text); /* text-slate-400 */
+  margin-bottom: 3rem; /* mb-12 */
+  text-align: center;
+}
+
+.label {
+  color: white;
+}
+
+/* Container for the buttons */
+.buttonContainer {
+  width: 200px;
+  max-width: 24rem; /* max-w-sm (384px) */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem; /* space-y-4 */
+}
+
+/* Base button styling */
+.button {
+  width: 100%;
+  height: 4rem; /* h-16 */
+  border-radius: 1rem; /* rounded-2xl */
+  background-color: var(--color-button-bg); /* bg-white bg-opacity-10 */
+  backdrop-filter: blur(12px); /* backdrop-blur-md */
+  -webkit-backdrop-filter: blur(12px); /* For Safari */
+  display: flex;
+  align-items: center;
+  padding-left: 1.5rem; /* px-6 */
+  padding-right: 1.5rem; /* px-6 */
+  border: 1px solid var(--color-button-border); /* border border-white border-opacity-15 */
+  cursor: pointer;
+  outline: none; /* outline-none */
+  transition: all 0.3s ease-out; /* transition-all duration-300 ease-out */
+}
+
+/* Button content (icon and text) */
+.buttonContent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start; /* justify-start */
+  width: 100%;
+}
+
+/* Button text styling */
+.buttonText {
+  font-weight: 500; /* font-medium */
+  font-size: 1rem; /* text-base */
+  line-height: 1.5rem; /* text-base */
+  color: var(--color-light-text); /* text-slate-50 */
+  margin-left: 0.75rem; /* ml-3 */
+}
+
+/* Icon styling (for lucide-react, which renders SVG) */
+.icon {
+  /* Lucide icons will inherit color from parent or be explicitly set */
+  color: var(--color-icon); /* #E2E8F0 */
+}
+
+/* --- Animation Classes --- */
+
+/* Entrance animation initial state (default in .button) */
+/* opacity: 0; translate-y-5/7/10; scale-100 */
+
+/* Entrance animation final state */
+.animateIn {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Press animation state */
+.pressed {
+  transform: scale(0.95);
+}
+
+/* --- Conditional Page Styles (e.g., for "Go Back Home" page) --- */
+.otherPageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: var(--color-gray-900); /* bg-gray-900 */
+  color: var(--color-light-text); /* text-white */
+}
+
+.otherPageTitle {
+  font-size: 1.875rem; /* text-3xl */
+  line-height: 2.25rem; /* text-3xl */
+  font-weight: 700; /* font-bold */
+}
+
+.backButton {
+  margin-top: 2rem; /* mt-8 */
+  padding: 0.75rem 1.5rem; /* px-6 py-3 */
+  background-color: var(--color-blue-600); /* bg-blue-600 */
+  color: var(--color-light-text); /* text-white */
+  border-radius: 0.5rem; /* rounded-lg */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -2px rgba(0, 0, 0, 0.1); /* shadow-md */
+  transition: background-color 0.3s ease-in-out; /* transition-colors duration-300 */
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+.backButton:hover {
+  background-color: var(--color-blue-700); /* hover:bg-blue-700 */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 600px) {
+  .title {
+    font-size: 2rem; /* Adjusted from 28px */
+  }
+  .subtitle {
+    font-size: 0.875rem; /* Adjusted from 14px */
+    margin-bottom: 1rem; /* Adjusted from 32px */
+  }
+  .button {
+    height: 3.5rem; /* Adjusted from 56px */
+    border-radius: 0.75rem; /* Adjusted from 12px */
+    padding: 0 1.25rem; /* Adjusted from 20px */
+  }
+  .buttonText {
+    font-size: 0.9375rem; /* Adjusted from 15px */
+  }
+}
+
+.navbar {
+  background: linear-gradient(to bottom, #a1a0a0, #3b3b3b);
+  border: 4px #000000;
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+.navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar li {
+  float: left;
+}
+
+.navbar li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 4px 16px;
+  text-decoration: none;
+}
+
+.navbar li a:hover {
+  background-color: #111;
+}

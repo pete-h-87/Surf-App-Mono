@@ -20,11 +20,6 @@ function MainForecast() {
 
   const navigate = useNavigate();
 
-  function logout() {
-    setLoggedInUser(null);
-    setLoggedInUserId(null);
-  }
-
   // Filter to get every other index starting from the second one
   const days = Array.from({ length: 7 }, (_, dayIndex) => {
     // the first arg in this callback is _, because we are creating the skelelton of an array first, to be mapped over later and populated.  but as of now, there is no element to process, so it's blank
@@ -51,6 +46,11 @@ function MainForecast() {
     navigate("/one-day-view", { state: { dayIndex, date } });
   };
 
+  function logout() {
+    setLoggedInUser(null);
+    setLoggedInUserId(null);
+  }
+
   console.log("the logged in user at HOME.js:", loggedInUser);
 
   useEffect(() => {
@@ -74,24 +74,21 @@ function MainForecast() {
       <nav className={styles.navbar}>
         <ul>
           <li>
-            <Link to="/journal">Journal</Link>
+            <Link to={loggedInUser ? "/journal" : "/login"}>Journal</Link>
           </li>
           <li>
             <Link to="/homescreen">Home</Link>
           </li>
           <li>
             {loggedInUser ? (
-              <Link to="/login">LOGIN</Link>
+              <Link to="/account">Account</Link>
             ) : (
-              <Link to="/login">Log In</Link>
+              <Link to="/login">Login</Link>
             )}
           </li>
         </ul>
       </nav>
       <h2>Pete's Surf Report</h2>
-      <div>
-        <button onClick={logout}>logout?</button>
-      </div>
       {days.map((day, dayIndex) => (
         <div key={dayIndex} className={styles.dayContainer}>
           {/* the 0 is the first three-hour period in the array, could also be 1, 2, 3, and it'd be the same date */}

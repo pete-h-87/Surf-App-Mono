@@ -162,7 +162,11 @@ function ThreeHourView() {
             <Link to="/homescreen">Home</Link>
           </li>
           <li>
-            <Link to="/login">Log In</Link>
+            {loggedInUser ? (
+              <Link to="/account">Account</Link>
+            ) : (
+              <Link to="/login">Login</Link>
+            )}
           </li>
         </ul>
       </nav>

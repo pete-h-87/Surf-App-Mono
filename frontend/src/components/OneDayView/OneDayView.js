@@ -12,7 +12,8 @@ function OneDayView() {
 
   const location = useLocation();
   const { dayIndex, date } = location.state || {};
-  const { threeHourWind, threeHourWave } = useContext(GlobalContext);
+  const { threeHourWind, threeHourWave, loggedInUser } =
+    useContext(GlobalContext);
 
   const navigate = useNavigate();
 
@@ -62,13 +63,17 @@ function OneDayView() {
       <nav className={styles.navbar}>
         <ul>
           <li>
-            <Link to="/mainforecast">Back</Link>
+            <Link to={loggedInUser ? "/journal" : "/login"}>Journal</Link>
           </li>
           <li>
             <Link to="/homescreen">Home</Link>
           </li>
           <li>
-            <Link to="/login">Log In</Link>
+            {loggedInUser ? (
+              <Link to="/account">Account</Link>
+            ) : (
+              <Link to="/login">Login</Link>
+            )}
           </li>
         </ul>
       </nav>
