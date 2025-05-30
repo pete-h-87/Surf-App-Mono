@@ -6,6 +6,7 @@ import { GlobalContext } from "../../GlobalState";
 import Modal from "./Modal/Modal";
 import ConfModal from "./ConfModal/ConfModal";
 import { createEntry, createJournalEntry } from "../../util";
+import { useNavigate } from "react-router-dom";
 // import apiUrl from "../../config";
 
 function ThreeHourView() {
@@ -18,6 +19,8 @@ function ThreeHourView() {
   const [error, setError] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [showConfModal, setShowConfModal] = useState(false);
+
+  const navigate = useNavigate();
 
   // format the date to insert into URL
   // const originalDate = dayjs(date);
@@ -91,10 +94,6 @@ function ThreeHourView() {
 
   const handleCloseConfModal = async (e) => {
     setShowConfModal(false);
-    console.log(
-      "Global page loggedInuserId ON THREE HOUR VIEW PAGE XXXXXXXXXXXX:",
-      loggedInUserId
-    );
   };
 
   //get the data from the state
@@ -175,9 +174,19 @@ function ThreeHourView() {
         {threeHourPeriodIndex * 3 + 3}:00
       </h2>
       <h3>{date}</h3>
-      <button onClick={handleModal} className={styles.modalButton}>
-        Log to Journal
-      </button>
+      {loggedInUser ? (
+        <button onClick={handleModal} className={styles.modalButton}>
+          Log to Journal
+        </button>
+      ) : (
+        <button
+          onClick={() => navigate("/login")}
+          className={styles.modalButton}
+        >
+          Log to Journal{" "}
+        </button>
+      )}
+
       <Modal
         show={showModal}
         handleClose={handleCloseModal}
