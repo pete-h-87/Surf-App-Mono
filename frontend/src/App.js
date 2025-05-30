@@ -1,7 +1,6 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import styles from "./styling/App.module.css";
-import { Landing } from "./components/Landing/Landing";
 import Home from "./components/Home/Home";
 import OneDayView from "./components/OneDayView/OneDayView";
 import ThreeHourView from "./components/ThreeHourView/ThreeHourView";
@@ -14,7 +13,6 @@ function App() {
   return (
     <div className={styles.App}>
       <Routes>
-        <Route path="/landing" element={<Landing />} />
         <Route path="/homescreen" element={<LandingTwo />} />
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />

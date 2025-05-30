@@ -56,16 +56,16 @@ export const Login = () => {
 
   // return (
   //   <div className={styles.page}>
-  //     <nav className={styles.navbar}>
-  //       <ul>
-  //         <li>
-  //           <Link to="/homescreen">Back</Link>
-  //         </li>
-  //         <li>
-  //           <Link to="/register">Register</Link>
-  //         </li>
-  //       </ul>
-  //     </nav>
+  // <nav className={styles.navbar}>
+  //   <ul>
+  //     <li>
+  //       <Link to="/homescreen">Back</Link>
+  //     </li>
+  //     <li>
+  //       <Link to="/register">Register</Link>
+  //     </li>
+  //   </ul>
+  // </nav>;
   //     <form onSubmit={handleSubmit}>
   //       <div>
   //         <label>Email</label>
@@ -81,75 +81,79 @@ export const Login = () => {
   // );
 
   return (
-    <div className={styles.appContainer}>
-      {/* Background Gradient */}
-      <div className={styles.backgroundGradient}></div>
-      {/* Content Container */}
-      <div className={styles.contentContainer}>
-        <h1 className={styles.title}>Welcome</h1>
-        <p className={styles.subtitle}>Any surf today?</p>
-        {/* Button Container */}
-        <div className={styles.buttonContainer}>
-          {/* Login Button */}
-          <button
-            className={`${styles.button} ${animateIn ? styles.animateIn : ""} ${
-              loginPressed ? styles.pressed : ""
-            }`}
-            style={{
-              transform: `translateY(${animateIn ? "0" : "20px"}) scale(${
-                loginPressed ? "0.95" : "1"
-              })`,
-              opacity: animateIn ? "1" : "0",
-              transitionDelay: animateIn ? "0.1s" : "0s",
-            }}
-            onClick={() => {
-              animatePress(setLoginPressed);
-              navigate("/login");
-            }}
-          >
-            <div className={styles.buttonContent}>
-              <LogIn color="#E2E8F0" size={24} className={styles.icon} />
-              <span className={styles.buttonText}>Login</span>
-            </div>
-          </button>
-          {/* See Forecast Button */}
-          <button
-            className={`${styles.button} ${animateIn ? styles.animateIn : ""} ${
-              forecastPressed ? styles.pressed : ""
-            }`}
-            style={{
-              transform: `translateY(${animateIn ? "0" : "28px"}) scale(${
-                forecastPressed ? "0.95" : "1"
-              })`,
-              opacity: animateIn ? "1" : "0",
-              transitionDelay: animateIn ? "0.2s" : "0s",
-            }}
-            onClick={() => navigate("/")}
-          >
-            <div className={styles.buttonContent}>
-              <Cloud color="#E2E8F0" size={24} className={styles.icon} />
-              <span className={styles.buttonText}>See Forecast</span>
-            </div>
-          </button>
-          {/* Journal Button */}
-          <button
-            className={`${styles.button} ${animateIn ? styles.animateIn : ""} ${
-              journalPressed ? styles.pressed : ""
-            }`}
-            style={{
-              transform: `translateY(${animateIn ? "0" : "40px"}) scale(${
-                journalPressed ? "0.95" : "1"
-              })`,
-              opacity: animateIn ? "1" : "0",
-              transitionDelay: animateIn ? "0.3s" : "0s",
-            }}
-            onClick={() => navigate("/journal")}
-          >
-            <div className={styles.buttonContent}>
-              <BookOpen color="#E2E8F0" size={24} className={styles.icon} />
-              <span className={styles.buttonText}>Journal</span>
-            </div>
-          </button>
+    <div>
+      <nav className={styles.navbar}>
+        <ul>
+          <li>
+            <Link to="/homescreen">Back</Link>
+          </li>
+        </ul>
+      </nav>
+      <div className={styles.appContainer}>
+        <div className={styles.backgroundGradient}></div>
+        <div className={styles.contentContainer}>
+          <h1 className={styles.title}>Login</h1>
+          <p className={styles.subtitle}></p>
+          <div className={styles.buttonContainer}>
+            {/* Login Button */}
+            <form onSubmit={handleSubmit}>
+              <div>
+                <label className={styles.label}>Email</label>
+                <input name="email" required />
+              </div>
+              <div>
+                <label className={styles.label}>Password</label>
+                <input name="password" required />
+              </div>
+              <button
+                className={`${styles.button} ${
+                  animateIn ? styles.animateIn : ""
+                } ${loginPressed ? styles.pressed : ""}`}
+                type="submit"
+                style={{
+                  transform: `translateY(${animateIn ? "0" : "20px"}) scale(${
+                    loginPressed ? "0.95" : "1"
+                  })`,
+                  opacity: animateIn ? "1" : "0",
+                  transitionDelay: animateIn ? "0.1s" : "0s",
+                }}
+                onClick={() => {
+                  animatePress(setLoginPressed);
+                  navigate("/login");
+                }}
+              >
+                <div className={styles.buttonContent}>
+                  <LogIn color="#E2E8F0" size={24} className={styles.icon} />
+                  <span className={styles.buttonText}>Login</span>
+                </div>
+              </button>
+            </form>
+            {/* Journal Button */}
+          </div>
+        </div>
+        <div className={styles.contentContainer}>
+          <p className={styles.subtitle}>New User? Register below</p>
+          <div className={styles.buttonContainer}>
+            {/* Journal Button */}
+            <button
+              className={`${styles.button} ${
+                animateIn ? styles.animateIn : ""
+              } ${journalPressed ? styles.pressed : ""}`}
+              style={{
+                transform: `translateY(${animateIn ? "0" : "40px"}) scale(${
+                  journalPressed ? "0.95" : "1"
+                })`,
+                opacity: animateIn ? "1" : "0",
+                transitionDelay: animateIn ? "0.3s" : "0s",
+              }}
+              onClick={() => navigate("/register")}
+            >
+              <div className={styles.buttonContent}>
+                <BookOpen color="#E2E8F0" size={24} className={styles.icon} />
+                <span className={styles.buttonText}>Register</span>
+              </div>
+            </button>
+          </div>
         </div>
       </div>
     </div>

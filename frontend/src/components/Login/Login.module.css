@@ -73,9 +73,13 @@
   text-align: center;
 }
 
+.label {
+  color: white;
+}
+
 /* Container for the buttons */
 .buttonContainer {
-  width: 100%;
+  width: 200px;
   max-width: 24rem; /* max-w-sm (384px) */
   display: flex;
   flex-direction: column;
@@ -183,7 +187,7 @@
   }
   .subtitle {
     font-size: 0.875rem; /* Adjusted from 14px */
-    margin-bottom: 2rem; /* Adjusted from 32px */
+    margin-bottom: 1rem; /* Adjusted from 32px */
   }
   .button {
     height: 3.5rem; /* Adjusted from 56px */
@@ -193,4 +197,36 @@
   .buttonText {
     font-size: 0.9375rem; /* Adjusted from 15px */
   }
+}
+
+
+.navbar {
+  background: linear-gradient(to bottom, #a1a0a0, #3b3b3b);
+  border: 4px #000000;
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+.navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar li {
+  float: left;
+}
+
+.navbar li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 4px 16px;
+  text-decoration: none;
+}
+
+.navbar li a:hover {
+  background-color: #111;
 }
