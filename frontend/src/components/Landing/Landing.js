@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { LogIn, Cloud, BookOpen } from "lucide-react"; // Using lucide-react for web icons
-import styles from "./LandingTwo.module.css"; // Import the CSS module
+import styles from "./Landing.module.css"; // Import the CSS module
 import { GlobalContext } from "../../GlobalState";
 
-const LandingTwo = () => {
+const Landing = () => {
   // State to manage the current "route" (simulating react-router)
-  const { loggedInUserId } = useContext(GlobalContext);
+  const { loggedInUserId, loggedInUser } = useContext(GlobalContext);
 
   // State for animation triggers.
   // These will control the CSS classes that apply animations.
@@ -34,17 +34,23 @@ const LandingTwo = () => {
     return () => clearTimeout(timer); // Cleanup timer on unmount
   }, []);
 
+  const handleJournalClick = () => {
+    if (loggedInUser) {
+      navigate("/journal");
+    } else {
+      navigate("/login");
+    }
+  };
+
   return (
     <div className={styles.appContainer}>
-      {/* Background Gradient */}
       <div className={styles.backgroundGradient}></div>
-      {/* Content Container */}
       <div className={styles.contentContainer}>
-        <h1 className={styles.title}>Welcome</h1>
+        <h1 className={styles.title}>
+          Welcome{loggedInUser ? `, ${loggedInUser}!` : ""}
+        </h1>
         <p className={styles.subtitle}>Any surf today?</p>
-        {/* Button Container */}
         <div className={styles.buttonContainer}>
-          {/* Login Button */}
           <button
             className={`${styles.button} ${animateIn ? styles.animateIn : ""} ${
               loginPressed ? styles.pressed : ""
@@ -57,8 +63,12 @@ const LandingTwo = () => {
               transitionDelay: animateIn ? "0.1s" : "0s",
             }}
             onClick={() => {
-              animatePress(setLoginPressed);
-              navigate("/login");
+              if (loggedInUser) {
+                animatePress(setLoginPressed);
+                navigate("/login");
+              } else {
+                navigate("/login");
+              }
             }}
           >
             <div className={styles.buttonContent}>
@@ -66,7 +76,6 @@ const LandingTwo = () => {
               <span className={styles.buttonText}>Login</span>
             </div>
           </button>
-          {/* See Forecast Button */}
           <button
             className={`${styles.button} ${animateIn ? styles.animateIn : ""} ${
               forecastPressed ? styles.pressed : ""
@@ -78,14 +87,13 @@ const LandingTwo = () => {
               opacity: animateIn ? "1" : "0",
               transitionDelay: animateIn ? "0.2s" : "0s",
             }}
-            onClick={() => navigate("/")}
+            onClick={() => navigate("/mainforecast")}
           >
             <div className={styles.buttonContent}>
               <Cloud color="#E2E8F0" size={24} className={styles.icon} />
               <span className={styles.buttonText}>See Forecast</span>
             </div>
           </button>
-          {/* Journal Button */}
           <button
             className={`${styles.button} ${animateIn ? styles.animateIn : ""} ${
               journalPressed ? styles.pressed : ""
@@ -97,7 +105,7 @@ const LandingTwo = () => {
               opacity: animateIn ? "1" : "0",
               transitionDelay: animateIn ? "0.3s" : "0s",
             }}
-            onClick={() => navigate("/journal")}
+            onClick={handleJournalClick}
           >
             <div className={styles.buttonContent}>
               <BookOpen color="#E2E8F0" size={24} className={styles.icon} />
@@ -110,4 +118,4 @@ const LandingTwo = () => {
   );
 };
 
-export default LandingTwo;
+export default Landing;

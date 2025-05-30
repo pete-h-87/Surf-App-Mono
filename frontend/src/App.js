@@ -1,20 +1,20 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import styles from "./styling/App.module.css";
-import Home from "./components/Home/Home";
+import MainForecast from "./components/MainForecast/MainForecast";
 import OneDayView from "./components/OneDayView/OneDayView";
 import ThreeHourView from "./components/ThreeHourView/ThreeHourView";
-import Journal from "./components/Jounral/Journal";
+import Journal from "./components/Journal/Journal";
 import { Login } from "./components/Login/Login";
 import { Register } from "./components/Register/Register";
-import LandingTwo from "./components/LandingTwo/LandingTwo";
+import Landing from "./components/Landing/Landing";
 
 function App() {
   return (
     <div className={styles.App}>
       <Routes>
-        <Route path="/homescreen" element={<LandingTwo />} />
-        <Route path="/" element={<Home />} />
+        <Route path="/homescreen" element={<Landing />} />
+        <Route path="/mainforecast" element={<MainForecast />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/one-day-view" element={<OneDayView />} />

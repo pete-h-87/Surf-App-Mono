@@ -62,7 +62,7 @@ function OneDayView() {
       <nav className={styles.navbar}>
         <ul>
           <li>
-            <Link to="/">Back</Link>
+            <Link to="/mainforecast">Back</Link>
           </li>
           <li>
             <Link to="/homescreen">Home</Link>

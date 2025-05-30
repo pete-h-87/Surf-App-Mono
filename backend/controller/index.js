@@ -178,7 +178,7 @@ exports.createUser = async (req, res) => {
 //       }
 //       // console.log("User logged in successfully:", user);
 //       console.log("response in logingUserWithAuth func:", res.statusCode)
-//       return res.status(200).json({ message: "Login successful", redirectUrl: "/" });
+//       return res.status(200).json({ message: "Login successful", redirectUrl: "/mainforecast" });
 //     });
 //   })(req, res, next); // Pass req, res, and next to passport.authenticate
 // };

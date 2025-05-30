@@ -75,7 +75,7 @@ app.post("/api/userRoute/users/auth", (req, res, next) => {
           name: user.user_name,
           email: user.user_email,
         },
-        redirectUrl: "/",
+        redirectUrl: "/mainforecast",
       });
     });
   })(req, res, next);

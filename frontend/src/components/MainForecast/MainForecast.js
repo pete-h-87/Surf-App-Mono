@@ -1,13 +1,13 @@
 import React, { useEffect, useContext, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import styles from "./Home.module.css";
+import styles from "./MainForecast.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
 import dayjs from "dayjs";
 import { GlobalContext } from "../../GlobalState";
 import getBackgroundColor from "../../util/colorCoding";
 
-function Home() {
+function MainForecast() {
   const [animateIn, setAnimateIn] = useState(false);
   const {
     threeHourWind,
@@ -148,4 +148,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default MainForecast;

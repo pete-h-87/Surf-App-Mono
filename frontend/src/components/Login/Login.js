@@ -22,7 +22,7 @@ export const Login = () => {
     setPressedState(true); // Apply pressed state (scale down)
     setTimeout(() => {
       setPressedState(false); // Remove pressed state (scale back up)
-    }, 100); // Short duration for the press effect
+    }, 10); // Short duration for the press effect
   };
 
   // Entrance animation effect (runs once on component mount)
@@ -30,7 +30,7 @@ export const Login = () => {
     // Trigger the entrance animation after a short delay
     const timer = setTimeout(() => {
       setAnimateIn(true);
-    }, 100); // time waiting to begin animations
+    }, 10); // time waiting to begin animations
     return () => clearTimeout(timer); // Cleanup timer on unmount
   }, []);
 
@@ -43,42 +43,12 @@ export const Login = () => {
     };
     try {
       const response = await loggingInTheUser(data);
-      console.log("handle submit try/catch userID RESPONSE XXXX:", response);
-
       setLoggedInUser(response.user.name);
-
       setLoggedInUserId(response.user.id);
-      console.log("response user id MMMMM:", response.user.id);
     } catch (err) {
       console.log(err);
     }
   };
-
-  // return (
-  //   <div className={styles.page}>
-  // <nav className={styles.navbar}>
-  //   <ul>
-  //     <li>
-  //       <Link to="/homescreen">Back</Link>
-  //     </li>
-  //     <li>
-  //       <Link to="/register">Register</Link>
-  //     </li>
-  //   </ul>
-  // </nav>;
-  //     <form onSubmit={handleSubmit}>
-  //       <div>
-  //         <label>Email</label>
-  //         <input name="email" required />
-  //       </div>
-  //       <div>
-  //         <label>Password</label>
-  //         <input name="password" required />
-  //       </div>
-  //       <button type="submit">Login</button>
-  //     </form>
-  //   </div>
-  // );
 
   return (
     <div>
@@ -128,13 +98,12 @@ export const Login = () => {
                 </div>
               </button>
             </form>
-            {/* Journal Button */}
           </div>
         </div>
         <div className={styles.contentContainer}>
-          <p className={styles.subtitle}>New User? Register below</p>
+          <p className={styles.subtitle}>New user? Register below</p>
           <div className={styles.buttonContainer}>
-            {/* Journal Button */}
+            {/* Register Button */}
             <button
               className={`${styles.button} ${
                 animateIn ? styles.animateIn : ""
@@ -144,7 +113,7 @@ export const Login = () => {
                   journalPressed ? "0.95" : "1"
                 })`,
                 opacity: animateIn ? "1" : "0",
-                transitionDelay: animateIn ? "0.3s" : "0s",
+                transitionDelay: animateIn ? "0.1s" : "0s",
               }}
               onClick={() => navigate("/register")}
             >
