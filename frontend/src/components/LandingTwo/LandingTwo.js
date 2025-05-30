@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useCallback } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { LogIn, Cloud, BookOpen } from "lucide-react"; // Using lucide-react for web icons
 import styles from "./LandingTwo.module.css"; // Import the CSS module
+import { GlobalContext } from "../../GlobalState";
 
-// Main App component
 const LandingTwo = () => {
   // State to manage the current "route" (simulating react-router)
-  const [currentRoute, setCurrentRoute] = useState("home");
+  const { loggedInUserId } = useContext(GlobalContext);
 
   // State for animation triggers.
   // These will control the CSS classes that apply animations.
@@ -17,19 +17,6 @@ const LandingTwo = () => {
 
   const navigate = useNavigate();
 
-  // Simulate `useRouter` for navigation
-  const useRouter = () => {
-    return {
-      push: (route) => {
-        console.log(`Navigating to: /${route}`);
-        // In a real application, you'd use a routing library like react-router-dom
-        // or update global state for single-page app navigation.
-        setCurrentRoute(route);
-      },
-    };
-  };
-  const router = useRouter();
-
   // Spring-like animation for button press using CSS classes
   const animatePress = (setPressedState) => {
     setPressedState(true); // Apply pressed state (scale down)
@@ -37,17 +24,6 @@ const LandingTwo = () => {
       setPressedState(false); // Remove pressed state (scale back up)
     }, 100); // Short duration for the press effect
   };
-
-  // Navigation handler with animation
-  const navigateTo = useCallback(
-    (route, setPressedState) => {
-      animatePress(setPressedState);
-      setTimeout(() => {
-        router.push(route);
-      }, 200); // Navigate after the animation completes
-    },
-    [router]
-  );
 
   // Entrance animation effect (runs once on component mount)
   useEffect(() => {
@@ -58,34 +34,14 @@ const LandingTwo = () => {
     return () => clearTimeout(timer); // Cleanup timer on unmount
   }, []);
 
-  // Conditional rendering based on the current route
-  if (currentRoute !== "home") {
-    return (
-      <div className={styles.otherPageContainer}>
-        <h1 className={styles.otherPageTitle}>
-          Welcome to the{" "}
-          {currentRoute.charAt(0).toUpperCase() + currentRoute.slice(1)} Page!
-        </h1>
-        <button
-          onClick={() => setCurrentRoute("home")}
-          className={styles.backButton}
-        >
-          Go Back Home
-        </button>
-      </div>
-    );
-  }
-
   return (
     <div className={styles.appContainer}>
       {/* Background Gradient */}
       <div className={styles.backgroundGradient}></div>
-
       {/* Content Container */}
       <div className={styles.contentContainer}>
         <h1 className={styles.title}>Welcome</h1>
         <p className={styles.subtitle}>Any surf today?</p>
-
         {/* Button Container */}
         <div className={styles.buttonContainer}>
           {/* Login Button */}
@@ -100,14 +56,16 @@ const LandingTwo = () => {
               opacity: animateIn ? "1" : "0",
               transitionDelay: animateIn ? "0.1s" : "0s",
             }}
-            onClick={() => navigate("/login")}
+            onClick={() => {
+              animatePress(setLoginPressed);
+              navigate("/login");
+            }}
           >
             <div className={styles.buttonContent}>
               <LogIn color="#E2E8F0" size={24} className={styles.icon} />
               <span className={styles.buttonText}>Login</span>
             </div>
           </button>
-
           {/* See Forecast Button */}
           <button
             className={`${styles.button} ${animateIn ? styles.animateIn : ""} ${
@@ -127,7 +85,6 @@ const LandingTwo = () => {
               <span className={styles.buttonText}>See Forecast</span>
             </div>
           </button>
-
           {/* Journal Button */}
           <button
             className={`${styles.button} ${animateIn ? styles.animateIn : ""} ${
@@ -140,7 +97,7 @@ const LandingTwo = () => {
               opacity: animateIn ? "1" : "0",
               transitionDelay: animateIn ? "0.3s" : "0s",
             }}
-            onClick={() => navigateTo("journal", setJournalPressed)}
+            onClick={() => navigate("/journal")}
           >
             <div className={styles.buttonContent}>
               <BookOpen color="#E2E8F0" size={24} className={styles.icon} />

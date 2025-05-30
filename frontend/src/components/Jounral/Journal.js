@@ -23,12 +23,18 @@ function Journal() {
   const { loggedInUserId } = useContext(GlobalContext);
 
   const fetchEntries = async () => {
-    const res = await getForecast(loggedInUserId);
-    if (res.error) {
-      setError(res.error.name);
+    if (loggedInUserId) {
+      const res = await getForecast(loggedInUserId);
+      if (res.error) {
+        setError(res.error.name);
+      }
+      console.log(error);
+      console.log("loggedInUserId AT JOURNAL FETCH:", loggedInUserId);
+      console.log(res.data);
+      setEntries(res.data);
+    } else {
+      setEntries(null);
     }
-    console.log(error);
-    setEntries(res.data);
   };
 
   const fetchPredictions = async () => {
@@ -147,169 +153,191 @@ function Journal() {
     }
   };
 
-  return (
-    <div className={styles.page}>
-      <nav className={styles.navbar}>
-        <ul>
-          <li>
-            <Link to="/homescreen">Home</Link>
-          </li>
-        </ul>
-      </nav>
-      <h2>Surf Journal</h2>
-      {mergedData.map((entry) => (
-        <div
-          key={entry.forecast_id}
-          className={`${styles.singleEntry} ${
-            entry.report ? styles.reported : ""
-          }`}
-        >
-          <button
-            className={styles.closeButton}
-            onClick={() => handleDelete(entry.forecast_id)}
+  if (entries.length === 0) {
+    return (
+      <div>
+        <nav className={styles.navbar}>
+          <ul>
+            <li>
+              <Link to="/homescreen">Home</Link>
+            </li>
+          </ul>
+        </nav>
+        <h2>Surf Journal</h2>
+        <div>No Journal Entries Yet!</div>
+      </div>
+    );
+  } else {
+    return (
+      <div className={styles.page}>
+        <nav className={styles.navbar}>
+          <ul>
+            <li>
+              <Link to="/homescreen">Home</Link>
+            </li>
+          </ul>
+        </nav>
+        <h2>Surf Journal</h2>
+        {mergedData.map((entry) => (
+          <div
+            key={entry.forecast_id}
+            className={`${styles.singleEntry} ${
+              entry.report ? styles.reported : ""
+            }`}
           >
-            &times;
-          </button>
-          <div>
-            <u>
-              {entry.date_recorded} | {entry.session_time}{" "}
-            </u>
-          </div>
-          <ul className={styles.horizontalList}>
-            <li>
-              Wind: {entry.wind_speed} m/s
-              <FontAwesomeIcon
-                icon={faArrowUp}
-                style={{
-                  transform: `rotate(${entry.wind_direction + 180}deg)`,
-                  fontSize: "1em",
-                  verticalAlign: "middle",
-                  marginLeft: "5px",
-                }}
-              />
-            </li>
-            <li>
-              Swell: {entry.wave_height} m @ {entry.wave_period}s{" "}
-              <FontAwesomeIcon
-                icon={faArrowUp}
-                style={{
-                  transform: `rotate(${entry.wave_direction + 180}deg)`,
-                  fontSize: "1em",
-                  verticalAlign: "middle",
-                  marginLeft: "5px",
-                }}
-              />
-            </li>
-            <li>{entry.temperature}°C</li>
-            <li>
-              Prediction:{" "}
-              {editForms[entry.forecast_id]?.prediction ? (
-                <form
-                  onSubmit={(e) =>
-                    handleEdit(e, entry.forecast_id, "prediction")
-                  }
-                  className={styles.inlineForm}
-                >
-                  <div className={styles.formGroup}>
-                    <input
-                      type="text"
-                      id={`prediction-${entry.forecast_id}`}
-                      name="prediction"
-                      defaultValue={entry.prediction}
-                      required
-                    />
-                    <button type="submit" className={styles.submitButton}>
-                      Save
-                    </button>
-                  </div>
-                </form>
-              ) : (
-                <>
-                  {entry.prediction}
-                  <button
-                    onClick={() =>
-                      toggleEditFormVisibility(entry.forecast_id, "prediction")
+            <button
+              className={styles.closeButton}
+              onClick={() => handleDelete(entry.forecast_id)}
+            >
+              &times;
+            </button>
+            <div>
+              <u>
+                {entry.date_recorded} | {entry.session_time}{" "}
+              </u>
+            </div>
+            <ul className={styles.horizontalList}>
+              <li>
+                Wind: {entry.wind_speed} m/s
+                <FontAwesomeIcon
+                  icon={faArrowUp}
+                  style={{
+                    transform: `rotate(${entry.wind_direction + 180}deg)`,
+                    fontSize: "1em",
+                    verticalAlign: "middle",
+                    marginLeft: "5px",
+                  }}
+                />
+              </li>
+              <li>
+                Swell: {entry.wave_height} m @ {entry.wave_period}s{" "}
+                <FontAwesomeIcon
+                  icon={faArrowUp}
+                  style={{
+                    transform: `rotate(${entry.wave_direction + 180}deg)`,
+                    fontSize: "1em",
+                    verticalAlign: "middle",
+                    marginLeft: "5px",
+                  }}
+                />
+              </li>
+              <li>{entry.temperature}°C</li>
+              <li>
+                Prediction:{" "}
+                {editForms[entry.forecast_id]?.prediction ? (
+                  <form
+                    onSubmit={(e) =>
+                      handleEdit(e, entry.forecast_id, "prediction")
                     }
-                    className={styles.editButton}
+                    className={styles.inlineForm}
                   >
-                    <FontAwesomeIcon icon={faPencilAlt} />
-                  </button>
-                </>
-              )}
-            </li>
-            <li>
-              Experience:{" "}
-              {editForms[entry.forecast_id]?.report ? (
-                <form
-                  onSubmit={(e) => handleEdit(e, entry.forecast_id, "report")}
-                  className={`${styles.inlineForm} ${styles.centeredForm}`}
-                >
-                  <div className={styles.formGroup}>
-                    <input
-                      type="text"
-                      id={`report-${entry.forecast_id}`}
-                      name="report"
-                      defaultValue={entry.report}
-                      required
-                    />
-                    <button type="submit" className={styles.submitButton}>
-                      Save
+                    <div className={styles.formGroup}>
+                      <input
+                        type="text"
+                        id={`prediction-${entry.forecast_id}`}
+                        name="prediction"
+                        defaultValue={entry.prediction}
+                        required
+                      />
+                      <button type="submit" className={styles.submitButton}>
+                        Save
+                      </button>
+                    </div>
+                  </form>
+                ) : (
+                  <>
+                    {entry.prediction}
+                    <button
+                      onClick={() =>
+                        toggleEditFormVisibility(
+                          entry.forecast_id,
+                          "prediction"
+                        )
+                      }
+                      className={styles.editButton}
+                    >
+                      <FontAwesomeIcon icon={faPencilAlt} />
                     </button>
-                  </div>
-                </form>
-              ) : (
-                <>
-                  {entry.report ? (
-                    <>
-                      {entry.report}
+                  </>
+                )}
+              </li>
+              <li>
+                Experience:{" "}
+                {editForms[entry.forecast_id]?.report ? (
+                  <form
+                    onSubmit={(e) => handleEdit(e, entry.forecast_id, "report")}
+                    className={`${styles.inlineForm} ${styles.centeredForm}`}
+                  >
+                    <div className={styles.formGroup}>
+                      <input
+                        type="text"
+                        id={`report-${entry.forecast_id}`}
+                        name="report"
+                        defaultValue={entry.report}
+                        required
+                      />
+                      <button type="submit" className={styles.submitButton}>
+                        Save
+                      </button>
+                    </div>
+                  </form>
+                ) : (
+                  <>
+                    {entry.report ? (
+                      <>
+                        {entry.report}
+                        <button
+                          onClick={() =>
+                            toggleEditFormVisibility(
+                              entry.forecast_id,
+                              "report"
+                            )
+                          }
+                          className={styles.editButton}
+                        >
+                          <FontAwesomeIcon icon={faPencilAlt} />
+                        </button>
+                      </>
+                    ) : (
                       <button
                         onClick={() =>
                           toggleEditFormVisibility(entry.forecast_id, "report")
                         }
-                        className={styles.editButton}
+                        className={styles.addButton}
                       >
-                        <FontAwesomeIcon icon={faPencilAlt} />
+                        Add Report
                       </button>
-                    </>
-                  ) : (
-                    <button
-                      onClick={() =>
-                        toggleEditFormVisibility(entry.forecast_id, "report")
-                      }
-                      className={styles.addButton}
-                    >
-                      Add Report
+                    )}
+                  </>
+                )}
+              </li>
+              {visibleForms[entry.forecast_id] && (
+                <form
+                  onSubmit={(e) => handleSubmit(e, entry.forecast_id)}
+                  className={styles.inlineForm}
+                >
+                  <div className={styles.formGroup}>
+                    <label htmlFor={`report-${entry.forecast_id}`}>
+                      Experience:{" "}
+                    </label>
+                    <input
+                      type="text"
+                      id={`report-${entry.forecast_id}`}
+                      name="report"
+                      required
+                    />
+                    <button type="submit" className={styles.submitButton}>
+                      Submit
                     </button>
-                  )}
-                </>
+                  </div>
+                </form>
               )}
-            </li>
-            {visibleForms[entry.forecast_id] && (
-              <form
-                onSubmit={(e) => handleSubmit(e, entry.forecast_id)}
-                className={styles.inlineForm}
-              >
-                <div className={styles.formGroup}>
-                  <label htmlFor={`report-${entry.forecast_id}`}>
-                    Experience:{" "}
-                  </label>
-                  <input
-                    type="text"
-                    id={`report-${entry.forecast_id}`}
-                    name="report"
-                    required
-                  />
-                  <button type="submit" className={styles.submitButton}>
-                    Submit
-                  </button>
-                </div>
-              </form>
-            )}
-          </ul>
-        </div>
-      ))}
-    </div>
-  );
+            </ul>
+          </div>
+        ))}
+      </div>
+    );
+  }
 }
 
 export default Journal;

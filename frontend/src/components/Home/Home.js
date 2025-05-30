@@ -15,12 +15,14 @@ function Home() {
     loggedInUser,
     setLoggedInUser,
     loggedInUserId,
+    setLoggedInUserId,
   } = useContext(GlobalContext);
 
   const navigate = useNavigate();
 
   function logout() {
     setLoggedInUser(null);
+    setLoggedInUserId(null);
   }
 
   // Filter to get every other index starting from the second one
