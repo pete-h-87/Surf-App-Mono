@@ -37,10 +37,12 @@
   padding: 10px;
   color: black;
   font-size: 14px;
+  cursor: pointer;
 }
 
 .navbar {
-  background-color: #717171;
+  background: linear-gradient(to bottom, #a1a0a0, #3b3b3b);
+  border: 4px #000000;
   overflow: hidden;
   border-radius: 5px;
 }

@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import styles from "./Register.module.css";
 import { Link } from "react-router-dom";
-import { BookOpen } from "lucide-react"; // Using lucide-react for web icons
+import { FilePen } from "lucide-react"; // Using lucide-react for web icons
 import { useNavigate } from "react-router-dom";
 import { createNewUser } from "../../util";
 
@@ -92,7 +92,7 @@ export const Register = () => {
                 }}
               >
                 <div className={styles.buttonContent}>
-                  <BookOpen color="#E2E8F0" size={24} className={styles.icon} />
+                  <FilePen color="#E2E8F0" size={24} className={styles.icon} />
                   <span className={styles.buttonText}>Register</span>
                 </div>
               </button>

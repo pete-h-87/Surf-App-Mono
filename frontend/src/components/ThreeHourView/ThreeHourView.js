@@ -7,7 +7,11 @@ import Modal from "./Modal/Modal";
 import ConfModal from "./ConfModal/ConfModal";
 import { createEntry, createJournalEntry } from "../../util";
 import { useNavigate } from "react-router-dom";
-import apiUrl from "../../config";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
+import { ArrowLeftToLine } from "lucide-react";
+
+// import apiUrl from "../../config";
 // import screenshotEx1 from "../../../public/pictures/ScreenshotEx1.png"
 
 function ThreeHourView() {
@@ -30,6 +34,28 @@ function ThreeHourView() {
   const currentYear = dayjs().year();
   const fullDate = `${currentYear}-${month}-${day}`;
   const formattedDate = dayjs(fullDate).format("YYYY-MM-DD");
+
+  const [animateIn, setAnimateIn] = useState(false);
+  const [loginPressed, setLoginPressed] = useState(false);
+  const [forecastPressed, setForecastPressed] = useState(false);
+  const [journalPressed, setJournalPressed] = useState(false);
+
+  // Spring-like animation for button press using CSS classes
+  const animatePress = (setPressedState) => {
+    setPressedState(true); // Apply pressed state (scale down)
+    setTimeout(() => {
+      setPressedState(false); // Remove pressed state (scale back up)
+    }, 10); // Short duration for the press effect
+  };
+
+  // Entrance animation effect (runs once on component mount)
+  useEffect(() => {
+    // Trigger the entrance animation after a short delay
+    const timer = setTimeout(() => {
+      setAnimateIn(true);
+    }, 10); // time waiting to begin animations
+    return () => clearTimeout(timer); // Cleanup timer on unmount
+  }, []);
 
   // fetch the screenshots with the formattedDate
   // useEffect(() => {
@@ -153,9 +179,14 @@ function ThreeHourView() {
     <div className={styles.page}>
       <nav className={styles.navbar}>
         <ul>
-          <li>
+          <li className={styles.arrowContainer}>
             <Link to="/one-day-view" state={{ dayIndex, date }}>
-              Back
+              <ArrowLeftToLine
+                color="#E2E8F0"
+                size={16}
+                className={styles.icon}
+              />
+              {" " + "Day"}
             </Link>
           </li>
           <li>
@@ -175,6 +206,47 @@ function ThreeHourView() {
         {threeHourPeriodIndex * 3 + 3}:00
       </h2>
       <h3>{date}</h3>
+
+      <div
+        className={`${styles.oldButton} ${animateIn ? styles.animateIn : ""} ${
+          loginPressed ? styles.pressed : ""
+        }`}
+        style={{
+          transform: `translateY(${animateIn ? "0" : "20px"}) scale(${
+            loginPressed ? "0.95" : "1"
+          })`,
+          opacity: animateIn ? "1" : "0",
+          transitionDelay: animateIn ? "0.1s" : "0s",
+        }}
+      >
+        <div className={styles.buttonContent}>
+          <span className={styles.infoSpan}>
+            Swell: {currentData.wave_height}m @ {currentData.wave_period} s
+            <FontAwesomeIcon
+              icon={faArrowUp}
+              style={{
+                transform: `rotate(${currentData.wave_direction + 180}deg)`,
+                fontSize: "1em",
+                verticalAlign: "middle",
+                marginLeft: "5px",
+              }}
+            />{" "}
+          </span>
+          <span className={styles.infoSpan}>
+            Wind: {currentData.wind_speed} m/s
+            <FontAwesomeIcon
+              icon={faArrowUp}
+              style={{
+                transform: `rotate(${currentData.wind_direction + 180}deg)`,
+                fontSize: "1em",
+                verticalAlign: "middle",
+                marginLeft: "5px",
+              }}
+            />
+          </span>
+        </div>
+      </div>
+
       {loggedInUser ? (
         <button onClick={handleModal} className={styles.modalButton}>
           Log to Journal

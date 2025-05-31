@@ -6,6 +6,7 @@ import styles from "./OneDayView.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
 import getBackgroundColor from "../../util/colorCoding";
+import { ArrowLeftToLine } from "lucide-react";
 
 function OneDayView() {
   const [animateIn, setAnimateIn] = useState(false);
@@ -62,9 +63,10 @@ function OneDayView() {
     <div className={styles.page}>
       <nav className={styles.navbar}>
         <ul>
-          <li>
+          <li className={styles.arrowContainer}>
             <Link to="/one-week-view" state={{ dayIndex, date }}>
-              Back
+            <ArrowLeftToLine color="#E2E8F0" size={16} className={styles.icon} />
+              {" " + "Week"}
             </Link>
           </li>
           <li>

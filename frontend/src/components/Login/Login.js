@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import styles from "./Login.module.css";
 import { useNavigate } from "react-router-dom";
-import { LogIn, Cloud, BookOpen } from "lucide-react"; // Using lucide-react for web icons
+import { LogIn, FilePen, BookOpen } from "lucide-react"; // Using lucide-react for web icons
 import { Link } from "react-router-dom";
 import { loggingInTheUser } from "../../util";
 import { GlobalContext } from "../../GlobalState";
@@ -118,7 +118,7 @@ export const Login = () => {
               onClick={() => navigate("/register")}
             >
               <div className={styles.buttonContent}>
-                <BookOpen color="#E2E8F0" size={24} className={styles.icon} />
+                <FilePen color="#E2E8F0" size={24} className={styles.icon} />
                 <span className={styles.buttonText}>Register</span>
               </div>
             </button>

@@ -11,7 +11,6 @@ function Modal({
   liveScreenShot,
   currentData,
 }) {
-
   if (!show) {
     return null;
   }

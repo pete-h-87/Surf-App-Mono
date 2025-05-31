@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { LogIn, Cloud, BookOpen } from "lucide-react"; // Using lucide-react for web icons
+import { CircleUser, LogIn, Cloud, BookOpen } from "lucide-react"; // Using lucide-react for web icons
 import styles from "./Landing.module.css"; // Import the CSS module
 import { GlobalContext } from "../../GlobalState";
 
@@ -73,7 +73,11 @@ const Landing = () => {
             }}
           >
             <div className={styles.buttonContent}>
-              <LogIn color="#E2E8F0" size={24} className={styles.icon} />
+              {loggedInUser ? (
+                <CircleUser color="#E2E8F0" size={24} className={styles.icon} />
+              ) : (
+                <LogIn color="#E2E8F0" size={24} className={styles.icon} />
+              )}
               <span className={styles.buttonText}>
                 {loggedInUser ? "Account" : "Login"}
               </span>
