@@ -1,171 +1,178 @@
-  .page {
-    padding: 5px;
-    background-color: #f0f0f0;
-  }
-  
-  .container {
-    display: flex;
-    flex-direction: column;
-    gap: 0px;
-  }
+.page {
+  padding: 5px;
+  background: linear-gradient(
+    to bottom,
+    #616674,
+    #111827
+  ); /* Gradient from light gray to darker gray */
+  min-height: 100vh;
+}
 
-  .container h5 {
-    margin-bottom: 2px;
-    margin-top: 10px;
-  }
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+}
 
-  .page h2 {
-    margin: 4px;
-  }
-  
-  .session {
-    width: 100%;
-    height: 60px;
-    background-color: rgb(102, 169, 228);
-    border-radius: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-sizing: border-box;
-    padding: 10px;
-    color: black;
-    font-size: 14px;
-  }
+.container h5 {
+  margin-bottom: 2px;
+  margin-top: 10px;
+}
 
-  .navbar {
-    background-color: #717171;
-    overflow: hidden;
-    border-radius: 5px;
-  }
-  
-  .navbar ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-  }
-  
-  .navbar li {
-    float: left;
-  }
+.page h2 {
+  margin: 4px;
+}
 
-  .singleEntry {
-    border: 1px solid #000;
-    border-radius: 10px;
-    padding: 10px;
-    margin-bottom: 10px;
-    position: relative;
-  }
+.session {
+  width: 100%;
+  height: 60px;
+  background-color: rgb(102, 169, 228);
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 10px;
+  color: black;
+  font-size: 14px;
+}
 
-  .reported {
-    background-color: lightgreen;
-  }
-  
-  .navbar li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 4px 16px;
-    text-decoration: none;
-  }
-  
-  .navbar li a:hover {
-    background-color: #111;
-  }
+.navbar {
+  background-color: #717171;
+  overflow: hidden;
+  border-radius: 5px;
+}
 
-  button {
-    margin-top: 10px;
-  }
+.navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
 
-  .entry {
-    margin-bottom: 20px;
-  }
-  
-  .horizontalList {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .horizontalList li {
-    display: block;
-    margin-right: 10px;
-  }
-  
-  .toggleButton {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-  }
-  
-  .inlineForm {
-    display: flex;
-    align-items: center;
-  }
-  
-  .formGroup {
-    display: flex;
-    align-items: center;
-  }
-  
-  .formGroup label {
-    margin-right: 10px;
-  }
-  
-  .formGroup input {
-    margin-right: 10px;
-  }
-  
-  .submitButton {
-    background-color: #28a745;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-  }
+.navbar li {
+  float: left;
+}
 
-  .toggleButton, .editButton {
-    background-color: transparent;
-    color: black;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.8em;
-  }
+.singleEntry {
+  border: 1px solid #000;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+  position: relative;
+  background-color: white;
+}
 
-  .closeButton {
-    background-color: transparent;
-    color: black;
-    border: none;
-    cursor: pointer;
-    position: absolute;
-    top: 0;
-    right: 5px;
-    font-size: 1.5em;
-  }
+.reported {
+  background-color: lightgreen;
+}
 
-  .centeredForm {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
+.navbar li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 4px 16px;
+  text-decoration: none;
+}
 
-  .addButton {
-    background-color: rgb(75, 159, 187);
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 10px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 4px;
-  }
+.navbar li a:hover {
+  background-color: #111;
+}
+
+button {
+  margin-top: 10px;
+}
+
+.entry {
+  margin-bottom: 20px;
+}
+
+.horizontalList {
+  list-style-type: none;
+  padding: 0;
+}
+
+.horizontalList li {
+  display: block;
+  margin-right: 10px;
+}
+
+.toggleButton {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.inlineForm {
+  display: flex;
+  align-items: center;
+}
+
+.formGroup {
+  display: flex;
+  align-items: center;
+}
+
+.formGroup label {
+  margin-right: 10px;
+}
+
+.formGroup input {
+  margin-right: 10px;
+}
+
+.submitButton {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.toggleButton,
+.editButton {
+  background-color: transparent;
+  color: black;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8em;
+}
+
+.closeButton {
+  background-color: transparent;
+  color: black;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 5px;
+  font-size: 1.5em;
+}
+
+.centeredForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.addButton {
+  background-color: rgb(75, 159, 187);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 10px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+}

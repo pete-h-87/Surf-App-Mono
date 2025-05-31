@@ -5,6 +5,7 @@
     #616674,
     #111827
   ); /* Gradient from light gray to darker gray */
+  min-height: 100vh;
 }
 
 .dayContainer {
