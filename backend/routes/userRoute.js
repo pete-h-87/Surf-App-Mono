@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const { createUser } = require("../controller/index");
+const checkSession = require("../middleware/middleware")
+
 
 router.post("/users/createUser", createUser);
 router.get("/users/auth/status", (req, res) => {

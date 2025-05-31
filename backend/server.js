@@ -7,7 +7,6 @@ const app = express();
 const session = require("express-session");
 const flash = require("express-flash");
 require("./local-strategy");
-const checkSession = require("./middleware/middleware");
 
 const port = process.env.PORT || 8000;
 

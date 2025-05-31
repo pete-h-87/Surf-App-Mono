@@ -12,6 +12,7 @@ import {
   deleteReport,
 } from "../../util";
 import { GlobalContext } from "../../GlobalState";
+import { useNavigate } from "react-router-dom";
 
 function Journal() {
   const [entries, setEntries] = useState([]);
@@ -20,20 +21,31 @@ function Journal() {
   const [predError, setPredError] = useState(null);
   const [visibleForms, setVisibleForms] = useState({});
   const [editForms, setEditForms] = useState({});
-  const { loggedInUserId } = useContext(GlobalContext);
+  const { loggedInUserId, setLoggedInUser, setLoggedInUserId } =
+    useContext(GlobalContext);
+
+  const navigate = useNavigate();
 
   const fetchEntries = async () => {
     if (loggedInUserId) {
       const res = await getForecast(loggedInUserId);
+      console.log("journal 401 response?:", res);
+      if (res.message === "Session expired") {
+        setLoggedInUser(null);
+        setLoggedInUserId(null);
+        setEntries([]);
+        navigate("/homescreen");
+        return;
+      }
       if (res.error) {
         setError(res.error.name);
+        setEntries([]);
       }
-      console.log(error);
       console.log("loggedInUserId AT JOURNAL FETCH:", loggedInUserId);
       console.log(res.data);
       setEntries(res.data);
     } else {
-      setEntries(null);
+      setEntries([]);
     }
   };
 

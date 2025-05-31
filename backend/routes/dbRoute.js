@@ -10,13 +10,14 @@ const {
   deleteEntry,
   deleteReport,
 } = require("../controller/index");
+const checkSession = require("../middleware/middleware");
 
-router.get("/user/:user_id", read);
-router.get("/readPredictions", readPredictions);
-router.post("/create", create);
-router.post("/createJournalEntry", createJournalEntry);
-router.post("/addReport", addReport);
-router.put("/updatePrediction", updatePrediction);
+router.get("/user/:user_id", checkSession, read);
+router.get("/readPredictions", checkSession, readPredictions);
+router.post("/create", checkSession, create);
+router.post("/createJournalEntry", checkSession, createJournalEntry);
+router.post("/addReport", checkSession, addReport);
+router.put("/updatePrediction", checkSession, updatePrediction);
 router.delete("/deleteEntry", deleteEntry);
 router.delete("/deleteReport", deleteReport);
 

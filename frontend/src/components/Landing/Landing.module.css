@@ -17,6 +17,10 @@
 /* Base styles for font and full page sizing */
 .appContainer {
   position: relative;
+  /* background-image: url('../../../public/pictures/pexels-earano-1350197.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat; */
   display: flex;
   flex-direction: column;
   align-items: center;
