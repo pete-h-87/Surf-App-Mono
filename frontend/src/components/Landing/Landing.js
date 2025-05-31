@@ -90,7 +90,7 @@ const Landing = () => {
               opacity: animateIn ? "1" : "0",
               transitionDelay: animateIn ? "0.2s" : "0s",
             }}
-            onClick={() => navigate("/mainforecast")}
+            onClick={() => navigate("/one-week-view")}
           >
             <div className={styles.buttonContent}>
               <Cloud color="#E2E8F0" size={24} className={styles.icon} />

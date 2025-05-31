@@ -1,13 +1,13 @@
 import React, { useEffect, useContext, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import styles from "./MainForecast.module.css";
+import styles from "./OneWeekView.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
 import dayjs from "dayjs";
 import { GlobalContext } from "../../GlobalState";
 import getBackgroundColor from "../../util/colorCoding";
 
-function MainForecast() {
+function OneWeekView() {
   const [animateIn, setAnimateIn] = useState(false);
   const {
     threeHourWind,
@@ -145,4 +145,4 @@ function MainForecast() {
   );
 }
 
-export default MainForecast;
+export default OneWeekView;

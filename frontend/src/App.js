@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import styles from "./styling/App.module.css";
-import MainForecast from "./components/MainForecast/MainForecast";
+import OneWeekView from "./components/OneWeekView/OneWeekView";
 import OneDayView from "./components/OneDayView/OneDayView";
 import ThreeHourView from "./components/ThreeHourView/ThreeHourView";
 import Journal from "./components/Journal/Journal";
@@ -15,7 +15,7 @@ function App() {
     <div className={styles.App}>
       <Routes>
         <Route path="/homescreen" element={<Landing />} />
-        <Route path="/mainforecast" element={<MainForecast />} />
+        <Route path="/one-week-view" element={<OneWeekView />} />
         <Route path="/login" element={<Login />} />
         <Route path="/account" element={<Account />} />
         <Route path="/register" element={<Register />} />

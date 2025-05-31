@@ -63,7 +63,9 @@ function OneDayView() {
       <nav className={styles.navbar}>
         <ul>
           <li>
-            <Link to={loggedInUser ? "/journal" : "/login"}>Journal</Link>
+            <Link to="/one-week-view" state={{ dayIndex, date }}>
+              Back
+            </Link>
           </li>
           <li>
             <Link to="/homescreen">Home</Link>
@@ -89,7 +91,7 @@ function OneDayView() {
                 opacity: animateIn ? "1" : "0",
                 transition: "opacity 0.5s ease-in-out",
                 transitionDelay: animateIn ? `${index * 0.1}s` : 0,
-              }}
+                justifyItems: "center",              }}
             >
               <div
                 key={index}

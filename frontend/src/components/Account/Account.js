@@ -70,6 +70,26 @@ const Account = () => {
                 transitionDelay: animateIn ? "0.1s" : "0s",
               }}
               onClick={() => {
+                navigate("/journal");
+              }}
+            >
+              <div className={styles.buttonContent}>
+                <BookOpen color="#E2E8F0" size={24} className={styles.icon} />
+                <span className={styles.buttonText}>Journal</span>
+              </div>
+            </button>
+                        <button
+              className={`${styles.button} ${
+                animateIn ? styles.animateIn : ""
+              } ${journalPressed ? styles.pressed : ""}`}
+              style={{
+                transform: `translateY(${animateIn ? "0" : "40px"}) scale(${
+                  journalPressed ? "0.95" : "1"
+                })`,
+                opacity: animateIn ? "1" : "0",
+                transitionDelay: animateIn ? "0.1s" : "0s",
+              }}
+              onClick={() => {
                 logout();
                 navigate("/homescreen");
               }}

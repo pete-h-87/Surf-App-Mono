@@ -1,13 +1,14 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
-// import dayjs from "dayjs";
+import dayjs from "dayjs";
 import styles from "./ThreeHourView.module.css";
 import { GlobalContext } from "../../GlobalState";
 import Modal from "./Modal/Modal";
 import ConfModal from "./ConfModal/ConfModal";
 import { createEntry, createJournalEntry } from "../../util";
 import { useNavigate } from "react-router-dom";
-// import apiUrl from "../../config";
+import apiUrl from "../../config";
+// import screenshotEx1 from "../../../public/pictures/ScreenshotEx1.png"
 
 function ThreeHourView() {
   const location = useLocation();
@@ -23,14 +24,14 @@ function ThreeHourView() {
   const navigate = useNavigate();
 
   // format the date to insert into URL
-  // const originalDate = dayjs(date);
-  // const month = originalDate.format("MM");
-  // const day = originalDate.format("DD");
-  // const currentYear = dayjs().year();
-  // const fullDate = `${currentYear}-${month}-${day}`;
-  // const formattedDate = dayjs(fullDate).format("YYYY-MM-DD");
+  const originalDate = dayjs(date);
+  const month = originalDate.format("MM");
+  const day = originalDate.format("DD");
+  const currentYear = dayjs().year();
+  const fullDate = `${currentYear}-${month}-${day}`;
+  const formattedDate = dayjs(fullDate).format("YYYY-MM-DD");
 
-  //fetch the screenshots with the formattedDate
+  // fetch the screenshots with the formattedDate
   // useEffect(() => {
   //   async function fetchTwelveHourPriorScreenshot() {
   //     try {
@@ -43,12 +44,12 @@ function ThreeHourView() {
   //         const fullDate = `${currentYear}-${month}-${day}`;
   //         const negativeFormattedDate = dayjs(fullDate).format("YYYY-MM-DD");
   //         const newNegativeTime = threeHourPeriodIndex * 3 - 12 + 24;
-  //         url = `https://zoom.earth/maps/wind-speed/#view=56.13,2.822,6z/date=${negativeFormattedDate},${newNegativeTime}:00,+1/model=icon`;
+  //         url = `https://zoom.earth/maps/wind-speed/#view=56.13,2.822,6z/date=${negativeFormattedDate},${newNegativeTime}:00,+2/model=icon`;
   //       } else {
   //         url = `https://zoom.earth/maps/wind-speed/#view=56.13,2.822,6z/date=${formattedDate},${newTime}:00,+1/model=icon`;
   //       }
   //       const response = await fetch(
-  //         `http://localhost:8000/api/screenshot?url=${encodeURIComponent(url)}`
+  //         `http://localhost:8000/api/screenshot/one-week-view?url=${encodeURIComponent(url)}`
   //       );
   //       if (!response.ok) {
   //         throw new Error("Network response was not ok");
@@ -200,34 +201,22 @@ function ThreeHourView() {
         {" "}
         Session wind forecast
         <div className={styles.screenshot}>
-          {error ? (
-            <p>{error}</p>
-          ) : liveScreenShot ? (
-            <img
-              className={styles.screenshot}
-              src={`data:image/png;base64,${liveScreenShot}`}
-              alt="Webpage Screenshot"
-            />
-          ) : (
-            <p>Loading screenshot...</p>
-          )}
+          <img
+            className={styles.screenshot}
+            src="/pictures/ScreenshotEx1.png"
+            alt="Webpage Screenshot"
+          />
         </div>
       </div>
       <div className={styles.screenshotContainer}>
         {" "}
         Wind over North Sea **12 hours prior**
         <div className={styles.screenshot}>
-          {error ? (
-            <p>{error}</p>
-          ) : twelveScreenshot ? (
-            <img
-              className={styles.screenshot}
-              src={`data:image/png;base64,${twelveScreenshot}`}
-              alt="Webpage Screenshot"
-            />
-          ) : (
-            <p>Loading screenshot...</p>
-          )}
+          <img
+            className={styles.screenshot}
+            src="/pictures/ScreenshotEx2.png"
+            alt="Webpage Screenshot"
+          />
         </div>
       </div>
     </div>
