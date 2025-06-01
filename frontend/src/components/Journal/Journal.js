@@ -21,7 +21,7 @@ function Journal() {
   const [predError, setPredError] = useState(null);
   const [visibleForms, setVisibleForms] = useState({});
   const [editForms, setEditForms] = useState({});
-  const { loggedInUserId, setLoggedInUser, setLoggedInUserId } =
+  const { loggedInUserId, setLoggedInUser, setLoggedInUserId, setSessionTimeOutModal } =
     useContext(GlobalContext);
 
   const navigate = useNavigate();
@@ -29,10 +29,11 @@ function Journal() {
   const fetchEntries = async () => {
     if (loggedInUserId) {
       const res = await getForecast(loggedInUserId);
-      console.log("journal 401 response?:", res);
-      if (res.message === "Session expired") {
+      console.log("journal 401 response? and STATUS?:", res.status);
+      if (res.status === 401) {
         setLoggedInUser(null);
         setLoggedInUserId(null);
+        setSessionTimeOutModal(true);
         setEntries([]);
         navigate("/homescreen");
         return;
@@ -177,7 +178,7 @@ function Journal() {
               <Link to="/homescreen">Home</Link>
             </li>
             <li>
-              <Link to="/login">Login</Link>
+              <Link to="/account">Account</Link>
             </li>
           </ul>
         </nav>
