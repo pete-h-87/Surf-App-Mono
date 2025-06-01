@@ -41,13 +41,6 @@ const Account = () => {
 
   return (
     <div>
-      <nav className={styles.navbar}>
-        <ul>
-          <li>
-            <Link to="/homescreen">Back</Link>
-          </li>
-        </ul>
-      </nav>
       <div className={styles.appContainer}>
         <div className={styles.backgroundGradient}></div>
         <div className={styles.contentContainer}>
