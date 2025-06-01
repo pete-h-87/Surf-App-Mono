@@ -12,7 +12,6 @@ export const getForecast = async (user_id) => {
   try {
     const res = await fetch(`/api/dbRoute/user/${user_id}`);
     if (res.status === 401) {
-      console.log("Session expired due to 401 response");
       return res;
     }
     const data = await res.json();
@@ -25,6 +24,9 @@ export const getForecast = async (user_id) => {
 export const getPredictions = async () => {
   try {
     const res = await fetch("/api/dbRoute/readPredictions");
+    if (res.status === 401) {
+      return res;
+    }
     const data = await res.json();
     return data;
   } catch (error) {
@@ -41,6 +43,9 @@ export const createEntry = async (data) => {
       },
       body: JSON.stringify(data),
     });
+    if (res.status === 401) {
+      return res;
+    }
     return res.json();
   } catch (error) {
     console.error("Error creating forecast3:", error);
@@ -57,6 +62,9 @@ export const createJournalEntry = async (data) => {
       },
       body: JSON.stringify(data),
     });
+    if (res.status === 401) {
+      return res;
+    }
     if (!res.ok) {
       throw new Error("Network response was not ok");
     }
@@ -76,6 +84,9 @@ export const addReport = async (data) => {
       },
       body: JSON.stringify(data),
     });
+    if (res.status === 401) {
+      return res;
+    }
     if (!res.ok) {
       throw new Error("Network response was not ok for updateReport");
     }
@@ -95,6 +106,9 @@ export const updatePrediction = async (data) => {
       },
       body: JSON.stringify(data),
     });
+    if (res.status === 401) {
+      return res;
+    }
     if (!res.ok) {
       throw new Error("Network response was not ok for updatePrediction");
     }
@@ -114,6 +128,9 @@ export const deleteEntry = async (forecast_id) => {
       },
       body: JSON.stringify({ forecast_id }),
     });
+    if (res.status === 401) {
+      return res;
+    }
     if (!res.ok) {
       throw new Error("Network response was not ok");
     }
@@ -132,6 +149,9 @@ export const deleteReport = async (forecast_id) => {
       },
       body: JSON.stringify({ forecast_id }),
     });
+    if (res.status === 401) {
+      return res;
+    }
     if (!res.ok) {
       throw new Error("Network response was not ok");
     }

@@ -21,8 +21,12 @@ function Journal() {
   const [predError, setPredError] = useState(null);
   const [visibleForms, setVisibleForms] = useState({});
   const [editForms, setEditForms] = useState({});
-  const { loggedInUserId, setLoggedInUser, setLoggedInUserId, setSessionTimeOutModal } =
-    useContext(GlobalContext);
+  const {
+    loggedInUserId,
+    setLoggedInUser,
+    setLoggedInUserId,
+    setSessionTimeOutModal,
+  } = useContext(GlobalContext);
 
   const navigate = useNavigate();
 
@@ -52,6 +56,14 @@ function Journal() {
 
   const fetchPredictions = async () => {
     const predRes = await getPredictions();
+    if (predRes.status === 401) {
+      setLoggedInUser(null);
+      setLoggedInUserId(null);
+      setSessionTimeOutModal(true);
+      setEntries([]);
+      navigate("/homescreen");
+      return;
+    }
     if (predRes.error) {
       setPredError(predRes.error.name);
       console.log(predError);

@@ -17,8 +17,15 @@ import { ArrowLeftToLine } from "lucide-react";
 function ThreeHourView() {
   const location = useLocation();
   const { threeHourPeriodIndex, date, dayIndex } = location.state || {};
-  const { threeHourWind, threeHourWave, loggedInUser, loggedInUserId } =
-    useContext(GlobalContext);
+  const {
+    threeHourWind,
+    threeHourWave,
+    loggedInUser,
+    loggedInUserId,
+    setLoggedInUser,
+    setLoggedInUserId,
+    setSessionTimeOutModal,
+  } = useContext(GlobalContext);
   const [twelveScreenshot, setTwelveScreenshot] = useState(null);
   const [liveScreenShot, setLiveScreenShot] = useState(null);
   const [error, setError] = useState(null);
@@ -162,6 +169,13 @@ function ThreeHourView() {
     const prediction = formData.get("prediction");
     try {
       const result = await createEntry(data);
+      if (result.status === 401) {
+        setLoggedInUser(null);
+        setLoggedInUserId(null);
+        setSessionTimeOutModal(true);
+        navigate("/homescreen");
+        return;
+      }
       const journalData = {
         forecast_id: result.forecast_id,
         prediction,
