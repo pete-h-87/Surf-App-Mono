@@ -269,7 +269,18 @@ function ThreeHourView() {
         currentData={currentData}
       />
       <ConfModal show={showConfModal} handleClose={handleCloseConfModal} />
-      <div className={styles.screenshotContainer}>
+      <div
+        className={`${styles.screenshotContainer} ${
+          animateIn ? styles.animateIn : ""
+        } ${loginPressed ? styles.pressed : ""}`}
+        style={{
+          transform: `translateY(${animateIn ? "0" : "20px"}) scale(${
+            loginPressed ? "0.95" : "1"
+          })`,
+          opacity: animateIn ? "1" : "0",
+          transitionDelay: animateIn ? "0.2s" : "0s",
+        }}
+      >
         {" "}
         Session wind forecast
         <div className={styles.screenshot}>
@@ -280,7 +291,18 @@ function ThreeHourView() {
           />
         </div>
       </div>
-      <div className={styles.screenshotContainer}>
+      <div
+        className={`${styles.screenshotContainer} ${
+          animateIn ? styles.animateIn : ""
+        } ${loginPressed ? styles.pressed : ""}`}
+        style={{
+          transform: `translateY(${animateIn ? "0" : "20px"}) scale(${
+            loginPressed ? "0.95" : "1"
+          })`,
+          opacity: animateIn ? "1" : "0",
+          transitionDelay: animateIn ? "0.3s" : "0s",
+        }}
+      >
         {" "}
         Wind over North Sea **12 hours prior**
         <div className={styles.screenshot}>

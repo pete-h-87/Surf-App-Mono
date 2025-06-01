@@ -44,6 +44,9 @@
   margin: 10px auto;
   overflow: hidden;
   color: white;
+  backdrop-filter: blur(12px); /* backdrop-blur-md */
+  -webkit-backdrop-filter: blur(12px);
+  transition: all 0.3s ease-out;
 }
 
 .screenshot {
@@ -91,7 +94,7 @@
   background-color: #111;
 }
 
-/* LandingTwo.module.css */
+/* HomeScreen.module.css */
 
 /* CSS Variables for consistent colors */
 :root {
@@ -187,7 +190,7 @@
   border-radius: 1rem; /* rounded-2xl */
   background-color: var(--color-button-bg); /* bg-white bg-opacity-10 */
   backdrop-filter: blur(12px); /* backdrop-blur-md */
-  -webkit-backdrop-filter: blur(12px); /* For Safari */
+  -webkit-backdrop-filter: blur(12px);
   display: -webkit-inline-box;
   align-items: center;
   padding-left: 1.5rem; /* px-6 */

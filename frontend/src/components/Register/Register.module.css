@@ -1,4 +1,4 @@
-/* LandingTwo.module.css */
+/* HomeScreen.module.css */
 
 /* CSS Variables for consistent colors */
 :root {
@@ -75,6 +75,11 @@
 
 .label {
   color: white;
+  margin: 5px;
+}
+
+.labelContainer {
+  padding: 5px;
 }
 
 /* Container for the buttons */
@@ -198,7 +203,6 @@
     font-size: 0.9375rem; /* Adjusted from 15px */
   }
 }
-
 
 .navbar {
   background: linear-gradient(to bottom, #a1a0a0, #3b3b3b);

@@ -7,14 +7,14 @@ import ThreeHourView from "./components/ThreeHourView/ThreeHourView";
 import Journal from "./components/Journal/Journal";
 import { Login } from "./components/Login/Login";
 import { Register } from "./components/Register/Register";
-import Landing from "./components/Landing/Landing";
+import HomeScreen from "./components/HomeScreen/HomeScreen";
 import Account from "./components/Account/Account";
 
 function App() {
   return (
     <div className={styles.App}>
       <Routes>
-        <Route path="/homescreen" element={<Landing />} />
+        <Route path="/homescreen" element={<HomeScreen />} />
         <Route path="/one-week-view" element={<OneWeekView />} />
         <Route path="/login" element={<Login />} />
         <Route path="/account" element={<Account />} />

@@ -67,15 +67,15 @@ export const Register = () => {
               onSubmit={handleSubmit}
               method="POST"
             >
-              <div>
+              <div className={styles.labelContainer}>
                 <label className={styles.label}>Name</label>
                 <input type="text" id="name" name="name" required />
               </div>
-              <div>
+              <div className={styles.labelContainer}>
                 <label className={styles.label}>Email</label>
                 <input type="text" id="email" name="email" required />
               </div>
-              <div>
+              <div className={styles.labelContainer}>
                 <label className={styles.label}>Password</label>
                 <input type="text" id="password" name="password" required />
               </div>

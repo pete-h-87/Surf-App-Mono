@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { CircleUser, LogIn, Cloud, BookOpen } from "lucide-react"; // Using lucide-react for web icons
-import styles from "./Landing.module.css"; // Import the CSS module
+import styles from "./HomeScreen.module.css"; // Import the CSS module
 import { GlobalContext } from "../../GlobalState";
 
-const Landing = () => {
+const HomeScreen = () => {
   // State to manage the current "route" (simulating react-router)
   const { loggedInUserId, loggedInUser } = useContext(GlobalContext);
 
@@ -125,4 +125,4 @@ const Landing = () => {
   );
 };
 
-export default Landing;
+export default HomeScreen;
