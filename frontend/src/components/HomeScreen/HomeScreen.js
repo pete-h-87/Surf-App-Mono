@@ -3,10 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { CircleUser, LogIn, Cloud, BookOpen } from "lucide-react"; // Using lucide-react for web icons
 import styles from "./HomeScreen.module.css"; // Import the CSS module
 import { GlobalContext } from "../../GlobalState";
+import Modal from "./Modal/Modal";
 
 const HomeScreen = () => {
   // State to manage the current "route" (simulating react-router)
-  const { loggedInUserId, loggedInUser } = useContext(GlobalContext);
+  const { loggedInUser, sessionTimeOutModal, setSessionTimeOutModal } = useContext(GlobalContext);
 
   // State for animation triggers.
   // These will control the CSS classes that apply animations.
@@ -42,6 +43,10 @@ const HomeScreen = () => {
     }
   };
 
+  const handleCloseModal = () => {
+    setSessionTimeOutModal(false);
+  };
+
   return (
     <div className={styles.appContainer}>
       <div className={styles.backgroundGradient}></div>
@@ -51,6 +56,7 @@ const HomeScreen = () => {
         </h1>
         <p className={styles.subtitle}>Any surf today?</p>
         <div className={styles.buttonContainer}>
+          <Modal show={sessionTimeOutModal} handleClose={handleCloseModal} />
           <button
             className={`${styles.button} ${animateIn ? styles.animateIn : ""} ${
               loginPressed ? styles.pressed : ""

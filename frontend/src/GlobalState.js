@@ -13,6 +13,7 @@ export const GlobalProvider = ({ children }) => {
   const [threeHourWave, setThreeHourWave] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [sessionTimeOutModal, setSessionTimeOutModal] = useState(false);
   const [loggedInUser, setLoggedInUser] = useState(() => {
     // Retrieve the user from localStorage on initial load
     const savedUser = localStorage.getItem("loggedInUser");
@@ -66,6 +67,8 @@ export const GlobalProvider = ({ children }) => {
         setLoggedInUser,
         loggedInUserId,
         setLoggedInUserId,
+        sessionTimeOutModal,
+        setSessionTimeOutModal,
       }}
     >
       {children}

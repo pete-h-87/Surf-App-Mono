@@ -11,6 +11,10 @@
 export const getForecast = async (user_id) => {
   try {
     const res = await fetch(`/api/dbRoute/user/${user_id}`);
+    if (res.status === 401) {
+      console.log("Session expired due to 401 response");
+      return res;
+    }
     const data = await res.json();
     return data;
   } catch (error) {
