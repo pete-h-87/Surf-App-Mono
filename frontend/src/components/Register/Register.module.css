@@ -53,6 +53,10 @@
   max-width: 28rem; /* max-w-md (448px) */
 }
 
+.spacer {
+  padding-top: 50px;
+}
+
 /* Title styling */
 .title {
   font-weight: 600; /* font-semibold */

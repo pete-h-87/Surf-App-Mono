@@ -171,7 +171,13 @@ function Journal() {
         <nav className={styles.navbar}>
           <ul>
             <li>
+              <div className={styles.spacer}></div>
+            </li>
+            <li>
               <Link to="/homescreen">Home</Link>
+            </li>
+            <li>
+              <Link to="/login">Login</Link>
             </li>
           </ul>
         </nav>
@@ -185,7 +191,13 @@ function Journal() {
         <nav className={styles.navbar}>
           <ul>
             <li>
+              <div className={styles.spacer}></div>
+            </li>
+            <li>
               <Link to="/homescreen">Home</Link>
+            </li>
+            <li>
+              <Link to="/account">Account</Link>
             </li>
           </ul>
         </nav>

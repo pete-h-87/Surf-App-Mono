@@ -13,6 +13,12 @@
   font-size: 15px;
 }
 
+.spacer {
+  width: 87px; /* or whatever width you need */
+  height: 1px;
+  display: inline-block;
+}
+
 .dayContainer h5 {
   margin-bottom: 5px;
   color: white; /* Reduce the bottom margin of the h4 element */

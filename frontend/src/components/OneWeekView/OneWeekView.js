@@ -74,7 +74,7 @@ function OneWeekView() {
       <nav className={styles.navbar}>
         <ul>
           <li>
-            <Link to={loggedInUser ? "/journal" : "/login"}>Journal</Link>
+            <div className={styles.spacer}></div>
           </li>
           <li>
             <Link to="/homescreen">Home</Link>

@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import styles from "./Register.module.css";
 import { Link } from "react-router-dom";
-import { FilePen } from "lucide-react"; // Using lucide-react for web icons
+import { FilePen, House } from "lucide-react"; // Using lucide-react for web icons
 import { useNavigate } from "react-router-dom";
 import { createNewUser } from "../../util";
 
@@ -48,13 +48,6 @@ export const Register = () => {
 
   return (
     <div>
-      <nav className={styles.navbar}>
-        <ul>
-          <li>
-            <Link to="/homescreen">Back</Link>
-          </li>
-        </ul>
-      </nav>
       <div className={styles.appContainer}>
         <div className={styles.backgroundGradient}></div>
         <div className={styles.contentContainer}>
@@ -94,6 +87,27 @@ export const Register = () => {
                 <div className={styles.buttonContent}>
                   <FilePen color="#E2E8F0" size={24} className={styles.icon} />
                   <span className={styles.buttonText}>Register</span>
+                </div>
+              </button>
+              <div className={styles.spacer}></div>
+              <button
+                className={`${styles.button} ${
+                  animateIn ? styles.animateIn : ""
+                } ${journalPressed ? styles.pressed : ""}`}
+                style={{
+                  transform: `translateY(${animateIn ? "0" : "40px"}) scale(${
+                    journalPressed ? "0.95" : "1"
+                  })`,
+                  opacity: animateIn ? "1" : "0",
+                  transitionDelay: animateIn ? "0.2s" : "0s",
+                }}
+                onClick={() => {
+                  navigate("/homescreen");
+                }}
+              >
+                <div className={styles.buttonContent}>
+                  <House color="#E2E8F0" size={24} className={styles.icon} />
+                  <span className={styles.buttonText}>Home Page</span>
                 </div>
               </button>
             </form>

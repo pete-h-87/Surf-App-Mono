@@ -1,10 +1,6 @@
 .page {
   padding: 5px;
-  background: linear-gradient(
-    to bottom,
-    #616674,
-    #111827
-  );
+  background: linear-gradient(to bottom, #616674, #111827);
   min-height: 100vh;
 }
 
@@ -38,7 +34,8 @@
 }
 
 .navbar {
-  background-color: #717171;
+  background: linear-gradient(to bottom, #a1a0a0, #3b3b3b);
+  border: 4px #000000;
   overflow: hidden;
   border-radius: 5px;
 }
@@ -48,7 +45,7 @@
   margin: 0;
   padding: 0;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
 }
 
 .navbar li {
@@ -175,4 +172,10 @@ button {
   margin: 4px 2px;
   cursor: pointer;
   border-radius: 4px;
+}
+
+.spacer {
+  width: 87px;
+  height: 1px;
+  display: inline-block;
 }
