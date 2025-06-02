@@ -18,8 +18,8 @@ router.post("/create", checkSession, create);
 router.post("/createJournalEntry", checkSession, createJournalEntry);
 router.post("/addReport", checkSession, addReport);
 router.put("/updatePrediction", checkSession, updatePrediction);
-router.delete("/deleteEntry", deleteEntry);
-router.delete("/deleteReport", deleteReport);
+router.delete("/deleteEntry", checkSession, deleteEntry);
+router.delete("/deleteReport", checkSession, deleteReport);
 
 module.exports = router;
 

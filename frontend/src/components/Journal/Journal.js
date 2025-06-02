@@ -162,8 +162,22 @@ function Journal() {
 
   const handleDelete = async (forecast_id) => {
     try {
-      await Promise.all([deleteEntry(forecast_id), deleteReport(forecast_id)]);
+      const [deleteEntryResponse, deleteReportResponse] = await Promise.all([
+        deleteEntry(forecast_id),
+        deleteReport(forecast_id),
+      ]);
       // update the entries state to reflect the deletion
+      if (
+        deleteEntryResponse.status === 401 ||
+        deleteReportResponse.status === 401
+      ) {
+        setLoggedInUser(null);
+        setLoggedInUserId(null);
+        setSessionTimeOutModal(true);
+        setEntries([]);
+        navigate("/homescreen");
+        return;
+      }
       setEntries((prevState) =>
         prevState.filter((entry) => entry.forecast_id !== forecast_id)
       );

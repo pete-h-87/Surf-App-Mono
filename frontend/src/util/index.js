@@ -128,8 +128,9 @@ export const deleteEntry = async (forecast_id) => {
       },
       body: JSON.stringify({ forecast_id }),
     });
+    console.log("The responsein deleteEntryin index:", res);
     if (res.status === 401) {
-      return res;
+      return { status: 401 };
     }
     if (!res.ok) {
       throw new Error("Network response was not ok");
