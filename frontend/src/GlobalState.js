@@ -28,10 +28,10 @@ export const GlobalProvider = ({ children }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const journalEntryData = await getForecast();
+        // const journalEntryData = await getForecast();
         const waveData = await getThreeHourWaveForecast();
         const windData = await getThreeHourWindForecast();
-        setJournalData(journalEntryData);
+        // setJournalData(journalEntryData);
         setThreeHourWave(waveData);
         setThreeHourWind(windData);
       } catch (err) {

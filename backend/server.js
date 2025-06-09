@@ -27,7 +27,7 @@ app.use(
     saveUninitialized: false,
     rolling: true,
     cookie: {
-      maxAge: 10000,
+      maxAge: 30 * 60 * 1000,
     },
   })
 );
@@ -102,3 +102,6 @@ app.listen(port, () => {
 // -Define Middleware: Adding middleware for parsing JSON, handling routes, etc.
 // -Import and Use Routes: Importing route definitions and using them with the Express application.
 // -Start the Server: Listening on a specified port for incoming requests.
+
+// todo - move journal filter onto server side
+// make it @media adjustable in css to have browser/tablet sized
