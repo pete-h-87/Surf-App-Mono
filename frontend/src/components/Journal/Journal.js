@@ -173,14 +173,24 @@ function Journal() {
 
   const handleDelete = async (forecast_id) => {
     try {
-      const [deleteEntryResponse, deleteReportResponse] = await Promise.all([
-        deleteEntry(forecast_id),
-        deleteReport(forecast_id),
-      ]);
+      const hasReport = predictions.some(
+        (pred) => pred.forecast_id === forecast_id && pred.report
+      );
+
+      // Build the promises array conditionally
+      const promises = [deleteEntry(forecast_id)];
+      if (hasReport) {
+        promises.push(deleteReport(forecast_id));
+      }
+
+      const [deleteEntryResponse, deleteReportResponse] = await Promise.all(
+        promises
+      );
       // update the entries state to reflect the deletion
       if (
-        deleteEntryResponse.status === 401 ||
-        deleteReportResponse.status === 401
+        (deleteEntryResponse && deleteEntryResponse.status === 401) ||
+        (deleteReportResponse && deleteReportResponse.status === 401)
+        // check if it exists( aka, does deleteReportResponse exist?) - if so, then check the status
       ) {
         setLoggedInUser(null);
         setLoggedInUserId(null);
@@ -205,7 +215,7 @@ function Journal() {
 
   if (entries.length === 0) {
     return (
-      <div>
+      <div className={styles.page}>
         <nav className={styles.navbar}>
           <ul>
             <li>
@@ -220,7 +230,7 @@ function Journal() {
           </ul>
         </nav>
         <h2>Surf Journal</h2>
-        <div>No Journal Entries Yet!</div>
+        <div className={styles.emptyJournal}>No Journal Entries Yet!</div>
       </div>
     );
   } else {
