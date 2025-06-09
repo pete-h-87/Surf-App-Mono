@@ -81,7 +81,7 @@ const addReport = async (data) => {
 };
 
 const updatePrediction = async (data) => {
-  const { forecast_id, prediction } = data;
+  const { prediction, forecast_id } = data;
   try {
     const query = `
       UPDATE journal
@@ -91,7 +91,7 @@ const updatePrediction = async (data) => {
     `;
     const values = [prediction, forecast_id];
     const result = await pool.query(query, values);
-    // console.log("updated rows:", result.rows)
+    console.log("updated rows:", result.rows);
     return result.rows[0];
   } catch (error) {
     console.error("Error updating prediction:", error);

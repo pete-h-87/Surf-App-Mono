@@ -106,6 +106,7 @@ export const updatePrediction = async (data) => {
       },
       body: JSON.stringify(data),
     });
+    console.log("index result in front end:", res);
     if (res.status === 401) {
       return res;
     }
@@ -235,15 +236,16 @@ export const loggingInTheUser = async (data) => {
       },
       body: JSON.stringify(data),
     });
-    if (!res.ok) {
-      throw new Error("Network response was not ok for finding USER");
-    }
+    // if (!res.ok) {
+    //   throw new Error("Network response was not ok for finding USER");
+    // }
 
     const result = await res.json();
     if (res.ok) {
       window.location.href = result.redirectUrl;
       return result;
     }
+    return result;
   } catch (err) {
     console.error("Error finding USER:", err);
     throw err;

@@ -83,6 +83,7 @@ exports.updatePrediction = async (req, res) => {
     const data = req.body;
     console.log("the update prediction:", req.body);
     const result = await updatePrediction(data);
+     console.log("the update RESULT:", result);
     return res.status(201).json(result);
   } catch (err) {
     console.error("Error creating journal entry:", err);

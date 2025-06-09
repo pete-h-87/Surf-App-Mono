@@ -5,17 +5,28 @@ import { LogIn, FilePen, House } from "lucide-react"; // Using lucide-react for 
 import { Link } from "react-router-dom";
 import { loggingInTheUser } from "../../util";
 import { GlobalContext } from "../../GlobalState";
+import Modal from "./Modal/LoginModal";
 
 export const Login = () => {
   const { setLoggedInUser, setLoggedInUserId, loggedInUserId } =
     useContext(GlobalContext);
 
+  const [showModal, setShowModal] = useState(false);
   const [animateIn, setAnimateIn] = useState(false);
   const [loginPressed, setLoginPressed] = useState(false);
   const [forecastPressed, setForecastPressed] = useState(false);
   const [journalPressed, setJournalPressed] = useState(false);
 
   const navigate = useNavigate();
+
+  const handleModal = (e) => {
+    e.preventDefault();
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
 
   // Spring-like animation for button press using CSS classes
   const animatePress = (setPressedState) => {
@@ -43,6 +54,14 @@ export const Login = () => {
     };
     try {
       const response = await loggingInTheUser(data);
+      console.log("Login res:", response);
+      if (
+        response.message === "Invalid password" ||
+        response.message === "Email not found"
+      ) {
+        setShowModal(true);
+        return;
+      }
       setLoggedInUser(response.user.name);
       setLoggedInUserId(response.user.id);
     } catch (err) {
@@ -93,6 +112,14 @@ export const Login = () => {
             </form>
           </div>
         </div>
+        <Modal
+          show={showModal}
+          handleClose={handleCloseModal}
+          // handleSubmit={handleSubmit}
+          // twelveScreenshot={twelveScreenshot}
+          // liveScreenShot={liveScreenShot}
+          // currentData={currentData}
+        />
         <div className={styles.contentContainer}>
           <p className={styles.subtitle}>New user? Register below</p>
           <div className={styles.buttonContainer}>

@@ -26,8 +26,8 @@ function ThreeHourView() {
     setLoggedInUserId,
     setSessionTimeOutModal,
   } = useContext(GlobalContext);
-  const [twelveScreenshot, setTwelveScreenshot] = useState(null);
-  const [liveScreenShot, setLiveScreenShot] = useState(null);
+  // const [twelveScreenshot, setTwelveScreenshot] = useState(null);
+  // const [liveScreenShot, setLiveScreenShot] = useState(null);
   const [error, setError] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [showConfModal, setShowConfModal] = useState(false);
