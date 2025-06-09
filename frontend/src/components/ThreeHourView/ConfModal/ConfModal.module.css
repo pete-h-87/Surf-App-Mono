@@ -8,7 +8,12 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding-top: 130px;
+  padding-top: 50px;
+  z-index: 1;
+}
+
+p {
+  margin-bottom: 50px;
 }
 
 .modal {
@@ -17,9 +22,7 @@
   padding: 20px;
   border-radius: 8px;
   width: 400px;
-  max-width: calc(
-    100% - 20px
-  );
+  max-width: 70%;
   margin: 0 10px;
 }
 
@@ -29,7 +32,6 @@
   gap: 10px;
   align-items: center;
 }
-
 
 .journalButton {
   background-color: #4caf50;

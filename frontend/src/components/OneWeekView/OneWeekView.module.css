@@ -1,6 +1,11 @@
 .page {
   padding: 5px;
-  background-color: #f0f0f0;
+  background: linear-gradient(
+    to bottom,
+    #616674,
+    #111827
+  ); /* Gradient from light gray to darker gray */
+  min-height: 100vh;
 }
 
 .dayContainer {
@@ -8,12 +13,20 @@
   font-size: 15px;
 }
 
+.spacer {
+  width: 87px; /* or whatever width you need */
+  height: 1px;
+  display: inline-block;
+}
+
 .dayContainer h5 {
-  margin-bottom: 5px; /* Reduce the bottom margin of the h4 element */
+  margin-bottom: 5px;
+  color: white; /* Reduce the bottom margin of the h4 element */
 }
 
 .page h2 {
   margin: 4px;
+  color: white;
 }
 
 .container {
@@ -24,12 +37,13 @@
   height: 60px;
   border-radius: 15px;
   background-color: transparent;
-  border: 1px solid #ccc;
+  border: 1px #000000;
   font-size: 11px;
   text-align: center; /* Ensure text is centered */
   padding: 0; /* Remove padding */
   box-sizing: border-box;
   text-decoration: none;
+  cursor: pointer;
   color: inherit; /* Include padding and border in the element's total width and height */
 }
 
@@ -70,7 +84,8 @@
 }
 
 .navbar {
-  background-color: #717171;
+  background: linear-gradient(to bottom, #a1a0a0, #3b3b3b);
+  border: 4px #000000;
   overflow: hidden;
   border-radius: 5px;
 }
@@ -80,7 +95,7 @@
   margin: 0;
   padding: 0;
   display: flex;
-  justify-content: right;
+  justify-content: space-between;
 }
 
 .navbar li {
@@ -98,4 +113,3 @@
 .navbar li a:hover {
   background-color: #111;
 }
-

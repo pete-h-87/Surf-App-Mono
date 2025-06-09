@@ -37,9 +37,9 @@ const getBackgroundColor = (waveHeight, wavePeriod, windDirection) => {
     windDirection > 120 &&
     windDirection < 290
   ) {
-    return "rgb(254, 149, 149)"; // onshore report, high-engery & onshore, red
+    return "linear-gradient(to bottom, rgb(196, 94, 94), rgb(222, 145, 145))"; // onshore report, high-energy & onshore, red gradient
   }
-  return "rgb(92, 173, 255)"; // default report, blue - no energy in water
+  return "linear-gradient(to bottom, rgb(65, 146, 227), rgb(128, 172, 215))"; // default report, blue - no energy in water
 };
 
 export default getBackgroundColor;
