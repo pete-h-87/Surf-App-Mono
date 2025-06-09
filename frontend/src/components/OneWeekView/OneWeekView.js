@@ -46,11 +46,6 @@ function OneWeekView() {
     navigate("/one-day-view", { state: { dayIndex, date } });
   };
 
-  function logout() {
-    setLoggedInUser(null);
-    setLoggedInUserId(null);
-  }
-
   console.log("the logged in user at HOME.js:", loggedInUser);
 
   useEffect(() => {

@@ -15,6 +15,7 @@ import { GlobalContext } from "../../GlobalState";
 import { useNavigate } from "react-router-dom";
 
 function Journal() {
+  const [animateIn, setAnimateIn] = useState(false);
   const [entries, setEntries] = useState([]);
   const [predictions, setPredictions] = useState([]);
   const [error, setError] = useState(null);
@@ -75,6 +76,16 @@ function Journal() {
     fetchEntries();
     fetchPredictions();
   }, []);
+
+  useEffect(() => {
+    if (entries.length > 0) {
+      // Trigger the entrance animation after a short delay
+      const timer = setTimeout(() => {
+        setAnimateIn(true);
+      }, 10); // time waiting to begin animations
+      return () => clearTimeout(timer); // Cleanup timer on unmount
+    }
+  }, [entries]); // Runs whenever loggedInUser changes
 
   const mergedData = entries.map((entry) => {
     const prediction = predictions.find(
@@ -229,12 +240,17 @@ function Journal() {
           </ul>
         </nav>
         <h2>Surf Journal</h2>
-        {mergedData.map((entry) => (
+        {mergedData.map((entry, index) => (
           <div
             key={entry.forecast_id}
             className={`${styles.singleEntry} ${
               entry.report ? styles.reported : ""
             }`}
+            style={{
+              opacity: animateIn ? "1" : "0",
+              transition: "opacity 0.5s ease-in-out",
+              transitionDelay: animateIn ? `${(index + 1) * 0.1}s` : 0,
+            }}
           >
             <button
               className={styles.closeButton}
