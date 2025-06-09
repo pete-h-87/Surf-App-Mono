@@ -8,7 +8,7 @@ const session = require("express-session");
 const flash = require("express-flash");
 require("./local-strategy");
 
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 10000;
 
 const corsOptions = {
   origin: "http://localhost:3000",
