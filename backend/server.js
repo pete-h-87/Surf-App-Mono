@@ -91,7 +91,7 @@ app.post("/api/userRoute/users/auth", (req, res, next) => {
 // initializePassport();
 
 app.listen(port, () => {
-  console.log(`App listening at the PORT: http://localhost:${port}`);
+  console.log(`App listening at the PORT: ${port}`);
 });
 
 // STEP SIX
