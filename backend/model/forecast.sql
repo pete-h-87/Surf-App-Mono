@@ -46,6 +46,11 @@ ADD CONSTRAINT fk_user
 FOREIGN KEY (user_id)
 REFERENCES users(user_id);
 
+ALTER TABLE journal
+ADD CONSTRAINT journal_forecast_id_fkey
+FOREIGN KEY (forecast_id)
+REFERENCES forecast(forecast_id);
+
 ALTER TABLE users
 ALTER COLUMN user_password TYPE VARCHAR;
 

@@ -105,3 +105,5 @@ app.listen(port, () => {
 
 // todo - move journal filter onto server side
 // make it @media adjustable in css to have browser/tablet sized
+// memory.store is production only - memory leaks otherwist - FIX
+// local 3000? change?
