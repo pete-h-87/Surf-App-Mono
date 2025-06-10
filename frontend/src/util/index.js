@@ -1,16 +1,8 @@
-// export const getForecast = async () => {
-//   try {
-//     const res = await fetch("/api/dbRoute");
-//     const data = await res.json();
-//     return data;
-//   } catch (error) {
-//     return { error };
-//   }
-// };
+import apiUrl from "../config";
 
 export const getForecast = async (user_id) => {
   try {
-    const res = await fetch(`/api/dbRoute/user/${user_id}`);
+    const res = await fetch(`${apiUrl}/api/dbRoute/user/${user_id}`);
     if (res.status === 401) {
       return res;
     }
@@ -165,7 +157,7 @@ export const deleteReport = async (forecast_id) => {
 
 export const getThreeHourWindForecast = async () => {
   try {
-    const res = await fetch(`/api/mateoWeatherRoutes/threeHourWind`);
+    const res = await fetch(`${apiUrl}/api/mateoWeatherRoutes/threeHourWind`);
     const data = await res.json();
     return data;
   } catch (error) {
@@ -176,7 +168,7 @@ export const getThreeHourWindForecast = async () => {
 
 export const getThreeHourWaveForecast = async () => {
   try {
-    const res = await fetch(`/api/mateoWeatherRoutes/threeHourWave`);
+    const res = await fetch(`${apiUrl}/api/mateoWeatherRoutes/threeHourWave`);
     const data = await res.json();
     return data;
   } catch (error) {
@@ -187,7 +179,7 @@ export const getThreeHourWaveForecast = async () => {
 
 export const getSixHourWindForecast = async () => {
   try {
-    const res = await fetch(`/api/mateoWeatherRoutes/sixHourWind`);
+    const res = await fetch(`${apiUrl}/api/mateoWeatherRoutes/sixHourWind`);
     const data = await res.json();
     return data;
   } catch (error) {
@@ -198,7 +190,7 @@ export const getSixHourWindForecast = async () => {
 
 export const getSixHourWaveForecast = async () => {
   try {
-    const res = await fetch(`/api/mateoWeatherRoutes/sixHourWave`);
+    const res = await fetch(`${apiUrl}/api/mateoWeatherRoutes/sixHourWave`);
     const data = await res.json();
     return data;
   } catch (error) {
