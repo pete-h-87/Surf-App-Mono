@@ -15,7 +15,7 @@ export const getForecast = async (user_id) => {
 
 export const getPredictions = async () => {
   try {
-    const res = await fetch("/api/dbRoute/readPredictions");
+    const res = await fetch(`${apiUrl}/api/dbRoute/readPredictions`);
     if (res.status === 401) {
       return res;
     }
@@ -28,7 +28,7 @@ export const getPredictions = async () => {
 
 export const createEntry = async (data) => {
   try {
-    const res = await fetch("/api/dbRoute/create", {
+    const res = await fetch(`${apiUrl}/api/dbRoute/create`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -47,7 +47,7 @@ export const createEntry = async (data) => {
 
 export const createJournalEntry = async (data) => {
   try {
-    const res = await fetch("/api/dbRoute/createJournalEntry", {
+    const res = await fetch(`${apiUrl}/api/dbRoute/createJournalEntry`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -69,7 +69,7 @@ export const createJournalEntry = async (data) => {
 
 export const addReport = async (data) => {
   try {
-    const res = await fetch("/api/dbRoute/addReport", {
+    const res = await fetch(`${apiUrl}/api/dbRoute/addReport`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -91,7 +91,7 @@ export const addReport = async (data) => {
 
 export const updatePrediction = async (data) => {
   try {
-    const res = await fetch(`/api/dbRoute/updatePrediction`, {
+    const res = await fetch(`${apiUrl}/api/dbRoute/updatePrediction`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -114,7 +114,7 @@ export const updatePrediction = async (data) => {
 
 export const deleteEntry = async (forecast_id) => {
   try {
-    const res = await fetch(`/api/dbRoute/deleteEntry`, {
+    const res = await fetch(`${apiUrl}/api/dbRoute/deleteEntry`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -136,7 +136,7 @@ export const deleteEntry = async (forecast_id) => {
 
 export const deleteReport = async (forecast_id) => {
   try {
-    const res = await fetch(`/api/dbRoute/deleteReport`, {
+    const res = await fetch(`${apiUrl}/api/dbRoute/deleteReport`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -201,7 +201,7 @@ export const getSixHourWaveForecast = async () => {
 
 export const createNewUser = async (data) => {
   try {
-    const res = await fetch("/api/userRoute/users/createUser", {
+    const res = await fetch(`${apiUrl}/api/userRoute/users/createUser`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -220,7 +220,7 @@ export const createNewUser = async (data) => {
 
 export const loggingInTheUser = async (data) => {
   try {
-    const res = await fetch("/api/userRoute/users/auth", {
+    const res = await fetch(`${apiUrl}/api/userRoute/users/auth`, {
       //HERE, we are connecting the frontend directly to the route to the backend
       method: "POST",
       headers: {
