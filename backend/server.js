@@ -5,6 +5,8 @@ const passport = require("passport");
 // const initializePassport = require("./local-strategy");
 const app = express();
 const session = require("express-session");
+const pgSession = require("connect-pg-simple")(session);
+const pool = require("./model/database");
 const flash = require("express-flash");
 require("./local-strategy");
 
@@ -22,6 +24,10 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(
   session({
+    store: new pgSession({
+      pool: pool, // Use your existing pool here
+      tableName: "session", // Default is 'session'
+    }),
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
