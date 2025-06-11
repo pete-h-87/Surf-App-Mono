@@ -154,7 +154,7 @@ export const Login = () => {
                 transitionDelay: animateIn ? "0.2s" : "0s",
               }}
               onClick={() => {
-                navigate("/homescreen");
+                navigate("/");
               }}
             >
               <div className={styles.buttonContent}>

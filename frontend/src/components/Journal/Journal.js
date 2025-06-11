@@ -40,7 +40,7 @@ function Journal() {
         setLoggedInUserId(null);
         setSessionTimeOutModal(true);
         setEntries([]);
-        navigate("/homescreen");
+        navigate("/");
         return;
       }
       if (res.error) {
@@ -62,7 +62,7 @@ function Journal() {
       setLoggedInUserId(null);
       setSessionTimeOutModal(true);
       setEntries([]);
-      navigate("/homescreen");
+      navigate("/");
       return;
     }
     if (predRes.error) {
@@ -196,7 +196,7 @@ function Journal() {
         setLoggedInUserId(null);
         setSessionTimeOutModal(true);
         setEntries([]);
-        navigate("/homescreen");
+        navigate("/");
         return;
       }
       setEntries((prevState) =>
@@ -222,7 +222,7 @@ function Journal() {
               <div className={styles.spacer}></div>
             </li>
             <li>
-              <Link to="/homescreen">Home</Link>
+              <Link to="/">Home</Link>
             </li>
             <li>
               <Link to="/account">Account</Link>
@@ -242,7 +242,7 @@ function Journal() {
               <div className={styles.spacer}></div>
             </li>
             <li>
-              <Link to="/homescreen">Home</Link>
+              <Link to="/">Home</Link>
             </li>
             <li>
               <Link to="/account">Account</Link>

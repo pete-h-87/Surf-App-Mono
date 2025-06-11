@@ -84,7 +84,7 @@ const Account = () => {
                 transitionDelay: animateIn ? "0.2s" : "0s",
               }}
               onClick={() => {
-                navigate("/homescreen");
+                navigate("/");
               }}
             >
               <div className={styles.buttonContent}>
@@ -105,7 +105,7 @@ const Account = () => {
               }}
               onClick={() => {
                 logout();
-                navigate("/homescreen");
+                navigate("/");
               }}
             >
               <div className={styles.buttonContent}>

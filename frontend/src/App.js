@@ -15,7 +15,6 @@ function App() {
     <div className={styles.App}>
       <Routes>
         <Route path="/" element={<HomeScreen />} />
-        <Route path="/homescreen" element={<HomeScreen />} />
         <Route path="/one-week-view" element={<OneWeekView />} />
         <Route path="/login" element={<Login />} />
         <Route path="/account" element={<Account />} />

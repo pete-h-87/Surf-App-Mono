@@ -72,7 +72,7 @@ function OneWeekView() {
             <div className={styles.spacer}></div>
           </li>
           <li>
-            <Link to="/homescreen">Home</Link>
+            <Link to="/">Home</Link>
           </li>
           <li>
             {loggedInUser ? (

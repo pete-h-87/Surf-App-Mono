@@ -173,7 +173,7 @@ function ThreeHourView() {
         setLoggedInUser(null);
         setLoggedInUserId(null);
         setSessionTimeOutModal(true);
-        navigate("/homescreen");
+        navigate("/");
         return;
       }
       const journalData = {
@@ -204,7 +204,7 @@ function ThreeHourView() {
             </Link>
           </li>
           <li>
-            <Link to="/homescreen">Home</Link>
+            <Link to="/">Home</Link>
           </li>
           <li>
             {loggedInUser ? (

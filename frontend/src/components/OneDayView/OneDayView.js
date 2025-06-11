@@ -70,7 +70,7 @@ function OneDayView() {
             </Link>
           </li>
           <li>
-            <Link to="/homescreen">Home</Link>
+            <Link to="/">Home</Link>
           </li>
           <li>
             {loggedInUser ? (
