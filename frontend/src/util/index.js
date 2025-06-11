@@ -2,7 +2,10 @@ import apiUrl from "../config";
 
 export const getForecast = async (user_id) => {
   try {
-    const res = await fetch(`${apiUrl}/api/dbRoute/user/${user_id}`);
+    const res = await fetch(`${apiUrl}/api/dbRoute/user/${user_id}`, {
+      method: "POST",
+      credentials: "include",
+    });
     if (res.status === 401) {
       return res;
     }
@@ -15,7 +18,10 @@ export const getForecast = async (user_id) => {
 
 export const getPredictions = async () => {
   try {
-    const res = await fetch(`${apiUrl}/api/dbRoute/readPredictions`);
+    const res = await fetch(`${apiUrl}/api/dbRoute/readPredictions`, {
+      method: "POST",
+      credentials: "include",
+    });
     if (res.status === 401) {
       return res;
     }
