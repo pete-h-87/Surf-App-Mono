@@ -47,8 +47,9 @@ function Journal() {
         setError(res.error.name);
         setEntries([]);
       }
-      console.log("loggedInUserId AT JOURNAL FETCH:", loggedInUserId);
-      console.log(res.data);
+      if (res.data === null || res.data === undefined) {
+        setEntries([]);
+      }
       setEntries(res.data);
     } else {
       setEntries([]);
