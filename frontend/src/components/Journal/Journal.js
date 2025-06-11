@@ -87,8 +87,8 @@ function Journal() {
     }
   }, [entries]); // Runs whenever loggedInUser changes
 
-  const mergedData = entries.map((entry) => {
-    const prediction = predictions.find(
+  const mergedData = (entries || []).map((entry) => {
+    const prediction = (predictions || []).find(
       (pred) => pred.forecast_id === entry.forecast_id
     );
     return {
