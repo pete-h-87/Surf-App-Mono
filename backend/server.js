@@ -8,7 +8,6 @@ const session = require("express-session");
 const pgSession = require("connect-pg-simple")(session);
 const pool = require("./model/database");
 const flash = require("express-flash");
-const path = require("path");
 require("./local-strategy");
 
 const port = process.env.PORT || 10000;
