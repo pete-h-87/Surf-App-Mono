@@ -214,7 +214,7 @@ function Journal() {
     }
   };
 
-  if (entries.length === 0) {
+  if (entries.length === 0 || entries === undefined || entries === null) {
     return (
       <div className={styles.page}>
         <nav className={styles.navbar}>
