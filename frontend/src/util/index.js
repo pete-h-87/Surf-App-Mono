@@ -245,8 +245,8 @@ export const loggingInTheUser = async (data) => {
     // if (!res.ok) {
     //   throw new Error("Network response was not ok for finding USER");
     // }
-
     const result = await res.json();
+    console.log("logginInTheUser resposne:", res);
     if (res.ok) {
       window.location.href = result.redirectUrl;
       return result;
