@@ -68,23 +68,45 @@ app.use("/api/dbRoute", dbRoute);
 app.use("/api/mateoWeatherRoutes", mateoWeatherRoutes);
 app.use("/api/screenshot", screenshotRoutes);
 
+// app.post("/api/userRoute/users/auth", (req, res, next) => {
+//   passport.authenticate("local", (err, user, info) => {
+//     if (err) {
+//       console.error("Error during authentication:", err);
+//       return res.status(500).json({ message: "Internal server error" });
+//     }
+//     if (!user) {
+//       console.log("Authentication failed:", info.message);
+//       return res.status(401).json({ message: info.message });
+//     }
+
+//     req.logIn(user, (err) => {
+//       if (err) {
+//         console.error("Error during login:", err);
+//         return res.status(500).json({ message: "Internal server error" });
+//       }
+//       console.log("User logged in successfully:", user);
+//       res.status(200).json({
+//         message: "Login successful",
+//         user: {
+//           id: user.user_id,
+//           name: user.user_name,
+//           email: user.user_email,
+//         },
+//         redirectUrl: "/",
+//       });
+//     });
+//   })(req, res, next);
+// });
+
 app.post("/api/userRoute/users/auth", (req, res, next) => {
   passport.authenticate("local", (err, user, info) => {
-    if (err) {
-      console.error("Error during authentication:", err);
-      return res.status(500).json({ message: "Internal server error" });
-    }
+    if (err) return next(err);
     if (!user) {
-      console.log("Authentication failed:", info.message);
-      return res.status(401).json({ message: info.message });
+      return res.status(401).json({ message: info?.message || "Login failed" });
     }
-
     req.logIn(user, (err) => {
-      if (err) {
-        console.error("Error during login:", err);
-        return res.status(500).json({ message: "Internal server error" });
-      }
-      console.log("User logged in successfully:", user);
+      if (err) return next(err);
+      // Only send the response here, after login/session is set!
       res.status(200).json({
         message: "Login successful",
         user: {
