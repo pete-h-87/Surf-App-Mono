@@ -12,6 +12,8 @@ require("./local-strategy");
 
 const port = process.env.PORT || 10000;
 
+app.set("trust proxy", 1);
+
 const corsOptions = {
   origin: process.env.FRONTEND_URL,
   methods: ["GET", "POST", "PUT", "DELETE"],
@@ -22,8 +24,6 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-
-app.set("trust proxy", 1);
 
 app.use(
   session({
@@ -50,6 +50,12 @@ app.use((req, res, next) => {
   next();
 });
 app.use(flash());
+
+//test section
+app.get("/test-session", (req, res) => {
+  req.session.test = "hello";
+  res.json({ message: "Session set" });
+});
 
 //routes
 const dbRoute = require("./routes/dbRoute");
