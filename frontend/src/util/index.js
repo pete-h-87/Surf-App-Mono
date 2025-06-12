@@ -36,6 +36,7 @@ export const createEntry = async (data) => {
   try {
     const res = await fetch(`${apiUrl}/api/dbRoute/create`, {
       method: "POST",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
@@ -55,6 +56,7 @@ export const createJournalEntry = async (data) => {
   try {
     const res = await fetch(`${apiUrl}/api/dbRoute/createJournalEntry`, {
       method: "POST",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
@@ -77,6 +79,7 @@ export const addReport = async (data) => {
   try {
     const res = await fetch(`${apiUrl}/api/dbRoute/addReport`, {
       method: "POST",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
@@ -99,6 +102,7 @@ export const updatePrediction = async (data) => {
   try {
     const res = await fetch(`${apiUrl}/api/dbRoute/updatePrediction`, {
       method: "PUT",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
@@ -122,6 +126,7 @@ export const deleteEntry = async (forecast_id) => {
   try {
     const res = await fetch(`${apiUrl}/api/dbRoute/deleteEntry`, {
       method: "DELETE",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
@@ -144,6 +149,7 @@ export const deleteReport = async (forecast_id) => {
   try {
     const res = await fetch(`${apiUrl}/api/dbRoute/deleteReport`, {
       method: "DELETE",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
@@ -209,6 +215,7 @@ export const createNewUser = async (data) => {
   try {
     const res = await fetch(`${apiUrl}/api/userRoute/users/createUser`, {
       method: "POST",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
@@ -229,6 +236,7 @@ export const loggingInTheUser = async (data) => {
     const res = await fetch(`${apiUrl}/api/userRoute/users/auth`, {
       //HERE, we are connecting the frontend directly to the route to the backend
       method: "POST",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
