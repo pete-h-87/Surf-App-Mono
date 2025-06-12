@@ -19,6 +19,7 @@ exports.read = async (req, res) => {
       return res.status(400).json({ error: "User ID is required" });
     }
     const forecast = await get(user_id);
+    console.log("the Response in controller:", res);
     return res.json({ data: forecast.rows });
   } catch (err) {
     return res.status(400).json({
@@ -83,7 +84,7 @@ exports.updatePrediction = async (req, res) => {
     const data = req.body;
     console.log("the update prediction:", req.body);
     const result = await updatePrediction(data);
-     console.log("the update RESULT:", result);
+    console.log("the update RESULT:", result);
     return res.status(201).json(result);
   } catch (err) {
     console.error("Error creating journal entry:", err);
@@ -183,8 +184,6 @@ exports.createUser = async (req, res) => {
 //     });
 //   })(req, res, next); // Pass req, res, and next to passport.authenticate
 // };
-
-
 
 // STEP FOUR - recieve the SQL injections from the model, and make middelware in your controller folder -
 // pass to your routes
