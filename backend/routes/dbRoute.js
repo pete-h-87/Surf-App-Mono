@@ -12,8 +12,8 @@ const {
 } = require("../controller/index");
 const checkSession = require("../middleware/middleware");
 
-router.get("/user/:user_id", checkSession, read);
-router.get("/readPredictions", checkSession, readPredictions);
+router.post("/user/:user_id", checkSession, read);
+router.post("/readPredictions", checkSession, readPredictions);
 router.post("/create", checkSession, create);
 router.post("/createJournalEntry", checkSession, createJournalEntry);
 router.post("/addReport", checkSession, addReport);
