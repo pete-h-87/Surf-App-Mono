@@ -36,6 +36,7 @@ app.use(
     saveUninitialized: false,
     rolling: true,
     cookie: {
+      domain: ".niche-surf.com",
       maxAge: 30 * 60 * 1000,
       sameSite: "none",
       secure: true,
