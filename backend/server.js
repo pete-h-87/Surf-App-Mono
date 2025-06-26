@@ -149,3 +149,4 @@ app.listen(port, () => {
 // make it @media adjustable in css to have browser/tablet sized
 // memory.store is production only - memory leaks otherwist - FIX
 // local 3000? change?
+// set up a pg_hba.config file to set up database permisions, instead
