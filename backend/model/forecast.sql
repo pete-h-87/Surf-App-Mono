@@ -58,3 +58,28 @@ ALTER COLUMN user_password TYPE VARCHAR;
 CREATE TABLE forecast(forecast_id SERIAL PRIMARY KEY, date_recorded VARCHAR NOT NULL, session_time VARCHAR NOT NULL, wind_speed DECIMAL(5, 2) NOT NULL, wind_direction DECIMAL(5, 2) NOT NULL, wave_height DECIMAL(5, 2) NOT NULL, wave_period DECIMAL(5, 2) NOT NULL, wave_direction DECIMAL(5,2) NOT NULL, temperature DECIMAL(5, 2) NOT NULL);
 
 CREATE TABLE journal(journal_id SERIAL PRIMARY KEY, forecast_id INT REFERENCES forecast(journal_id), prediction VARCHAR, report VARCHAR);
+
+-- for creating on Linux - needed because this environment is very secure, and needs special permissions/tables:
+-- 1. Create the Session table for your login system
+CREATE TABLE IF NOT EXISTS "session" (
+  "sid" varchar NOT NULL COLLATE "default",
+  "sess" json NOT NULL,
+  "expire" timestamp(6) NOT NULL
+) WITH (OIDS=FALSE);
+
+-- 2. Add the primary key and index for performance
+ALTER TABLE "session" DROP CONSTRAINT IF EXISTS "session_pkey";
+ALTER TABLE "session" ADD CONSTRAINT "session_pkey" PRIMARY KEY ("sid") NOT DEFERRABLE INITIALLY IMMEDIATE;
+CREATE INDEX IF NOT EXISTS "IDX_session_expire" ON "session" ("expire");
+
+-- 3. Fix all permissions for your app user (pumpkinpsql)
+GRANT ALL ON SCHEMA public TO pumpkinpsql;
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO pumpkinpsql;
+GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO pumpkinpsql;
+
+-- 4. Ensure pumpkinpsql owns the specific tables
+ALTER TABLE users OWNER TO pumpkinpsql;
+ALTER TABLE "session" OWNER TO pumpkinpsql;
+
+-- 5. Final check to see if tables are there
+\dt
