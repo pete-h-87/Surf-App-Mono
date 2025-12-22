@@ -40,8 +40,8 @@ app.use(
     cookie: {
       domain: ".niche-surf.com",
       maxAge: 30 * 60 * 1000,
-      sameSite: "none",
-      secure: true,
+      sameSite: "lax",
+      secure: false,
     },
   })
 );
