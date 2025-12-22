@@ -1,12 +1,12 @@
 require("dotenv").config();
 const express = require("express");
+const pool = require("./model/database");
 const cors = require("cors");
 const passport = require("passport");
 // const initializePassport = require("./local-strategy");
 const app = express();
 const session = require("express-session");
 const pgSession = require("connect-pg-simple")(session);
-const pool = require("./model/database");
 const flash = require("express-flash");
 require("./local-strategy");
 
